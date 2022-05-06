@@ -6,6 +6,7 @@ import java.awt.Shape;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import processing.core.PImage;
 
 import core.DrawingSurface;
 import sprites.Mario;
@@ -17,6 +18,7 @@ public class SecondScreen extends Screen {
 	private DrawingSurface surface;
 	
 	private Rectangle screenRect;
+	private PImage background;
 
 	private Mario mario;
 	private List<Sprite> obstacles;
@@ -26,24 +28,24 @@ public class SecondScreen extends Screen {
 		this.surface = surface;
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Sprite>();
-		obstacles.add(new Sprite(0,250,100,50));
-		obstacles.add(new Sprite(700,250,100,50));
-		obstacles.add(new Sprite(200,400,400,50));
-		obstacles.add(new Sprite(375,300,50,100));
-		obstacles.add(new Sprite(300,250,200,50));
 	}
 
 
 	public void spawnNewMario() {
-		mario = new Mario(surface.loadImage("img/mario.png"), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
+		mario = new Mario(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
 	}
 
 	// The statements in the setup() function 
 	// execute once when the program begins
 	public void setup() {
+		background = surface.loadImage("img/background.png");
 		spawnNewMario();
 	}
 
+	public void loadBackground() { 
+		surface.image(background, 0,0, DRAWING_WIDTH,DRAWING_HEIGHT);
+	}
+	
 	// The statements in draw() are executed until the 
 	// program is stopped. Each statement is executed in 
 	// sequence and after the last line is read, the first 
@@ -53,13 +55,12 @@ public class SecondScreen extends Screen {
 		// drawing stuff
 		
 		surface.background(0,255,255);   
-
+		loadBackground();
 		for (Sprite s : obstacles) {
 			s.draw(surface);
 		}
 
 		mario.draw(surface);
-
 		
 		// modifying stuff
 

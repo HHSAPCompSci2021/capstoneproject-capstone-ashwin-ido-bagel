@@ -25,12 +25,17 @@ public class FirstScreen extends Screen {
 	public void draw() {
 
 		surface.background(255,255,255);
-		
+		surface.fill(0,255,0);
 		surface.rect(button.x, button.y, button.width, button.height, 10, 10, 10, 10);
 		surface.fill(0);
-		String str = "Click me!";
+		String str = "Play";
+		surface.textSize(20);
 		float w = surface.textWidth(str);
 		surface.text(str, button.x+button.width/2-w/2, button.y+button.height/2);
+		str = "Scythe of the Soulles";
+		surface.textSize(30);
+		w = surface.textWidth(str);
+		surface.text(str, surface.width/2-w/2, 50);
 	}
 
 
