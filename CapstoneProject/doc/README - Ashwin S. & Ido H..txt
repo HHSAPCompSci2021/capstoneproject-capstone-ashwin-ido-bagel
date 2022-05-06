@@ -92,12 +92,20 @@ Class List:
    * A super class that would provide the framework for making specialized npcs.
    * It will represent a general character that could be built upon to make enemies, bosses, and other npcs
    * Will include general animations and properties.
+* Player
+   * A sprite that the user controls.
 * Weapons
    * A super class that would provide the framework for creating specialized weapons.
    * It will represent a general weapon that could be built upon to make specific weapons such as swords and bows.
    * Will include general animations and properties.
 * Screen 
    * Super class for general screen that would be used to create the game screen and menu screen.
+* FirstScreen
+   * Subclass of screen. The main menu screen of the game.
+* SecondScreen
+   * Subclass of screen. The open world game screen.
+* ScreenSwitcher
+   * An interface that defines switching between screens.
 * Main
    * Would run the game using a drawing surface.
 * DrawingSurface
@@ -105,3 +113,6 @@ Class List:
 Credits:
 [Gives credit for project components. This includes both internal credit (your group members) and external credit (other people, websites, libraries). To do this:
 * Processing
+* Finalbossblues - player images
+* Andy Sowards - Game background
+* Hyper Light Drifter - Main menu background
