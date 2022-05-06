@@ -7,13 +7,23 @@ import java.awt.Rectangle;
 
 import core.DrawingSurface;
 
-
+/**
+ * Represents the main menu screen where the user is prompted to play.
+ * 
+ * @author Ido Haiby
+ * @version 5/5/2022 
+ */
 public class FirstScreen extends Screen {
 
 	private DrawingSurface surface;
 	
 	private Rectangle button;
 
+	/**
+	 * Creates the main menu screen that prompts the player to begin playing.
+	 * 
+	 * @param surface The drawing surface the main menu is drawn upon.
+	 */
 	public FirstScreen(DrawingSurface surface) {
 		super(800,600);
 		this.surface = surface;
