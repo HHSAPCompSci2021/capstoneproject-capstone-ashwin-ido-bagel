@@ -7,22 +7,46 @@ import java.util.List;
 
 import processing.core.PImage;
 
+/**
+ * This class represents a Player that the user can control.
+ */
 public class Player extends Sprite {
-
+	
+	/**
+	 * The width of the Player.
+	 */
 	public static final int PLAYER_WIDTH = (int)(40* 500d/679);
+	
+	/**
+	 * The height of the Player.
+	 */
 	public static final int PLAYER_HEIGHT = (int)(60 * 737d/892);
 	
 	private boolean canDown, canUp, canRight, canLeft;
-
+	
+	/**
+	 * This documents the different directions the Player can move.
+	 */
 	public enum Direction {
 		Up,Down,Left,Right
 	}
 	
+	/**
+	 * Creates a new Player object with an Image. 
+	 * @param img Image representing the player. 
+	 * @param x X-coordinates of the Player. 
+	 * @param y Y-coordinates of the Player.
+	 */
 	public Player(PImage img, int x, int y) {
 		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	// METHODS
+	
+	/**
+	 * This method takes in a Direction and walks in that direction.
+	 * @param dir The Direction used to represent what direction to walk in. 
+	 */
 	public void walk(Direction dir) {
 		if (dir == Direction.Left) {
 			moveByAmount(-5,0);
@@ -37,11 +61,18 @@ public class Player extends Sprite {
 			moveByAmount(0,-5);
 		}
 	}
-
+	
+	/**
+	 * A method that makes the Player jump.
+	 */
 	public void jump() {
-		
+		//to be implemented
 	}
 
+	/**
+	 * Act methods checks for collisions and handles all those cases. 
+	 * @param obstacles A List<Sprite> of all Sprites in the window. 
+	 */
 	public void act(List<Sprite> obstacles) {
 
 		 for (Sprite s : obstacles) {
