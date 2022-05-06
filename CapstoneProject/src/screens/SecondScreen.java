@@ -38,6 +38,13 @@ public class SecondScreen extends Screen {
 		this.surface = surface;
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Sprite>();
+		
+		//these add obstacles so Player cannot go into the water
+		obstacles.add(new Sprite(215,425,425,55));
+		obstacles.add(new Sprite(107,480,120,75));
+		obstacles.add(new Sprite(54,540,120,60));
+		obstacles.add(new Sprite(630,480,180,50));
+
 	}
 
 	/**
@@ -69,11 +76,14 @@ public class SecondScreen extends Screen {
 		
 		// drawing stuff
 		
-		surface.background(0,255,255);   
-		loadBackground();
+		surface.background(0,255,255);
 		for (Sprite s : obstacles) {
 			s.draw(surface);
 		}
+		loadBackground();
+//		for (Sprite s : obstacles) {
+//			s.draw(surface);
+//		}
 
 		player.draw(surface);
 		
