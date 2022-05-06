@@ -9,6 +9,9 @@ import processing.core.PImage;
 
 /**
  * This class represents a Player that the user can control.
+ * 
+ * @author Ashwin S.
+ * @version 5/5/22
  */
 public class Player extends Sprite {
 	
