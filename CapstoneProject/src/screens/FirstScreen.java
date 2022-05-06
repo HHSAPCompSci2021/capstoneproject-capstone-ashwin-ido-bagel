@@ -43,7 +43,7 @@ public class FirstScreen extends Screen {
 		surface.textSize(20);
 		float w = surface.textWidth(str);
 		surface.text(str, button.x+button.width/2-w/2, button.y+button.height/2+5);
-		str = "Scythe of the Soulles";
+		str = "Reaper's Scythe";
 		surface.textSize(30);
 		surface.fill(255,255,255);
 		w = surface.textWidth(str);
