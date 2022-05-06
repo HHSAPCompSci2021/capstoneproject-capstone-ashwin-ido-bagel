@@ -7,10 +7,10 @@ import java.util.List;
 
 import processing.core.PImage;
 
-public class Mario extends Sprite {
+public class Player extends Sprite {
 
-	public static final int MARIO_WIDTH = 40;
-	public static final int MARIO_HEIGHT = 60;
+	public static final int PLAYER_WIDTH = (int)(40* 500d/679);
+	public static final int PLAYER_HEIGHT = (int)(60 * 737d/892);
 	
 	private boolean canDown, canUp, canRight, canLeft;
 
@@ -18,8 +18,8 @@ public class Mario extends Sprite {
 		Up,Down,Left,Right
 	}
 	
-	public Mario(PImage img, int x, int y) {
-		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);
+	public Player(PImage img, int x, int y) {
+		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 
 	// METHODS

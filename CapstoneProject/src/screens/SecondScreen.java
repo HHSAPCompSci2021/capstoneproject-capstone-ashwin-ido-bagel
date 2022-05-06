@@ -9,7 +9,7 @@ import java.util.List;
 import processing.core.PImage;
 
 import core.DrawingSurface;
-import sprites.Mario;
+import sprites.Player;
 import sprites.Sprite;
 
 
@@ -20,7 +20,7 @@ public class SecondScreen extends Screen {
 	private Rectangle screenRect;
 	private PImage background;
 
-	private Mario mario;
+	private Player mario;
 	private List<Sprite> obstacles;
 
 	public SecondScreen(DrawingSurface surface) {
@@ -32,7 +32,7 @@ public class SecondScreen extends Screen {
 
 
 	public void spawnNewMario() {
-		mario = new Mario(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
+		mario = new Player(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
 	}
 
 	// The statements in the setup() function 
@@ -69,13 +69,13 @@ public class SecondScreen extends Screen {
 			return;
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT))
-			mario.walk(Mario.Direction.Left);
+			mario.walk(Player.Direction.Left);
 		if (surface.isPressed(KeyEvent.VK_RIGHT))
-			mario.walk(Mario.Direction.Right);
+			mario.walk(Player.Direction.Right);
 		if (surface.isPressed(KeyEvent.VK_UP))
-			mario.walk(Mario.Direction.Up);
+			mario.walk(Player.Direction.Up);
 		if (surface.isPressed(KeyEvent.VK_DOWN))
-			mario.walk(Mario.Direction.Down);
+			mario.walk(Player.Direction.Down);
 		
 
 		mario.act(obstacles);
