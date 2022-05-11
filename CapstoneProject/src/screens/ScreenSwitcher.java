@@ -12,9 +12,14 @@ public interface ScreenSwitcher {
 	 */
 	public static final int MENU_SCREEN = 0;
 	/**
-	 * Integer value of the gmae screen
+	 * Integer value of the game screen
 	 */
 	public static final int GAME_SCREEN = 1;
+	
+	/**
+	 * Integer value of the battle screen
+	 */
+	public static final int BATTLE_SCREEN = 2;
 	
 	/**
 	 * Switches between the current screen and the screen whose value was inputed.
