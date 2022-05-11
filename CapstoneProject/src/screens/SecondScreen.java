@@ -26,9 +26,9 @@ public class SecondScreen extends Screen {
 	private PImage background;
 	private PImage[] animations;
 	private int animationIndex;
-	private boolean going, looping;
+	private boolean going;
 	
-	private final int animationTime = 6;  // This represents 1/4 of a second with normal framerate
+	private final int animationTime = 10;  // This represents 1/4 of a second with normal framerate
 	private int animationCounter;
 
 	private Player player;
@@ -51,10 +51,7 @@ public class SecondScreen extends Screen {
 		obstacles.add(new Sprite(54,540,120,60));
 		obstacles.add(new Sprite(630,480,180,50));
 		
-		animationIndex = 0;
 		going = false;
-		looping = false;
-
 	}
 
 	/**
@@ -73,6 +70,7 @@ public class SecondScreen extends Screen {
 	// The statements in the setup() function 
 	// execute once when the program begins
 	public void setup() {
+		animations = new PImage[6];
 		animations[0] = surface.loadImage("img/Walk1.png");
 		animations[1] = surface.loadImage("img/Walk2.png");
 		animations[2] = surface.loadImage("img/Walk3.png");
@@ -97,14 +95,21 @@ public class SecondScreen extends Screen {
 			s.draw(surface);
 		}
 		loadBackground();
-//		for (Sprite s : obstacles) {
-//			s.draw(surface);
-//		}
+		if(going) {
+			animationCounter--;
+			if (animationCounter <= 0) {
+				animationCounter = animationTime;
+				animationIndex = (animationIndex + 1) % animations.length;
+				if (!surface.isPressed(KeyEvent.VK_RIGHT)) {
+					going = false;
+				}
+			}
+		}
 
 		player.draw(surface);
 		
 		// modifying stuff
-
+		
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			return;
@@ -113,16 +118,7 @@ public class SecondScreen extends Screen {
 			player.walk(Player.Direction.Left);
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			player.walk(Player.Direction.Right);
-			if (going) {
-				animationCounter--;
-				if (animationCounter <= 0) {
-					animationCounter = animationTime;
-					animationIndex = (animationIndex + 1) % animations.length;
-					if (animationIndex == 0 && !looping) {
-						going = false;
-					}
-				}
-			}
+			going = true;
 			player.animateWalk(animations, animationIndex);
 		}
 		if (surface.isPressed(KeyEvent.VK_UP))

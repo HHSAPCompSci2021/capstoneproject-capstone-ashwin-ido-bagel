@@ -47,12 +47,8 @@ public class Player extends Sprite {
 
 	// METHODS
 	
-	public int animateWalk(PImage[] images, int index) {
-		if(!(index < images.length)) {
-			index = 0;
-		}
-		setImage(images[index+1]);
-		return index+1;
+	public void animateWalk(PImage[] images, int index) {
+		setImage(images[index]);
 	}
 	
 	/**
