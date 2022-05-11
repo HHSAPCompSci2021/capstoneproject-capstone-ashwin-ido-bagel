@@ -24,6 +24,12 @@ public class SecondScreen extends Screen {
 	
 	private Rectangle screenRect;
 	private PImage background;
+	private PImage[] animations;
+	private int animationIndex;
+	private boolean going, looping;
+	
+	private final int animationTime = 6;  // This represents 1/4 of a second with normal framerate
+	private int animationCounter;
 
 	private Player player;
 	private List<Sprite> obstacles;
@@ -44,6 +50,10 @@ public class SecondScreen extends Screen {
 		obstacles.add(new Sprite(107,480,120,75));
 		obstacles.add(new Sprite(54,540,120,60));
 		obstacles.add(new Sprite(630,480,180,50));
+		
+		animationIndex = 0;
+		going = false;
+		looping = false;
 
 	}
 
@@ -51,7 +61,7 @@ public class SecondScreen extends Screen {
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
+		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
 	}
 	/**
 	 * Loads the background of the current area.
@@ -63,6 +73,12 @@ public class SecondScreen extends Screen {
 	// The statements in the setup() function 
 	// execute once when the program begins
 	public void setup() {
+		animations[0] = surface.loadImage("img/Walk1.png");
+		animations[1] = surface.loadImage("img/Walk2.png");
+		animations[2] = surface.loadImage("img/Walk3.png");
+		animations[3] = surface.loadImage("img/Walk4.png");
+		animations[4] = surface.loadImage("img/Walk5.png");
+		animations[5] = surface.loadImage("img/Walk6.png");
 		background = surface.loadImage("img/background.png");
 		spawnNewPlayer();
 	}
@@ -95,8 +111,20 @@ public class SecondScreen extends Screen {
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT))
 			player.walk(Player.Direction.Left);
-		if (surface.isPressed(KeyEvent.VK_RIGHT))
+		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			player.walk(Player.Direction.Right);
+			if (going) {
+				animationCounter--;
+				if (animationCounter <= 0) {
+					animationCounter = animationTime;
+					animationIndex = (animationIndex + 1) % animations.length;
+					if (animationIndex == 0 && !looping) {
+						going = false;
+					}
+				}
+			}
+			player.animateWalk(animations, animationIndex);
+		}
 		if (surface.isPressed(KeyEvent.VK_UP))
 			player.walk(Player.Direction.Up);
 		if (surface.isPressed(KeyEvent.VK_DOWN))

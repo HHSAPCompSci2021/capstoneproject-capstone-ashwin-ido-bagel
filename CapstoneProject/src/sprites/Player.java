@@ -3,6 +3,7 @@ package sprites;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Line2D.Double;
+import java.util.ArrayList;
 import java.util.List;
 
 import processing.core.PImage;
@@ -18,12 +19,12 @@ public class Player extends Sprite {
 	/**
 	 * The width of the Player.
 	 */
-	public static final int PLAYER_WIDTH = (int)(40* 500d/679);
+	public static final int PLAYER_WIDTH = (int)(60 * 500d/679);
 	
 	/**
 	 * The height of the Player.
 	 */
-	public static final int PLAYER_HEIGHT = (int)(60 * 737d/892);
+	public static final int PLAYER_HEIGHT = (int)(90 * 737d/892);
 	
 	private boolean canDown, canUp, canRight, canLeft;
 	
@@ -45,6 +46,14 @@ public class Player extends Sprite {
 	}
 
 	// METHODS
+	
+	public int animateWalk(PImage[] images, int index) {
+		if(!(index < images.length)) {
+			index = 0;
+		}
+		setImage(images[index+1]);
+		return index+1;
+	}
 	
 	/**
 	 * This method takes in a Direction and walks in that direction.
