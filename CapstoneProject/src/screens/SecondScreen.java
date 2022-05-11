@@ -58,7 +58,7 @@ public class SecondScreen extends Screen {
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
+		player = new Player(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
 	}
 	/**
 	 * Loads the background of the current area.
@@ -114,6 +114,11 @@ public class SecondScreen extends Screen {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			return;
 		}
+		if (surface.isPressed(KeyEvent.VK_P)) {
+			surface.switchScreen(ScreenSwitcher.BATTLE_SCREEN);
+			return;
+		}
+		
 		if (surface.isPressed(KeyEvent.VK_LEFT))
 			player.walk(Player.Direction.Left);
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
