@@ -26,7 +26,8 @@ public class Player extends Sprite {
 	 */
 	public static final int PLAYER_HEIGHT = (int)(90 * 737d/892);
 	
-	private boolean canDown, canUp, canRight, canLeft;
+	private double yVel;
+	private boolean onSurface;
 	
 	/**
 	 * This documents the different directions the Player can move.
@@ -43,6 +44,8 @@ public class Player extends Sprite {
 	 */
 	public Player(PImage img, int x, int y) {
 		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
+		yVel = 0;
+		onSurface = true;
 	}
 
 	// METHODS
@@ -55,18 +58,18 @@ public class Player extends Sprite {
 	 * This method takes in a Direction and walks in that direction.
 	 * @param dir The Direction used to represent what direction to walk in. 
 	 */
-	public void walk(Direction dir) {
+	public void walk(Direction dir, int speed) {
 		if (dir == Direction.Left) {
-			moveByAmount(-5,0);
+			moveByAmount(-speed,0);
 		}
 		if (dir == Direction.Right) {
-			moveByAmount(5,0);
+			moveByAmount(speed,0);
 		}
 		if (dir == Direction.Down) {
-			moveByAmount(0,5);
+			moveByAmount(0,speed);
 		}
 		if (dir == Direction.Up) {
-			moveByAmount(0,-5);
+			moveByAmount(0,-speed);
 		}
 	}
 	
@@ -74,7 +77,25 @@ public class Player extends Sprite {
 	 * A method that makes the Player jump.
 	 */
 	public void jump() {
-		//to be implemented
+	//	double maxHeight = this.y - PLAYER_HEIGHT;
+		if(onSurface)
+			yVel -= 4;
+		
+	}
+	
+	public void battleAct(List<Sprite> obstacles) {
+		onSurface = false;
+		yVel += 0.1;
+		 
+		y += yVel;
+		 
+		for (Sprite s : obstacles) {
+			if (super.intersects(s)) {
+				yVel = 0;
+				super.y = s.y-super.height;
+			    onSurface = true;
+			}
+		}
 	}
 
 	/**

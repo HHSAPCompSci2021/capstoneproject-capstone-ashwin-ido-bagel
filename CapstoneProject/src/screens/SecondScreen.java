@@ -59,7 +59,7 @@ public class SecondScreen extends Screen {
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
+		player = new Player(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
 	}
 	/**
 	 * Loads the background of the current area.
@@ -119,24 +119,28 @@ public class SecondScreen extends Screen {
 		
 		// modifying stuff
 		
+		if (surface.isPressed(KeyEvent.VK_P)) {
+			surface.switchScreen(ScreenSwitcher.BATTLE_SCREEN);
+			return;
+		}
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			return;
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT)) {
-			player.walk(Player.Direction.Left);
+			player.walk(Player.Direction.Left, 2);
 			going = true;
 			player.animateWalk(animationsLeft, animationIndex);
 		}
-		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
-			player.walk(Player.Direction.Right);
+		else if (surface.isPressed(KeyEvent.VK_RIGHT)) {
+			player.walk(Player.Direction.Right, 2);
 			going = true;
 			player.animateWalk(animationsRight, animationIndex);
 		}
-		if (surface.isPressed(KeyEvent.VK_UP))
-			player.walk(Player.Direction.Up);
-		if (surface.isPressed(KeyEvent.VK_DOWN))
-			player.walk(Player.Direction.Down);
+		else if (surface.isPressed(KeyEvent.VK_UP))
+			player.walk(Player.Direction.Up, 2);
+		else if (surface.isPressed(KeyEvent.VK_DOWN))
+			player.walk(Player.Direction.Down, 2);
 		
 
 		player.act(obstacles);

@@ -27,7 +27,7 @@ public class BattleScreen extends Screen{
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Sprite>();
 		
-		obstacles.add(new Sprite(215,425,425,55));
+		obstacles.add(new Sprite(0,DRAWING_HEIGHT-10,DRAWING_WIDTH,10));
 	}
 	
 	
@@ -42,38 +42,44 @@ public class BattleScreen extends Screen{
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
+		player = new Player(surface.loadImage("img/character_battle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,500);
 	}
 	
 	public void spawnNewEnemy() {
-		//spawn enemy here (once implementation is finished)
+		enemy = new Enemy(surface.loadImage("img/character_battle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,500,(int)(60 * 500d/679), (int)(90 * 737d/892), 2);//spawn enemy here (once implementation is finished)
 	}
 	
 	// The statements in the setup() function 
-		// execute once when the program begins
-		public void setup() {
-			background = surface.loadImage("img/background.png"); //change to png used for background of battle screen
-			spawnNewPlayer();
-		}
+	// execute once when the program begins
+	public void setup() {
+		background = surface.loadImage("img/battlescreen.png"); //change to png used for background of battle screen
+		spawnNewPlayer();
+		spawnNewEnemy();
+	}
+	
+	public void draw() {
 		
-		public void draw() {
-			
-			surface.background(0,255,255);
-			for (Sprite s : obstacles) {
-				s.draw(surface);
-			}
-			loadBackground();
-			player.draw(surface);
-			
-			if (surface.isPressed(KeyEvent.VK_LEFT))
-				player.walk(Player.Direction.Left);
-			if (surface.isPressed(KeyEvent.VK_RIGHT))
-				player.walk(Player.Direction.Right);
-			
-			
-			if (!screenRect.intersects(player))
-				spawnNewPlayer();
+		surface.background(0,255,255);
+		for (Sprite s : obstacles) {
+			s.draw(surface);
 		}
+		loadBackground();
+		player.draw(surface);
+		enemy.draw(surface);
+		
+		if (surface.isPressed(KeyEvent.VK_LEFT))
+			player.walk(Player.Direction.Left, 10);
+		if (surface.isPressed(KeyEvent.VK_RIGHT))
+			player.walk(Player.Direction.Right, 10);
+		if (surface.isPressed(KeyEvent.VK_SPACE))
+			player.jump();
+		
+		enemy.act(player);
+		player.battleAct(obstacles);
+		
+		if (!screenRect.intersects(player))
+			spawnNewPlayer();
+	}
 	
 
 }
