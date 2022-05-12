@@ -24,8 +24,6 @@ public class SecondScreen extends Screen {
 	
 	private Rectangle screenRect;
 	private PImage background;
-	private PImage[] animationsRight;
-	private PImage[] animationsLeft;
 	private int animationIndex;
 	private boolean going;
 	
@@ -60,6 +58,7 @@ public class SecondScreen extends Screen {
 	 */
 	public void spawnNewPlayer() {
 		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
+		player.setUp(surface);
 	}
 	/**
 	 * Loads the background of the current area.
@@ -71,20 +70,6 @@ public class SecondScreen extends Screen {
 	// The statements in the setup() function 
 	// execute once when the program begins
 	public void setup() {
-		animationsRight = new PImage[6];
-		animationsRight[0] = surface.loadImage("img/Walk1.png");
-		animationsRight[1] = surface.loadImage("img/Walk2.png");
-		animationsRight[2] = surface.loadImage("img/Walk3.png");
-		animationsRight[3] = surface.loadImage("img/Walk4.png");
-		animationsRight[4] = surface.loadImage("img/Walk5.png");
-		animationsRight[5] = surface.loadImage("img/Walk6.png");
-		animationsLeft = new PImage[6];
-		animationsLeft[0] = surface.loadImage("img/WalkL1.png");
-		animationsLeft[1] = surface.loadImage("img/WalkL2.png");
-		animationsLeft[2] = surface.loadImage("img/WalkL3.png");
-		animationsLeft[3] = surface.loadImage("img/WalkL4.png");
-		animationsLeft[4] = surface.loadImage("img/WalkL5.png");
-		animationsLeft[5] = surface.loadImage("img/WalkL6.png");
 		background = surface.loadImage("img/background.png");
 		spawnNewPlayer();
 	}
@@ -98,7 +83,7 @@ public class SecondScreen extends Screen {
 		
 		// drawing stuff
 		
-		surface.background(0,255,255);
+		surface.background(255,255,255);
 		for (Sprite s : obstacles) {
 			s.draw(surface);
 		}
@@ -107,10 +92,10 @@ public class SecondScreen extends Screen {
 			animationCounter--;
 			if (animationCounter <= 0) {
 				animationCounter = animationTime;
-				animationIndex = (animationIndex + 1) % animationsRight.length;
+				animationIndex = (animationIndex + 1) % 6;
 				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT)) {
 					going = false;
-					
+					player.setImage(surface.loadImage("img/Character.png"));
 				}
 			}
 		}
@@ -126,12 +111,12 @@ public class SecondScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_LEFT)) {
 			player.walk(Player.Direction.Left);
 			going = true;
-			player.animateWalk(animationsLeft, animationIndex);
+			player.animateWalkLeft(animationIndex);
 		}
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			player.walk(Player.Direction.Right);
 			going = true;
-			player.animateWalk(animationsRight, animationIndex);
+			player.animateWalkRight(animationIndex);
 		}
 		if (surface.isPressed(KeyEvent.VK_UP))
 			player.walk(Player.Direction.Up);

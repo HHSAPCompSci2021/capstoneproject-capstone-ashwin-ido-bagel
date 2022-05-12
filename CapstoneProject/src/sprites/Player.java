@@ -6,6 +6,7 @@ import java.awt.geom.Line2D.Double;
 import java.util.ArrayList;
 import java.util.List;
 
+import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
@@ -28,6 +29,9 @@ public class Player extends Sprite {
 	
 	private boolean canDown, canUp, canRight, canLeft;
 	
+	private PImage[] animationsRight;
+	private PImage[] animationsLeft;
+	
 	/**
 	 * This documents the different directions the Player can move.
 	 */
@@ -47,8 +51,29 @@ public class Player extends Sprite {
 
 	// METHODS
 	
-	public void animateWalk(PImage[] images, int index) {
-		setImage(images[index]);
+	public void setUp(PApplet g) {
+		animationsRight = new PImage[6];
+		animationsRight[0] = g.loadImage("img/Walk1.png");
+		animationsRight[1] = g.loadImage("img/Walk2.png");
+		animationsRight[2] = g.loadImage("img/Walk3.png");
+		animationsRight[3] = g.loadImage("img/Walk4.png");
+		animationsRight[4] = g.loadImage("img/Walk5.png");
+		animationsRight[5] = g.loadImage("img/Walk6.png");
+		animationsLeft = new PImage[6];
+		animationsLeft[0] = g.loadImage("img/WalkL1.png");
+		animationsLeft[1] = g.loadImage("img/WalkL2.png");
+		animationsLeft[2] = g.loadImage("img/WalkL3.png");
+		animationsLeft[3] = g.loadImage("img/WalkL4.png");
+		animationsLeft[4] = g.loadImage("img/WalkL5.png");
+		animationsLeft[5] = g.loadImage("img/WalkL6.png");
+	}
+	
+	public void animateWalkRight(int index) {
+		setImage(animationsRight[index]);
+	}
+	
+	public void animateWalkLeft(int index) {
+		setImage(animationsLeft[index]);
 	}
 	
 	/**
