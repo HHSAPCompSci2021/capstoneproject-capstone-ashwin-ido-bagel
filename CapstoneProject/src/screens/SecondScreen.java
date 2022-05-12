@@ -104,24 +104,28 @@ public class SecondScreen extends Screen {
 		
 		// modifying stuff
 		
+		if (surface.isPressed(KeyEvent.VK_P)) {
+			surface.switchScreen(ScreenSwitcher.BATTLE_SCREEN);
+			return;
+		}
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			return;
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT)) {
-			player.walk(Player.Direction.Left);
+			player.walk(Player.Direction.Left, 2);
 			going = true;
 			player.animateWalkLeft(animationIndex);
 		}
-		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
-			player.walk(Player.Direction.Right);
+		else if (surface.isPressed(KeyEvent.VK_RIGHT)) {
+			player.walk(Player.Direction.Right, 2);
 			going = true;
 			player.animateWalkRight(animationIndex);
 		}
-		if (surface.isPressed(KeyEvent.VK_UP))
-			player.walk(Player.Direction.Up);
-		if (surface.isPressed(KeyEvent.VK_DOWN))
-			player.walk(Player.Direction.Down);
+		else if (surface.isPressed(KeyEvent.VK_UP))
+			player.walk(Player.Direction.Up, 2);
+		else if (surface.isPressed(KeyEvent.VK_DOWN))
+			player.walk(Player.Direction.Down, 2);
 		
 
 		player.act(obstacles);
