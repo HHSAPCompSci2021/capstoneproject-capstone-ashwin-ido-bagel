@@ -32,6 +32,7 @@ public class Player extends Sprite {
 	
 	private PImage[] animationsRight;
 	private PImage[] animationsLeft;
+	private PImage[] animationsAttack;
 	
 	/**
 	 * This documents the different directions the Player can move.
@@ -69,6 +70,11 @@ public class Player extends Sprite {
 		animationsLeft[3] = g.loadImage("img/WalkL4.png");
 		animationsLeft[4] = g.loadImage("img/WalkL5.png");
 		animationsLeft[5] = g.loadImage("img/WalkL6.png");
+		animationsAttack = new PImage[4];
+		animationsAttack[0] = g.loadImage("img/Attack1.png");
+		animationsAttack[1] = g.loadImage("img/Attack2.png");
+		animationsAttack[2] = g.loadImage("img/Attack3.png");
+		animationsAttack[3] = g.loadImage("img/Attack4.png");
 	}
 	
 	public void animateWalkRight(int index) {
@@ -77,6 +83,10 @@ public class Player extends Sprite {
 	
 	public void animateWalkLeft(int index) {
 		setImage(animationsLeft[index]);
+	}
+	
+	public void animateAttack(int index) {
+		setImage(animationsAttack[index]);
 	}
 	
 	/**

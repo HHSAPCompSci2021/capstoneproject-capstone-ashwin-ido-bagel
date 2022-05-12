@@ -21,6 +21,12 @@ public class BattleScreen extends Screen{
 	private Enemy enemy;
 	private List<Sprite> obstacles;
 	
+	private int animationIndex;
+	private boolean going;
+	
+	private final int animationTime = 10;  // This represents 1/4 of a second with normal framerate
+	private int animationCounter;
+	
 	public BattleScreen(DrawingSurface surface) {
 		super(800,600);
 		this.surface = surface;
@@ -28,6 +34,8 @@ public class BattleScreen extends Screen{
 		obstacles = new ArrayList<Sprite>();
 		
 		obstacles.add(new Sprite(0,DRAWING_HEIGHT-10,DRAWING_WIDTH,10));
+		
+		going = false;
 	}
 	
 	
@@ -42,7 +50,8 @@ public class BattleScreen extends Screen{
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/character_battle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,500);
+		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,500);
+		player.setUp(surface);
 	}
 	
 	public void spawnNewEnemy() {
@@ -57,6 +66,10 @@ public class BattleScreen extends Screen{
 		spawnNewEnemy();
 	}
 	
+	public void attack() {
+		
+	}
+	
 	public void draw() {
 		
 		surface.background(0,255,255);
@@ -64,13 +77,28 @@ public class BattleScreen extends Screen{
 			s.draw(surface);
 		}
 		loadBackground();
+		if(going) {
+			animationCounter--;
+			if (animationCounter <= 0) {
+				animationCounter = animationTime;
+				animationIndex = (animationIndex + 1) % 4;
+				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT)) {
+					going = false;
+					player.setImage(surface.loadImage("img/Character.png"));
+				}
+			}
+		}
+		
 		player.draw(surface);
 		enemy.draw(surface);
 		
 		if (surface.isPressed(KeyEvent.VK_LEFT))
 			player.walk(Player.Direction.Left, 10);
-		if (surface.isPressed(KeyEvent.VK_RIGHT))
+		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			player.walk(Player.Direction.Right, 10);
+			going = true;
+			player.animateAttack(animationIndex);
+		}
 		if (surface.isPressed(KeyEvent.VK_SPACE))
 			player.jump();
 		
