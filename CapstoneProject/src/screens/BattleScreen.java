@@ -50,7 +50,7 @@ public class BattleScreen extends Screen{
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,500);
+		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,500);
 		player.setUp(surface);
 	}
 	
@@ -84,7 +84,7 @@ public class BattleScreen extends Screen{
 				animationIndex = (animationIndex + 1) % 4;
 				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT)) {
 					going = false;
-					player.setImage(surface.loadImage("img/character.png"));
+					player.setImage(surface.loadImage("img/Character.png"));
 				}
 			}
 		}

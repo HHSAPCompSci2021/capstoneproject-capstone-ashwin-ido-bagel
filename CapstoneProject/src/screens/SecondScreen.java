@@ -9,6 +9,7 @@ import java.util.List;
 import processing.core.PImage;
 
 import core.DrawingSurface;
+import sprites.NPC;
 import sprites.Player;
 import sprites.Sprite;
 
@@ -32,6 +33,7 @@ public class SecondScreen extends Screen {
 
 	private Player player;
 	private List<Sprite> obstacles;
+	private NPC npc;
 
 	/**
 	 * Creates a game screen that has a drawing surface, and can have obstacles and a player.
@@ -57,7 +59,7 @@ public class SecondScreen extends Screen {
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
+		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
 		player.setUp(surface);
 	}
 	/**
@@ -72,6 +74,8 @@ public class SecondScreen extends Screen {
 	public void setup() {
 		background = surface.loadImage("img/background.png");
 		spawnNewPlayer();
+		npc = new NPC(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2 + NPC.NPC_WIDTH/2, 10);
+		npc.setText("Press p to fight boss");
 	}
 
 	
@@ -95,13 +99,13 @@ public class SecondScreen extends Screen {
 				animationIndex = (animationIndex + 1) % 6;
 				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT)) {
 					going = false;
-					player.setImage(surface.loadImage("img/character.png"));
+					player.setImage(surface.loadImage("img/Character.png"));
 				}
 			}
 		}
 
 		player.draw(surface);
-		
+		npc.draw(surface);
 		// modifying stuff
 		
 		if (surface.isPressed(KeyEvent.VK_P)) {
@@ -135,5 +139,10 @@ public class SecondScreen extends Screen {
 
 	}
 
+	public void mousePressed() { 
+		if(npc.contains(surface.mouseX, surface.mouseY)) {
+			npc.displayText();
+		}
+	}
 	
 }
