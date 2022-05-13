@@ -33,6 +33,7 @@ public class Player extends Sprite {
 	private PImage[] animationsRight;
 	private PImage[] animationsLeft;
 	private PImage[] animationsAttack;
+	private int attackPower, stamina, health;
 	
 	/**
 	 * This documents the different directions the Player can move.
@@ -47,10 +48,13 @@ public class Player extends Sprite {
 	 * @param x X-coordinates of the Player. 
 	 * @param y Y-coordinates of the Player.
 	 */
-	public Player(PImage img, int x, int y) {
+	public Player(PImage img, int x, int y, int attackPower, int stamina, int health) {
 		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 		yVel = 0;
 		onSurface = true;
+		this.attackPower = attackPower;
+		this.stamina = stamina;
+		this.health = health; 
 	}
 
 	// METHODS
@@ -139,6 +143,10 @@ public class Player extends Sprite {
 			    onSurface = true;
 			}
 		}
+	}
+	
+	public int getAttackPower() {
+		return attackPower;
 	}
 
 	/**

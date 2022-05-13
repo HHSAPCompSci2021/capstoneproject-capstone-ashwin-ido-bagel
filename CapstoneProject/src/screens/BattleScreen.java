@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import core.DrawingSurface;
 import processing.core.PImage;
 import sprites.Enemy;
@@ -50,7 +52,7 @@ public class BattleScreen extends Screen{
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,500);
+		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,500, 20, 100, 50);
 		player.setUp(surface);
 	}
 	
@@ -90,7 +92,14 @@ public class BattleScreen extends Screen{
 		}
 		
 		player.draw(surface);
-		enemy.draw(surface);
+		if(enemy.getHealth() > 0)
+			enemy.draw(surface);
+		else {
+			int answer = JOptionPane.showConfirmDialog(null, "Enemy defeated, return to world?");
+			if(answer == JOptionPane.YES_OPTION) {
+				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
+			}
+		}
 		
 		if (surface.isPressed(KeyEvent.VK_LEFT))
 			player.walk(Player.Direction.Left, 10);

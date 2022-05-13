@@ -59,7 +59,7 @@ public class SecondScreen extends Screen {
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
+		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50, 20, 100, 50);
 		player.setUp(surface);
 	}
 	/**
@@ -144,7 +144,7 @@ public class SecondScreen extends Screen {
 	}
 
 	public void mousePressed() { 
-		if(npc.contains(surface.mouseX, surface.mouseY) && npc.contains(player.x, player.y)) {
+		if(npc.contains(surface.mouseX, surface.mouseY) && npc.intersects(player)) {
 			npc.displayText();
 		}
 	}

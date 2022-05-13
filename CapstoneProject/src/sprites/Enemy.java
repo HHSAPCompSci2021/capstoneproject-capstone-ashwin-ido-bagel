@@ -1,5 +1,8 @@
 package sprites;
 
+import javax.swing.JOptionPane;
+
+import core.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PImage;
 import screens.Screen;
@@ -16,6 +19,7 @@ public class Enemy extends Sprite{
 	private int enemySpeed, attackPower;
 	private Player player;
 	private int health, stamina;
+	private int attackTimer;
 	
 	
 	/**
@@ -34,6 +38,7 @@ public class Enemy extends Sprite{
 		this.player = player;
 		this.health = health;
 		this.stamina = stamina;
+		attackTimer = 0;
 	} 
 	
 	/**
@@ -54,6 +59,10 @@ public class Enemy extends Sprite{
 		System.out.println("Enemy is Attacking!");
 	}
 	
+	public int getHealth() {
+		return health;
+	}
+	
 	/**
 	 * Moves this Enemy towards the Player.
 	 * @param player
@@ -70,12 +79,13 @@ public class Enemy extends Sprite{
 	
 	/**
 	 * Continuously moves towards the Player and attacks if close enough.
-	 * @param player
+	 * @param PApplet 
 	 */
 	public void act() {
 		moveTowardsPlayer();
-		if (this.intersects(player)) {
-			
+		if (this.intersects(player) && attackTimer == 0 && health > 0) {
+			health -= player.getAttackPower();
+			attackTimer = 60;
 		}
 	}
 	
@@ -83,9 +93,12 @@ public class Enemy extends Sprite{
 	public void draw(PApplet g) {
 		super.draw(g);
 		g.fill(255, 0, 0);
-		g.rect(g.displayWidth/4+(health)/2, 5, health, 10);
+		if(health > 0)
+			g.rect(g.displayWidth/4+(150)/2, 5, health, 10);
 		g.fill(0, 255, 0);
-		g.rect(g.displayWidth/4+(health)/2, 20, stamina, 10);
+		g.rect(g.displayWidth/4+(150)/2, 20, stamina, 10);
+		if(attackTimer > 0)
+			attackTimer--;
 	}
 
 }
