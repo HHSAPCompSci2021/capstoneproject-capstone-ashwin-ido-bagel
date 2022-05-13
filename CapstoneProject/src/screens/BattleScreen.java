@@ -66,9 +66,6 @@ public class BattleScreen extends Screen{
 		spawnNewEnemy();
 	}
 	
-	public void attack() {
-		
-	}
 	
 	public void draw() {
 		
