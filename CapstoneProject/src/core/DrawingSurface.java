@@ -99,6 +99,10 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 	@Override
 	public void switchScreen(int i) {
+		if(i == BATTLE_SCREEN) {
+			screens.set(i, new BattleScreen(this));
+			screens.get(i).setup();
+		}
 		activeScreen = screens.get(i);
 	}
 

@@ -8,9 +8,10 @@ import processing.core.PImage;
 import screens.Screen;
 
 /**
- * Creates an Enemy that is fought by the Player.
+ * Represents an Enemy that is fought by the Player.
+ * 
  * @author Ashwin S.
- *@version 5/13/22
+ * @version 5/13/22
  */
 public class Enemy extends Sprite{
 	
@@ -59,13 +60,18 @@ public class Enemy extends Sprite{
 		System.out.println("Enemy is Attacking!");
 	}
 	
+	/**
+	 * Returns the health
+	 * 
+	 * @return Health of the player.
+	 */
 	public int getHealth() {
 		return health;
 	}
 	
 	/**
 	 * Moves this Enemy towards the Player.
-	 * @param player
+	 * 
 	 */
 	public void moveTowardsPlayer() {
 		if (!(this.intersects(player))) {
@@ -79,11 +85,11 @@ public class Enemy extends Sprite{
 	
 	/**
 	 * Continuously moves towards the Player and attacks if close enough.
-	 * @param PApplet 
+	 *
 	 */
 	public void act() {
 		moveTowardsPlayer();
-		if (this.intersects(player) && attackTimer == 0 && health > 0) {
+		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {
 			health -= player.getAttackPower();
 			attackTimer = 60;
 		}
@@ -94,9 +100,14 @@ public class Enemy extends Sprite{
 		super.draw(g);
 		g.fill(255, 0, 0);
 		if(health > 0)
-			g.rect(g.displayWidth/4+(150)/2, 5, health, 10);
+			g.rect(g.width/2 + 225, 5, health, 10);
+		else
+			g.rect(g.width/2 + 225, 5, 0, 10);
 		g.fill(0, 255, 0);
-		g.rect(g.displayWidth/4+(150)/2, 20, stamina, 10);
+		if(stamina > 0)
+			g.rect(g.width/2 + 225, 20, stamina, 10);
+		else
+			g.rect(g.width/2 + 225, 20, 0, 10);
 		if(attackTimer > 0)
 			attackTimer--;
 	}
