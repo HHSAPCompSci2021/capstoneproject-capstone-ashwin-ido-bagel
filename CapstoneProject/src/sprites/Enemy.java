@@ -74,7 +74,7 @@ public class Enemy extends Sprite{
 	 */
 	public void act() {
 		moveTowardsPlayer();
-		if (distanceFromPlayer() <= 20) {
+		if (this.intersects(player)) {
 			attack();
 		}
 	}
