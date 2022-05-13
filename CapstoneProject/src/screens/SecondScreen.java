@@ -74,8 +74,8 @@ public class SecondScreen extends Screen {
 	public void setup() {
 		background = surface.loadImage("img/background.png");
 		spawnNewPlayer();
-		npc = new NPC(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2 + NPC.NPC_WIDTH/2, 10);
-		npc.setText("Press p to fight boss");
+		npc = new NPC(surface.loadImage("img/Enemy.png"), 300, 290);
+		npc.setText("Press P to fight boss.");
 	}
 
 	
@@ -106,6 +106,8 @@ public class SecondScreen extends Screen {
 
 		player.draw(surface);
 		npc.draw(surface);
+		surface.text("Click on me!", (float)npc.x, (float)npc.y - 20, 200, 20);
+
 		// modifying stuff
 		
 		if (surface.isPressed(KeyEvent.VK_P)) {
@@ -140,7 +142,7 @@ public class SecondScreen extends Screen {
 	}
 
 	public void mousePressed() { 
-		if(npc.contains(surface.mouseX, surface.mouseY)) {
+		if(npc.contains(surface.mouseX, surface.mouseY) && npc.contains(player.x, player.y)) {
 			npc.displayText();
 		}
 	}
