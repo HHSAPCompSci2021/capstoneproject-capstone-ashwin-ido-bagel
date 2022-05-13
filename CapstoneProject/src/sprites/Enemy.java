@@ -1,6 +1,8 @@
 package sprites;
 
+import processing.core.PApplet;
 import processing.core.PImage;
+import screens.Screen;
 
 /**
  * Creates an Enemy that is fought by the Player.
@@ -11,9 +13,9 @@ public class Enemy extends Sprite{
 	
 	//Weapon weapon;
 	
-	int enemySpeed, attackPower;
-	Player player;
-	
+	private int enemySpeed, attackPower;
+	private Player player;
+	private int health, stamina;
 	
 	
 	/**
@@ -25,11 +27,13 @@ public class Enemy extends Sprite{
 	 * @param h The height of the Enemy.
 	 * @param speed The speed that the Enemy moves.
 	 */
-	public Enemy(PImage img, int x, int y, int w, int h, int speed, int attackPower, Player player) {
+	public Enemy(PImage img, int x, int y, int w, int h, int speed, int attackPower, Player player, int health, int stamina) {
 		super(img, x, y, w, h);
 		enemySpeed = speed;
 		this.attackPower = attackPower;
 		this.player = player;
+		this.health = health;
+		this.stamina = stamina;
 	} 
 	
 	/**
@@ -73,6 +77,15 @@ public class Enemy extends Sprite{
 		if (distanceFromPlayer() <= 20) {
 			attack();
 		}
+	}
+	
+	@Override
+	public void draw(PApplet g) {
+		super.draw(g);
+		g.fill(255, 0, 0);
+		g.rect(g.displayWidth/4+(health)/2, 5, health, 10);
+		g.fill(0, 255, 0);
+		g.rect(g.displayWidth/4+(health)/2, 20, stamina, 10);
 	}
 
 }

@@ -55,7 +55,7 @@ public class BattleScreen extends Screen{
 	}
 	
 	public void spawnNewEnemy() {
-		enemy = new Enemy(surface.loadImage("img/character_battle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,500,(int)(60 * 500d/679), (int)(90 * 737d/892), 2, 5, player);//spawn enemy here (once implementation is finished)
+		enemy = new Enemy(surface.loadImage("img/character_battle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,500,(int)(60 * 500d/679), (int)(90 * 737d/892), 2, 5, player, 150, 100);//spawn enemy here (once implementation is finished)
 	}
 	
 	// The statements in the setup() function 
