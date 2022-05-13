@@ -75,6 +75,7 @@ public class SecondScreen extends Screen {
 		background = surface.loadImage("img/background.png");
 		spawnNewPlayer();
 		npc = new NPC(surface.loadImage("img/Enemy.png"), 300, 290);
+		obstacles.add(new Sprite((int)npc.x+5, (int)npc.y+5, (int)npc.width-10, (int)npc.height-10));
 		npc.setText("Press P to fight boss.");
 	}
 
@@ -86,7 +87,6 @@ public class SecondScreen extends Screen {
 	public void draw() {
 		
 		// drawing stuff
-		
 		surface.background(255,255,255);
 		for (Sprite s : obstacles) {
 			s.draw(surface);

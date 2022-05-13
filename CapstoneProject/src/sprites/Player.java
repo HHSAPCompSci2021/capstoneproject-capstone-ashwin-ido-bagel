@@ -132,7 +132,7 @@ public class Player extends Sprite {
 	
 	public void battleAct(List<Sprite> obstacles) {
 		onSurface = false;
-		yVel += 0.1;
+		yVel += 0.4;
 		 
 		y += yVel;
 		 
@@ -154,6 +154,7 @@ public class Player extends Sprite {
 	 * @param obstacles A List<Sprite> of all Sprites in the window. 
 	 */
 	public void act(List<Sprite> obstacles) {
+		
 
 		 for (Sprite s : obstacles) {
 			 if (super.intersects(s)) {
