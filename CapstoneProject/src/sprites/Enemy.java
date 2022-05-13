@@ -59,7 +59,7 @@ public class Enemy extends Sprite{
 	 * @param player
 	 */
 	public void moveTowardsPlayer() {
-		if (distanceFromPlayer() > 20) {
+		if (!(this.intersects(player))) {
 			if (player.x > this.x) {
 				this.moveByAmount(enemySpeed, 0);
 			} else {
