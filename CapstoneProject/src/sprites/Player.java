@@ -118,6 +118,14 @@ public class Player extends Sprite {
 		
 	}
 	
+	/**
+	 * A method that makes the Player attack during battle.
+	 */
+	public void attack() {
+		//animations and damage here
+		System.out.println("Player is Attacking!");
+	}
+	
 	public void battleAct(List<Sprite> obstacles) {
 		onSurface = false;
 		yVel += 0.1;

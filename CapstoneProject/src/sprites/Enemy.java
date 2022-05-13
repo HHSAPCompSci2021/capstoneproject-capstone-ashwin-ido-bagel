@@ -47,7 +47,7 @@ public class Enemy extends Sprite{
 	 */
 	public void attack() {
 		//animations and damage here
-		System.out.println("Attacking!");
+		System.out.println("Enemy is Attacking!");
 	}
 	
 	/**
