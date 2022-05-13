@@ -12,7 +12,7 @@ import processing.core.PImage;
 /**
  * This class represents a Player that the user can control.
  * 
- * @author Ashwin S.
+ * @author Ashwin S. , Ido Haiby
  * @version 5/5/22
  */
 public class Player extends Sprite {
@@ -34,6 +34,8 @@ public class Player extends Sprite {
 	private PImage[] animationsLeft;
 	private PImage[] animationsAttack;
 	private int attackPower, stamina, health;
+	private boolean attacking;
+	private int attackTimer;
 	
 	/**
 	 * This documents the different directions the Player can move.
@@ -48,17 +50,23 @@ public class Player extends Sprite {
 	 * @param x X-coordinates of the Player. 
 	 * @param y Y-coordinates of the Player.
 	 */
-	public Player(PImage img, int x, int y, int attackPower, int stamina, int health) {
+	public Player(PImage img, int x, int y, int attackPower, int health, int stamina) {
 		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 		yVel = 0;
 		onSurface = true;
 		this.attackPower = attackPower;
 		this.stamina = stamina;
 		this.health = health; 
+		attacking = false;
+		attackTimer = 0;
 	}
 
 	// METHODS
-	
+	/**
+	 * Sets up the images of the player.
+	 * 
+	 * @param g The PApplet used to draw the player.
+	 */
 	public void setUp(PApplet g) {
 		animationsRight = new PImage[6];
 		animationsRight[0] = g.loadImage("img/Walk1.png");
@@ -81,16 +89,51 @@ public class Player extends Sprite {
 		animationsAttack[3] = g.loadImage("img/Attack4.png");
 	}
 	
+	/**
+	 * Animates the walking towards the right.
+	 * 
+	 * @param Index of animation image
+	 */
 	public void animateWalkRight(int index) {
 		setImage(animationsRight[index]);
 	}
 	
+	/**
+	 * Animates the walking towards the left.
+	 * 
+	 * @param Index of animation image
+	 */
 	public void animateWalkLeft(int index) {
 		setImage(animationsLeft[index]);
 	}
 	
+	/**
+	 * A method that makes the Player attack during battle.
+	 * 
+	 */
 	public void animateAttack(int index) {
+		if(attackTimer <= 0) {
+		attacking = true;
 		setImage(animationsAttack[index]);
+		}
+	}
+	
+	/**
+	 * Makes the character attack and uses stamina.
+	 * 
+	 */
+	public void attack() {
+		if(stamina > 0)
+			stamina -= attackPower;
+	}
+	
+	/**
+	 * Gives the user the stamina of the character.
+	 * 
+	 * @return The stamina of the character
+	 */
+	public int getStamina() {
+		return stamina;
 	}
 	
 	/**
@@ -123,14 +166,15 @@ public class Player extends Sprite {
 	}
 	
 	/**
-	 * A method that makes the Player attack during battle.
+	 * Makes the character act when it is on the battle screen.
+	 * 
+	 * @param obstacles The obstacles the character interacts with.
 	 */
-	public void attack() {
-		//animations and damage here
-		System.out.println("Player is Attacking!");
-	}
-	
 	public void battleAct(List<Sprite> obstacles) {
+		if(!attacking && stamina < 50) {
+		   stamina++;
+		}
+		attacking = false;
 		onSurface = false;
 		yVel += 0.1;
 		 
@@ -145,8 +189,22 @@ public class Player extends Sprite {
 		}
 	}
 	
+	/**
+	 * Gives the user the attack power of the character.
+	 * 
+	 * @return The attack power of the character
+	 */
 	public int getAttackPower() {
 		return attackPower;
+	}
+	
+	/**
+	 * Checks if character is attacking.
+	 * 
+	 * @return the attacking state of the character.
+	 */
+	public boolean isAttacking() {
+		return attacking;
 	}
 
 	/**
@@ -228,6 +286,28 @@ public class Player extends Sprite {
 				 }
 			 }
 		 }
+	}
+	
+	/**
+	 * Draws the player when fighting
+	 * 
+	 * @param g The PApplet the character is drawn with.
+	 */
+	public void battleDraw(PApplet g) {
+		super.draw(g);
+		g.fill(255, 0, 0);
+		if(health > 0)
+			g.rect(10, 5, health, 10);
+		else 
+			g.rect(10, 5, 0, 10);
+		g.fill(0, 255, 0);
+		if(stamina > 0)
+			g.rect(10, 20, stamina, 10);
+		else {
+			g.rect(10, 20, 0, 10);
+		}
+		if(attackTimer > 0)
+			attackTimer--;
 	}
 
 

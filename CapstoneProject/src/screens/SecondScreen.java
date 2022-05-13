@@ -52,6 +52,7 @@ public class SecondScreen extends Screen {
 		obstacles.add(new Sprite(54,540,120,60));
 		obstacles.add(new Sprite(630,480,180,50));
 		
+		
 		going = false;
 	}
 
@@ -143,6 +144,10 @@ public class SecondScreen extends Screen {
 
 	}
 
+	/**
+	 * Checks if the npc is clicked, if it is it prompts the user.
+	 * 
+	 */
 	public void mousePressed() { 
 		if(npc.contains(surface.mouseX, surface.mouseY) && npc.intersects(player)) {
 			npc.displayText();

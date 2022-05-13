@@ -13,7 +13,13 @@ import sprites.Enemy;
 import sprites.Player;
 import sprites.Sprite;
 
-public class BattleScreen extends Screen{
+/**
+ * Represents the screen where the player fights enemies and players.
+ * 
+ * @author Ido Haiby, Ashwin S.
+ * @version 5/13/22
+ */
+public class BattleScreen extends Screen {
 	
 	private DrawingSurface surface;
 	private PImage background;
@@ -28,7 +34,13 @@ public class BattleScreen extends Screen{
 	
 	private final int animationTime = 10;  // This represents 1/4 of a second with normal framerate
 	private int animationCounter;
+	private int animationTimer;
 	
+	/**
+	 * Creates a the screen where the player fights enemies.
+	 * 
+	 * @param surface The DrawingSurface the screen draws on to.
+	 */
 	public BattleScreen(DrawingSurface surface) {
 		super(800,600);
 		this.surface = surface;
@@ -38,6 +50,7 @@ public class BattleScreen extends Screen{
 		obstacles.add(new Sprite(0,DRAWING_HEIGHT-10,DRAWING_WIDTH,10));
 		
 		going = false;
+		animationTimer = 60;
 	}
 	
 	
@@ -56,6 +69,9 @@ public class BattleScreen extends Screen{
 		player.setUp(surface);
 	}
 	
+	/**
+	 * Creates the enemy to be drawn onto the screen.
+	 */
 	public void spawnNewEnemy() {
 		enemy = new Enemy(surface.loadImage("img/character_battle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,500,(int)(60 * 500d/679), (int)(90 * 737d/892), 2, 5, player, 150, 100);//spawn enemy here (once implementation is finished)
 	}
@@ -70,40 +86,46 @@ public class BattleScreen extends Screen{
 	
 	
 	public void draw() {
-		
 		surface.background(0,255,255);
 		for (Sprite s : obstacles) {
 			s.draw(surface);
 		}
 		loadBackground();
 		if(going) {
+			player.animateAttack(animationIndex);
+			player.attack();
 			animationCounter--;
 			if (animationCounter <= 0) {
 				animationCounter = animationTime;
 				animationIndex = (animationIndex + 1) % 4;
-				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT)) {
+				if (animationTimer < 0) {
 					going = false;
 					player.setImage(surface.loadImage("img/Character.png"));
 				}
 			}
+			animationTimer--;
 		}
 		
-		player.draw(surface);
+		player.battleDraw(surface);
 		if(enemy.getHealth() > 0)
 			enemy.draw(surface);
 		else {
 			int answer = JOptionPane.showConfirmDialog(null, "Enemy defeated, return to world?");
 			if(answer == JOptionPane.YES_OPTION) {
 				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
+			} else {
+				spawnNewEnemy();
 			}
 		}
 		
+		if(surface.mousePressed && player.getStamina() > 0) {
+			going = true;
+			animationTimer = 60;
+		}
 		if (surface.isPressed(KeyEvent.VK_LEFT))
 			player.walk(Player.Direction.Left, 10);
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			player.walk(Player.Direction.Right, 10);
-			going = true;
-			player.animateAttack(animationIndex);
 		}
 		if (surface.isPressed(KeyEvent.VK_SPACE))
 			player.jump();
