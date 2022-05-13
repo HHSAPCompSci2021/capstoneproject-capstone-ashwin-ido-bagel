@@ -106,7 +106,9 @@ public class SecondScreen extends Screen {
 
 		player.draw(surface);
 		npc.draw(surface);
-		surface.text("Click on me!", (float)npc.x, (float)npc.y - 20, 200, 20);
+		surface.fill(0);
+		surface.textSize(14);
+		surface.text("Click on me!", (float)npc.x, (float)npc.y - 5);
 
 		// modifying stuff
 		

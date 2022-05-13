@@ -75,7 +75,7 @@ public class Enemy extends Sprite{
 	public void act() {
 		moveTowardsPlayer();
 		if (this.intersects(player)) {
-			attack();
+			
 		}
 	}
 	
