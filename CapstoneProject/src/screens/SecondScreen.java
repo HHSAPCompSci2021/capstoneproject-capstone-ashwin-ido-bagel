@@ -57,7 +57,7 @@ public class SecondScreen extends Screen {
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
+		player = new Player(surface.loadImage("img/character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50);
 		player.setUp(surface);
 	}
 	/**
@@ -95,7 +95,7 @@ public class SecondScreen extends Screen {
 				animationIndex = (animationIndex + 1) % 6;
 				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT)) {
 					going = false;
-					player.setImage(surface.loadImage("img/Character.png"));
+					player.setImage(surface.loadImage("img/character.png"));
 				}
 			}
 		}
