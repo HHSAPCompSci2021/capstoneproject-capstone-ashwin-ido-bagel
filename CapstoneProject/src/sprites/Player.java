@@ -113,9 +113,13 @@ public class Player extends Sprite {
 	 */
 	public void animateAttack(int index) {
 		if(attackTimer <= 0) {
-		attacking = true;
-		setImage(animationsAttack[index]);
+			attacking = true;
+			setImage(animationsAttack[index]);
 		}
+	}
+	
+	public void attacked(int attackPower) {
+		health -= attackPower;
 	}
 	
 	/**
@@ -134,6 +138,10 @@ public class Player extends Sprite {
 	 */
 	public int getStamina() {
 		return stamina;
+	}
+	
+	public int getHealth() {
+		return health;
 	}
 	
 	/**

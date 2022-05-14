@@ -20,8 +20,9 @@ public class Enemy extends Sprite{
 	private int enemySpeed, attackPower;
 	private Player player;
 	private int health, stamina;
-	private int attackTimer;
-	
+	private int attackTimer, staminaTimer;
+	private boolean attacking, isAnimating;
+	private PImage[] animationsAttack;
 	
 	/**
 	 * Creates an Enemy object with a desired speed.
@@ -40,7 +41,21 @@ public class Enemy extends Sprite{
 		this.health = health;
 		this.stamina = stamina;
 		attackTimer = 0;
+		staminaTimer = 0;
 	} 
+	
+	/**
+	 * Sets up the images of the player.
+	 * 
+	 * @param g The PApplet used to draw the player.
+	 */
+	public void setUp(PApplet g) {
+		animationsAttack = new PImage[4];
+		animationsAttack[0] = g.loadImage("img/EnemyAttack1.png");
+		animationsAttack[1] = g.loadImage("img/EnemyAttack2.png");
+		animationsAttack[2] = g.loadImage("img/EnemyAttack3.png");
+		animationsAttack[3] = g.loadImage("img/EnemyAttack4.png");
+	}
 	
 	/**
 	 * Calculates the distance from this Enemy to the Player.
@@ -53,11 +68,33 @@ public class Enemy extends Sprite{
 	}
 	
 	/**
+	 * A method that makes the Player attack during battle.
+	 * 
+	 */
+	public void animateAttack(int index) {
+		attacking = true;
+		setImage(animationsAttack[index]);
+		staminaTimer--;
+		isAnimating = true;
+	}
+	
+	
+	/**
 	 * Attacks the Player.
 	 */
 	public void attack() {
-		//animations and damage here
-		System.out.println("Enemy is Attacking!");
+		if(stamina > 0) {
+			stamina -= attackPower;
+			attacking = true;
+		}
+		if(this.intersects(player) && attackTimer <= 0 && isAnimating) {
+			player.attacked(attackPower);
+			attackTimer = 60;
+		}
+	}
+	
+	public boolean isAttacking() {
+		return attacking && stamina > 0;
 	}
 	
 	/**
@@ -89,10 +126,18 @@ public class Enemy extends Sprite{
 	 */
 	public void act() {
 		moveTowardsPlayer();
+		if(stamina < 100 && staminaTimer >= 0) {
+			stamina++;
+		}
 		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {
 			health -= player.getAttackPower();
 			attackTimer = 60;
 		}
+		if(distanceFromPlayer() <= 40) {
+			attack();
+			staminaTimer = 60;
+		}
+		isAnimating = false;
 	}
 	
 	@Override
@@ -104,10 +149,6 @@ public class Enemy extends Sprite{
 		else
 			g.rect(g.width/2 + 225, 5, 0, 10);
 		g.fill(0, 255, 0);
-		if(stamina > 0)
-			g.rect(g.width/2 + 225, 20, stamina, 10);
-		else
-			g.rect(g.width/2 + 225, 20, 0, 10);
 		if(attackTimer > 0)
 			attackTimer--;
 	}

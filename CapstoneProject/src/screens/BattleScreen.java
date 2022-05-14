@@ -30,7 +30,7 @@ public class BattleScreen extends Screen {
 	private List<Sprite> obstacles;
 	
 	private int animationIndex;
-	private boolean going;
+	private boolean going1, going2;
 	
 	private final int animationTime = 10;  // This represents 1/4 of a second with normal framerate
 	private int animationCounter;
@@ -49,7 +49,8 @@ public class BattleScreen extends Screen {
 		
 		obstacles.add(new Sprite(0,DRAWING_HEIGHT-10,DRAWING_WIDTH,10));
 		
-		going = false;
+		going1 = false;
+		going2 = false;
 		animationTimer = 60;
 	}
 	
@@ -73,7 +74,8 @@ public class BattleScreen extends Screen {
 	 * Creates the enemy to be drawn onto the screen.
 	 */
 	public void spawnNewEnemy() {
-		enemy = new Enemy(surface.loadImage("img/character_battle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,500,(int)(60 * 500d/679), (int)(90 * 737d/892), 2, 5, player, 150, 100);//spawn enemy here (once implementation is finished)
+		enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,500,(int)(60 * 500d/679), (int)(90 * 737d/892), 2, 20, player, 150, 100);//spawn enemy here (once implementation is finished)
+		enemy.setUp(surface);
 	}
 	
 	// The statements in the setup() function 
@@ -91,7 +93,25 @@ public class BattleScreen extends Screen {
 			s.draw(surface);
 		}
 		loadBackground();
-		if(going) {
+		
+		if(going1 && going2) {
+			player.animateAttack(animationIndex);
+			player.attack();
+			enemy.animateAttack(animationIndex);
+			enemy.attack();
+			animationCounter--;
+			if (animationCounter <= 0) {
+				animationCounter = animationTime;
+				animationIndex = (animationIndex + 1) % 4;
+				if (animationTimer < 0) {
+						going1 = false;
+						going2 = false;
+						player.setImage(surface.loadImage("img/Character.png"));
+						enemy.setImage(surface.loadImage("img/Enemy.png"));
+					}
+				}
+				animationTimer--;
+		} else if(going1) {
 			player.animateAttack(animationIndex);
 			player.attack();
 			animationCounter--;
@@ -99,14 +119,36 @@ public class BattleScreen extends Screen {
 				animationCounter = animationTime;
 				animationIndex = (animationIndex + 1) % 4;
 				if (animationTimer < 0) {
-					going = false;
+					going1 = false;
 					player.setImage(surface.loadImage("img/Character.png"));
+				}
+			}
+			animationTimer--;
+		} else if(going2) {
+			enemy.animateAttack(animationIndex);
+			enemy.attack();
+			animationCounter--;
+			if (animationCounter <= 0) {
+				animationCounter = animationTime;
+				animationIndex = (animationIndex + 1) % 4;
+				if (animationTimer < 0) {
+					going2 = false;
+					enemy.setImage(surface.loadImage("img/Enemy.png"));
 				}
 			}
 			animationTimer--;
 		}
 		
-		player.battleDraw(surface);
+		if(player.getHealth() > 0)
+			player.battleDraw(surface);
+		else {
+			int answer = JOptionPane.showConfirmDialog(null, "You were defeated, return to world?");
+			if(answer == JOptionPane.YES_OPTION) {
+				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
+			} else {
+				spawnNewPlayer();
+			}
+		}
 		if(enemy.getHealth() > 0)
 			enemy.draw(surface);
 		else {
@@ -119,7 +161,7 @@ public class BattleScreen extends Screen {
 		}
 		
 		if(surface.mousePressed && player.getStamina() > 0) {
-			going = true;
+			going1 = true;
 			animationTimer = 60;
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT))
@@ -131,6 +173,11 @@ public class BattleScreen extends Screen {
 			player.jump();
 		
 		enemy.act();
+		if(enemy.isAttacking()) {
+			going2 = true;
+			animationTimer = 60;
+		}
+			
 		player.battleAct(obstacles);
 		
 		if (!screenRect.intersects(player))
