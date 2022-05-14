@@ -118,12 +118,22 @@ public class Player extends Sprite {
 		}
 	}
 	
+	/**
+	 * Decreases the players health.
+	 * 
+	 * @param attackPower Attacking power of the enemy that dealt the damage
+	 */
 	public void attacked(int attackPower) {
 		health -= attackPower;
 	}
 	
+	/**
+	 * Adds health to the player
+	 * 
+	 * @param amount Amount of health added
+	 */
 	public void addHealth(int amount) {
-		health+=amount;
+		health += amount;
 	}
 	
 	/**
@@ -144,6 +154,11 @@ public class Player extends Sprite {
 		return stamina;
 	}
 	
+	/**
+	 * Gives the user the health of the character.
+	 * 
+	 * @return The health of the character
+	 */
 	public int getHealth() {
 		return health;
 	}
@@ -220,6 +235,11 @@ public class Player extends Sprite {
 		return attacking;
 	}
 	
+	/**
+	 * Checks collisions with obstacles on screen.
+	 * 
+	 * @param obstacles Obstacles on the screen.
+	 */
 	public void checkCollisions(List<Sprite> obstacles) {
 		for (Sprite s : obstacles) {
 			 if (super.intersects(s)) {
@@ -298,7 +318,8 @@ public class Player extends Sprite {
 	
 
 	/**
-	 * Act methods checks for collisions and handles all those cases. 
+	 * Act methods checks for collisions and handles all those cases.
+	 * 
 	 * @param obstacles A List<Sprite> of all Sprites in the window. 
 	 */
 	public void act(List<Sprite> obstacles) { // update this so that uses rectangle intersection method to simplify
