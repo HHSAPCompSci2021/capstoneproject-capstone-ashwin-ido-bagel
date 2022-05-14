@@ -45,6 +45,10 @@ public class Sprite extends Rectangle2D.Double {
 	
 	// METHODS	
 	
+	/**
+	 * Sets image to new Image.
+	 * @param img The new Image.
+	 */
 	public void setImage(PImage img) {
 		image = img;
 	}
@@ -83,7 +87,7 @@ public class Sprite extends Rectangle2D.Double {
 	
 	/**
 	 * Draws the Sprite
-	 * @param g
+	 * @param g The PApplet on which the Sprite is drawn on.
 	 */
 	public void draw(PApplet g) {
 		if (image != null)
