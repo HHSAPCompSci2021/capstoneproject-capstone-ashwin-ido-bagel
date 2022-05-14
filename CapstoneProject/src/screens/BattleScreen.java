@@ -76,7 +76,7 @@ public class BattleScreen extends Screen {
 	 * Creates the enemy to be drawn onto the screen.
 	 */
 	public void spawnNewEnemy() {
-		enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,500,(int)(60 * 500d/679), (int)(90 * 737d/892), 2, 20, player, 150, 100);//spawn enemy here (once implementation is finished)
+		enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,525,(int)(60 * 500d/679) - 5, (int)(90 * 737d/892 ) - 5, 2, 20, player, 150, 100);//spawn enemy here (once implementation is finished)
 		enemy.setUp(surface);
 	}
 	

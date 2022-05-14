@@ -1,16 +1,13 @@
 package sprites;
 
-import javax.swing.JOptionPane;
 
-import core.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PImage;
-import screens.Screen;
 
 /**
  * Represents an Enemy that is fought by the Player.
  * 
- * @author Ashwin S.
+ * @author Ashwin S., Ido Haiby
  * @version 5/13/22
  */
 public class Enemy extends Sprite{
@@ -93,6 +90,11 @@ public class Enemy extends Sprite{
 		}
 	}
 	
+	/**
+	 * Checks if enemy is attacking.
+	 * 
+	 * @return the attacking state of the enemy.
+	 */
 	public boolean isAttacking() {
 		return attacking && stamina > 0;
 	}
