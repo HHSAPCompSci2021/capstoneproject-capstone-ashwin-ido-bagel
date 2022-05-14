@@ -161,7 +161,7 @@ public class Player extends Sprite {
 	public void jump() {
 	//	double maxHeight = this.y - PLAYER_HEIGHT;
 		if(onSurface)
-			yVel -= 4;
+			yVel -= 8;
 		
 	}
 	
@@ -171,15 +171,16 @@ public class Player extends Sprite {
 	 * @param obstacles The obstacles the character interacts with.
 	 */
 	public void battleAct(List<Sprite> obstacles) {
+		act(obstacles);
 		if(!attacking && stamina < 50) {
 		   stamina++;
 		}
 		attacking = false;
 		onSurface = false;
-		yVel += 0.4;
+		yVel += 0.5;
 		 
 		y += yVel;
-		 
+		
 		for (Sprite s : obstacles) {
 			if (super.intersects(s)) {
 				yVel = 0;
@@ -206,15 +207,9 @@ public class Player extends Sprite {
 	public boolean isAttacking() {
 		return attacking;
 	}
-
-	/**
-	 * Act methods checks for collisions and handles all those cases. 
-	 * @param obstacles A List<Sprite> of all Sprites in the window. 
-	 */
-	public void act(List<Sprite> obstacles) { // update this so that uses rectangle intersection method to simplify
-		
-
-		 for (Sprite s : obstacles) {
+	
+	public void checkCollisions(List<Sprite> obstacles) {
+		for (Sprite s : obstacles) {
 			 if (super.intersects(s)) {
 				 boolean vertical = false, horizontal = false;
 				 Line2D[] chosenLine = new Line2D[2];
@@ -286,7 +281,16 @@ public class Player extends Sprite {
 					 }
 				 }
 			 }
-		 }
+		}
+	}
+	
+
+	/**
+	 * Act methods checks for collisions and handles all those cases. 
+	 * @param obstacles A List<Sprite> of all Sprites in the window. 
+	 */
+	public void act(List<Sprite> obstacles) { // update this so that uses rectangle intersection method to simplify
+		checkCollisions(obstacles);
 	}
 	
 	/**
