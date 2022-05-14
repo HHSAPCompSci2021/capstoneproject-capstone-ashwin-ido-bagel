@@ -20,12 +20,12 @@ public class Player extends Sprite {
 	/**
 	 * The width of the Player.
 	 */
-	public static final int PLAYER_WIDTH = (int)(60 * 500d/679);
+	public static final int PLAYER_WIDTH = (int)(60 * 500d/679) - 5;
 	
 	/**
 	 * The height of the Player.
 	 */
-	public static final int PLAYER_HEIGHT = (int)(90 * 737d/892);
+	public static final int PLAYER_HEIGHT = (int)(90 * 737d/892) - 5;
 	
 	private double yVel;
 	private boolean onSurface;
@@ -50,7 +50,7 @@ public class Player extends Sprite {
 	 * @param x X-coordinates of the Player. 
 	 * @param y Y-coordinates of the Player.
 	 */
-	public Player(PImage img, int x, int y, int attackPower, int health, int stamina) {
+	public Player(PImage img, int x, int y, int attackPower, int health, int stamina) { //make the hitbox of player a rectangle
 		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 		yVel = 0;
 		onSurface = true;
@@ -169,7 +169,7 @@ public class Player extends Sprite {
 	public void jump() {
 	//	double maxHeight = this.y - PLAYER_HEIGHT;
 		if(onSurface)
-			yVel -= 4;
+			yVel -= 8;
 		
 	}
 	
@@ -179,15 +179,16 @@ public class Player extends Sprite {
 	 * @param obstacles The obstacles the character interacts with.
 	 */
 	public void battleAct(List<Sprite> obstacles) {
+		act(obstacles);
 		if(!attacking && stamina < 50) {
 		   stamina++;
 		}
 		attacking = false;
 		onSurface = false;
-		yVel += 0.1;
+		yVel += 0.5;
 		 
 		y += yVel;
-		 
+		
 		for (Sprite s : obstacles) {
 			if (super.intersects(s)) {
 				yVel = 0;
@@ -214,14 +215,9 @@ public class Player extends Sprite {
 	public boolean isAttacking() {
 		return attacking;
 	}
-
-	/**
-	 * Act methods checks for collisions and handles all those cases. 
-	 * @param obstacles A List<Sprite> of all Sprites in the window. 
-	 */
-	public void act(List<Sprite> obstacles) {
-
-		 for (Sprite s : obstacles) {
+	
+	public void checkCollisions(List<Sprite> obstacles) {
+		for (Sprite s : obstacles) {
 			 if (super.intersects(s)) {
 				 boolean vertical = false, horizontal = false;
 				 Line2D[] chosenLine = new Line2D[2];
@@ -293,7 +289,16 @@ public class Player extends Sprite {
 					 }
 				 }
 			 }
-		 }
+		}
+	}
+	
+
+	/**
+	 * Act methods checks for collisions and handles all those cases. 
+	 * @param obstacles A List<Sprite> of all Sprites in the window. 
+	 */
+	public void act(List<Sprite> obstacles) { // update this so that uses rectangle intersection method to simplify
+		checkCollisions(obstacles);
 	}
 	
 	/**

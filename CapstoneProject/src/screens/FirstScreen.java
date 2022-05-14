@@ -36,18 +36,18 @@ public class FirstScreen extends Screen {
 
 		surface.background(255,255,255);
 		surface.image(surface.loadImage("img/best_main_menu.png"), 0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
-		surface.fill(0,255,0);
+		surface.fill(255,255,255);
 		surface.rect(button.x, button.y, button.width, button.height, 10, 10, 10, 10);
 		surface.fill(0);
-		String str = "Play";
-		surface.textSize(20);
+		String str = "Start";
+		surface.textSize(30);
 		float w = surface.textWidth(str);
 		surface.text(str, button.x+button.width/2-w/2, button.y+button.height/2+5);
 		str = "Reaper's Scythe";
-		surface.textSize(30);
+		surface.textSize(75);
 		surface.fill(255,255,255);
 		w = surface.textWidth(str);
-		surface.text(str, surface.width/2-w/2, 50);
+		surface.text(str, surface.width/2-w/2, 80);
 		
 	}
 
