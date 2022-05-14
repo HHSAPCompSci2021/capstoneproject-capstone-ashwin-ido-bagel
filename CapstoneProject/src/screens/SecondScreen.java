@@ -54,9 +54,9 @@ public class SecondScreen extends Screen {
 		obstacles.add(new Sprite(200,200,110,230));
 		obstacles.add(new Sprite(275,0,100, 100));
 		obstacles.add(new Sprite(270,80,120, 150));
-		obstacles.add(new Sprite(560, 0, 120, 150));
-		obstacles.add(new Sprite(600, 150, 120, 150));
-
+		obstacles.add(new Sprite(560, 0, 120, 105));
+		obstacles.add(new Sprite(610, 120, 120, 150));
+		obstacles.add(new Sprite(540, 300, 110, 130));
 		
 		
 		going = false;
