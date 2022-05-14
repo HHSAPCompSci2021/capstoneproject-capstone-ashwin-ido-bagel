@@ -23,12 +23,17 @@ public class Enemy extends Sprite{
 	
 	/**
 	 * Creates an Enemy object with a desired speed.
+	 * 
 	 * @param img The image drawn to represent the Enemy.
 	 * @param x The x-coordinate of the Enemy. 
 	 * @param y The y-coordinate of the Enemy.
 	 * @param w The width of the Enemy.
 	 * @param h The height of the Enemy.
 	 * @param speed The speed that the Enemy moves.
+	 * @param attackPower Attacking power of the enemy.
+	 * @param player Player the enemy is fighting.
+	 * @param health Health of the enemy.
+	 * @param stamina Stamina of the enemy.
 	 */
 	public Enemy(PImage img, int x, int y, int w, int h, int speed, int attackPower, Player player, int health, int stamina) {
 		super(img, x, y, w, h);

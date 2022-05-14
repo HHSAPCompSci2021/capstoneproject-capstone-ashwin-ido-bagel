@@ -46,9 +46,13 @@ public class Player extends Sprite {
 	
 	/**
 	 * Creates a new Player object with an Image. 
+	 * 
 	 * @param img Image representing the player. 
 	 * @param x X-coordinates of the Player. 
 	 * @param y Y-coordinates of the Player.
+	 * @param attackPower Attacking power of the player.
+	 * @param health Health of the player.
+	 * @param stamina Stamina of the player.
 	 */
 	public Player(PImage img, int x, int y, int attackPower, int health, int stamina) { //make the hitbox of player a rectangle
 		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
@@ -92,7 +96,7 @@ public class Player extends Sprite {
 	/**
 	 * Animates the walking towards the right.
 	 * 
-	 * @param Index of animation image
+	 * @param index Index of animation image
 	 */
 	public void animateWalkRight(int index) {
 		setImage(animationsRight[index]);
@@ -101,7 +105,7 @@ public class Player extends Sprite {
 	/**
 	 * Animates the walking towards the left.
 	 * 
-	 * @param Index of animation image
+	 * @param index Index of animation image
 	 */
 	public void animateWalkLeft(int index) {
 		setImage(animationsLeft[index]);
@@ -110,6 +114,7 @@ public class Player extends Sprite {
 	/**
 	 * A method that makes the Player attack during battle.
 	 * 
+	 * @param index Index of animation image
 	 */
 	public void animateAttack(int index) {
 		if(attackTimer <= 0) {
@@ -310,7 +315,7 @@ public class Player extends Sprite {
 	/**
 	 * Act methods checks for collisions and handles all those cases.
 	 * 
-	 * @param obstacles A List<Sprite> of all Sprites in the window. 
+	 * @param obstacles A List of all Sprites in the window. 
 	 */
 	public void act(List<Sprite> obstacles) { // update this so that uses rectangle intersection method to simplify
 		checkCollisions(obstacles);
