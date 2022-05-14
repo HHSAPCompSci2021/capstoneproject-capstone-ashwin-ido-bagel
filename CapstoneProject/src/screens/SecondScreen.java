@@ -17,7 +17,7 @@ import sprites.Sprite;
  * Represents the open world game screen where the user explores and can find npcs.
  * 
  * @author Ido Haiby
- * @version 5/5/2022 
+ * @version 5/132022 
  */
 public class SecondScreen extends Screen {
 	

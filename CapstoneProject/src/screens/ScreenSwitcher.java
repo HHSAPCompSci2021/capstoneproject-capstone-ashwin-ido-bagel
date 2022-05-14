@@ -3,8 +3,8 @@ package screens;
 /**
  * An interface that can switch between screens.
  * 
- * @author Ido Haiby
- * @version 5/5/2022 
+ * @author Ido Haiby, Ashwin S.
+ * @version 5/13/2022 
  */
 public interface ScreenSwitcher {
 	/**

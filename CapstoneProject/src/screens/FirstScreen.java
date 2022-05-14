@@ -11,7 +11,7 @@ import core.DrawingSurface;
  * Represents the main menu screen where the user is prompted to play.
  * 
  * @author Ido Haiby
- * @version 5/5/2022 
+ * @version 5/13/2022 
  */
 public class FirstScreen extends Screen {
 

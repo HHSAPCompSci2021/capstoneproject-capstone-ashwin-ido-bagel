@@ -8,7 +8,7 @@ import processing.core.PImage;
  /**
   * Sprite is the class that all enemies, NPCs, and players will extend from.
   * 
-  *@author Ashwin S/
+  *@author Ashwin S, Ido H
   *@version 5/5/22
   */
 public class Sprite extends Rectangle2D.Double {
@@ -83,6 +83,7 @@ public class Sprite extends Rectangle2D.Double {
 	
 	/**
 	 * Draws the Sprite
+	 * 
 	 * @param g
 	 */
 	public void draw(PApplet g) {
