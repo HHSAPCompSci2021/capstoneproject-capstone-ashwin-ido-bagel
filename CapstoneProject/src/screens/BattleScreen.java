@@ -47,9 +47,9 @@ public class BattleScreen extends Screen {
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Sprite>();
 		
-		obstacles.add(new Sprite(0,DRAWING_HEIGHT-10,DRAWING_WIDTH,10));
-		obstacles.add(new Sprite(0,0,10,DRAWING_HEIGHT));
-		obstacles.add(new Sprite(DRAWING_WIDTH-10,0,10,DRAWING_HEIGHT));
+		obstacles.add(new Sprite(0,DRAWING_HEIGHT-20,DRAWING_WIDTH,20));
+		obstacles.add(new Sprite(0,0,20,DRAWING_HEIGHT));
+		obstacles.add(new Sprite(DRAWING_WIDTH-20,0,20,DRAWING_HEIGHT));
 		
 		going1 = false;
 		going2 = false;
@@ -154,6 +154,8 @@ public class BattleScreen extends Screen {
 		if(enemy.getHealth() > 0)
 			enemy.draw(surface);
 		else {
+			JOptionPane.showMessageDialog(null, "Level up! Health increased!");
+			player.addHealth(50);
 			int answer = JOptionPane.showConfirmDialog(null, "Enemy defeated, return to world?");
 			if(answer == JOptionPane.YES_OPTION) {
 				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);

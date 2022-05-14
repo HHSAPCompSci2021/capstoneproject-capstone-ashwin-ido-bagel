@@ -122,6 +122,10 @@ public class Player extends Sprite {
 		health -= attackPower;
 	}
 	
+	public void addHealth(int amount) {
+		health+=amount;
+	}
+	
 	/**
 	 * Makes the character attack and uses stamina.
 	 * 
