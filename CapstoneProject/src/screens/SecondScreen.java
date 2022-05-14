@@ -51,6 +51,12 @@ public class SecondScreen extends Screen {
 		obstacles.add(new Sprite(107,480,120,75));
 		obstacles.add(new Sprite(54,540,120,60));
 		obstacles.add(new Sprite(630,480,180,50));
+		obstacles.add(new Sprite(200,200,110,230));
+		obstacles.add(new Sprite(275,0,100, 100));
+		obstacles.add(new Sprite(270,80,120, 150));
+		obstacles.add(new Sprite(560, 0, 120, 150));
+		obstacles.add(new Sprite(600, 150, 120, 150));
+
 		
 		
 		going = false;
@@ -76,7 +82,7 @@ public class SecondScreen extends Screen {
 		background = surface.loadImage("img/background.png");
 		spawnNewPlayer();
 		npc = new NPC(surface.loadImage("img/Enemy.png"), 300, 290);
-		obstacles.add(new Sprite((int)npc.x+5, (int)npc.y+5, (int)npc.width-10, (int)npc.height-10));
+		obstacles.add(new Sprite((int)npc.x+5, (int)npc.y+5, (int)npc.width-10, (int)npc.height-15));
 		npc.setText("Press P to fight boss.");
 	}
 
@@ -86,7 +92,6 @@ public class SecondScreen extends Screen {
 	// sequence and after the last line is read, the first 
 	// line is executed again.
 	public void draw() {
-		
 		// drawing stuff
 		surface.background(255,255,255);
 		for (Sprite s : obstacles) {
