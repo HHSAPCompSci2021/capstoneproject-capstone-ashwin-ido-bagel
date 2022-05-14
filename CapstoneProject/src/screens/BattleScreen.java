@@ -48,6 +48,8 @@ public class BattleScreen extends Screen {
 		obstacles = new ArrayList<Sprite>();
 		
 		obstacles.add(new Sprite(0,DRAWING_HEIGHT-10,DRAWING_WIDTH,10));
+		obstacles.add(new Sprite(0,0,10,DRAWING_HEIGHT));
+		obstacles.add(new Sprite(DRAWING_WIDTH-10,0,10,DRAWING_HEIGHT));
 		
 		going = false;
 		animationTimer = 60;
