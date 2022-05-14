@@ -85,7 +85,7 @@ public class Enemy extends Sprite{
 			attacking = true;
 		}
 		if(this.intersects(player) && attackTimer <= 0 && isAnimating) {
-			player.attacked(attackPower);
+			player.addHealth(-attackPower);
 			attackTimer = 60;
 		}
 	}

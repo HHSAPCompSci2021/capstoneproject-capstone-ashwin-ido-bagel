@@ -118,10 +118,11 @@ public class Player extends Sprite {
 		}
 	}
 	
-	public void attacked(int attackPower) {
-		health -= attackPower;
-	}
 	
+	/**
+	 * Adds health to the Player.
+	 * @param amount Amount of health to add to the Player.
+	 */
 	public void addHealth(int amount) {
 		health+=amount;
 	}
@@ -137,13 +138,16 @@ public class Player extends Sprite {
 	
 	/**
 	 * Gives the user the stamina of the character.
-	 * 
 	 * @return The stamina of the character
 	 */
 	public int getStamina() {
 		return stamina;
 	}
 	
+	/**
+	 * Gives the health of the Player.
+	 * @return The health of the Player.
+	 */
 	public int getHealth() {
 		return health;
 	}
