@@ -20,6 +20,7 @@ public class Enemy extends Sprite{
 	private int attackTimer, staminaTimer;
 	private boolean attacking, isAnimating;
 	private PImage[] animationsAttack;
+	private int staminaCost;
 	
 	/**
 	 * Creates an Enemy object with a desired speed.
@@ -46,12 +47,24 @@ public class Enemy extends Sprite{
 		staminaTimer = 0;
 	} 
 	
+	public void setCost() {
+		if (attackPower > 20) {
+			staminaCost = 40;
+		} else if (attackPower > 10) {
+			staminaCost = 20;
+		} else {
+			staminaCost = 10;
+		}
+			
+	}
+	
 	/**
 	 * Sets up the images of the player.
 	 * 
 	 * @param g The PApplet used to draw the player.
 	 */
 	public void setUp(PApplet g) {
+		setCost();
 		animationsAttack = new PImage[4];
 		animationsAttack[0] = g.loadImage("img/EnemyAttack1.png");
 		animationsAttack[1] = g.loadImage("img/EnemyAttack2.png");
@@ -74,10 +87,8 @@ public class Enemy extends Sprite{
 	 * 
 	 */
 	public void animateAttack(int index) {
-		attacking = true;
-		setImage(animationsAttack[index]);
-		staminaTimer--;
-		isAnimating = true;
+		if (isAnimating)
+			setImage(animationsAttack[index]);
 	}
 	
 	
@@ -85,13 +96,14 @@ public class Enemy extends Sprite{
 	 * Attacks the Player.
 	 */
 	public void attack() {
-		if(stamina > 0) {
-			stamina -= attackPower;
+		if(stamina > staminaCost) {
+			isAnimating = true;
+			stamina -= staminaCost;
 			attacking = true;
-		}
-		if(this.intersects(player) && attackTimer <= 0 && isAnimating) {
 			player.addHealth(-attackPower);
 			attackTimer = 60;
+		} else {
+			isAnimating = false;
 		}
 	}
 	
@@ -133,18 +145,23 @@ public class Enemy extends Sprite{
 	 */
 	public void act() {
 		moveTowardsPlayer();
-		if(stamina < 100 && staminaTimer >= 0) {
+		//System.out.println(stamina);
+		if(stamina < 100 && staminaTimer <= 0) {
+			staminaTimer = 5; // change this to change stamina regen rate
 			stamina++;
 		}
-		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {
-			health -= player.getAttackPower();
-			attackTimer = 60;
-		}
-		if(distanceFromPlayer() <= 40) {
+//		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {
+//			health -= player.getAttackPower();
+//			attackTimer = 60;
+//		}
+		if(distanceFromPlayer() <= (Player.BATTLEPLAYER_WIDTH) && attackTimer <= 0) {
 			attack();
-			staminaTimer = 60;
+		} else if (distanceFromPlayer() > (Player.BATTLEPLAYER_WIDTH) && attackTimer <= 0) {
+			isAnimating = false;
+			setImage(animationsAttack[0]);
 		}
-		isAnimating = false;
+			
+		staminaTimer--;
 	}
 	
 	@Override

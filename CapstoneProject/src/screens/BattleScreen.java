@@ -23,6 +23,7 @@ public class BattleScreen extends Screen {
 	
 	private DrawingSurface surface;
 	private PImage background;
+	private int backgroundLoc;
 	//private List<Sprite> obstacles; //maybe needed not sure
 	private Rectangle screenRect;
 	private Player player;
@@ -54,6 +55,7 @@ public class BattleScreen extends Screen {
 		going1 = false;
 		going2 = false;
 		animationTimer = 60;
+		backgroundLoc = 1000; // change spawn location
 	}
 	
 	
@@ -68,7 +70,7 @@ public class BattleScreen extends Screen {
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,500, 20, 100, 50);
+		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2-200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30, 20, 100, 50, Player.BATTLEPLAYER_HEIGHT, Player.BATTLEPLAYER_WIDTH);
 		player.setUp(surface);
 	}
 	
@@ -76,25 +78,35 @@ public class BattleScreen extends Screen {
 	 * Creates the enemy to be drawn onto the screen.
 	 */
 	public void spawnNewEnemy() {
-		enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,525,(int)(60 * 500d/679) - 5, (int)(90 * 737d/892 ) - 5, 2, 20, player, 150, 100);//spawn enemy here (once implementation is finished)
+		enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100);//spawn enemy here (once implementation is finished)
 		enemy.setUp(surface);
 	}
 	
 	// The statements in the setup() function 
 	// execute once when the program begins
 	public void setup() {
-		background = surface.loadImage("img/battlescreen.png"); //change to png used for background of battle screen
+		background = surface.loadImage("img/battlearena.png"); //change to png used for background of battle screen
 		spawnNewPlayer();
 		spawnNewEnemy();
 	}
 	
 	
 	public void draw() {
-		surface.background(0,255,255);
+		
+		//System.out.println(backgroundLoc);
+		// NB image is wider than screen
+	    int x = (int)backgroundLoc % background.width;
+	    surface.copy(background, x, 0, background.width, background.height, 0, 0, background.width, background.height);
+	    int x2 = background.width - x;
+	    if (x2 < DRAWING_WIDTH) {
+	      surface.copy(background, 0, 0, background.width, background.height, x2, 0, background.width, background.height);
+	    }
+	  
+		//surface.background(0,255,255);
 		for (Sprite s : obstacles) {
 			s.draw(surface);
 		}
-		loadBackground();
+		//loadBackground();
 		
 		if(going1 && going2) {
 			player.animateAttack(animationIndex);
@@ -128,7 +140,7 @@ public class BattleScreen extends Screen {
 			animationTimer--;
 		} else if(going2) {
 			enemy.animateAttack(animationIndex);
-			enemy.attack();
+			//enemy.attack();
 			animationCounter--;
 			if (animationCounter <= 0) {
 				animationCounter = animationTime;
@@ -141,6 +153,7 @@ public class BattleScreen extends Screen {
 			animationTimer--;
 		}
 		
+		//get riud of option to return -> automatically return
 		if(player.getHealth() > 0)
 			player.battleDraw(surface);
 		else {
@@ -168,13 +181,23 @@ public class BattleScreen extends Screen {
 			going1 = true;
 			animationTimer = 60;
 		}
-		if (surface.isPressed(KeyEvent.VK_LEFT))
+		if (surface.isPressed(KeyEvent.VK_LEFT)) {
+			if (player.x <= 50) {
+				backgroundLoc-=3;
+			}
 			player.walk(Player.Direction.Left, 10);
-		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
-			player.walk(Player.Direction.Right, 10);
 		}
-		if (surface.isPressed(KeyEvent.VK_SPACE))
+		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
+			if (player.x >= DRAWING_WIDTH -50 - Player.BATTLEPLAYER_WIDTH) {
+				backgroundLoc+=3;
+			}
+			player.walk(Player.Direction.Right, 10);
+			
+		}
+		if (surface.isPressed(KeyEvent.VK_SPACE)) {
 			player.jump();
+			
+		}
 		
 		enemy.act();
 		if(enemy.isAttacking()) {

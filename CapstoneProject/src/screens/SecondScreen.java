@@ -66,7 +66,7 @@ public class SecondScreen extends Screen {
 	 * Creates the player to be drawn onto the screen.
 	 */
 	public void spawnNewPlayer() {
-		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50, 20, 100, 50);
+		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50, 20, 100, 50, Player.PLAYER_HEIGHT, Player.PLAYER_WIDTH);
 		player.setUp(surface);
 	}
 	/**

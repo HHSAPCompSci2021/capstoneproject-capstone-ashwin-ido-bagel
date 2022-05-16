@@ -27,6 +27,12 @@ public class Player extends Sprite {
 	 */
 	public static final int PLAYER_HEIGHT = (int)(90 * 737d/892) - 5;
 	
+	public static final int BATTLEPLAYER_HEIGHT = (int)(200) - 5;
+	
+	public static final int BATTLEPLAYER_WIDTH = (int)(80) - 5;
+	
+	
+	
 	private double yVel;
 	private boolean onSurface;
 	
@@ -54,8 +60,8 @@ public class Player extends Sprite {
 	 * @param health Health of the player.
 	 * @param stamina Stamina of the player.
 	 */
-	public Player(PImage img, int x, int y, int attackPower, int health, int stamina) { //make the hitbox of player a rectangle
-		super(img, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
+	public Player(PImage img, int x, int y, int attackPower, int health, int stamina, int height, int width) { //make the hitbox of player a rectangle
+		super(img, x, y, width, height);
 		yVel = 0;
 		onSurface = true;
 		this.attackPower = attackPower;
