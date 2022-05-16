@@ -48,9 +48,9 @@ public class Enemy extends Sprite{
 	} 
 	
 	public void setCost() {
-		if (attackPower > 20) {
+		if (attackPower >= 20) {
 			staminaCost = 40;
-		} else if (attackPower > 10) {
+		} else if (attackPower >= 10) {
 			staminaCost = 20;
 		} else {
 			staminaCost = 10;
@@ -145,9 +145,9 @@ public class Enemy extends Sprite{
 	 */
 	public void act() {
 		moveTowardsPlayer();
-		//System.out.println(stamina);
+		System.out.println(stamina);
 		if(stamina < 100 && staminaTimer <= 0) {
-			staminaTimer = 5; // change this to change stamina regen rate
+			staminaTimer = 10; // change this to change stamina regen rate
 			stamina++;
 		}
 //		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {

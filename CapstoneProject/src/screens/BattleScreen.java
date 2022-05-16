@@ -157,24 +157,16 @@ public class BattleScreen extends Screen {
 		if(player.getHealth() > 0)
 			player.battleDraw(surface);
 		else {
-			int answer = JOptionPane.showConfirmDialog(null, "You were defeated, return to world?");
-			if(answer == JOptionPane.YES_OPTION) {
-				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
-			} else {
-				spawnNewPlayer();
-			}
+			JOptionPane.showMessageDialog(null, "You were defeated!");
+			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 		}
 		if(enemy.getHealth() > 0)
 			enemy.draw(surface);
 		else {
+			JOptionPane.showMessageDialog(null, "Enemy defeated!");
 			JOptionPane.showMessageDialog(null, "Level up! Health increased!");
 			player.addHealth(50);
-			int answer = JOptionPane.showConfirmDialog(null, "Enemy defeated, return to world?");
-			if(answer == JOptionPane.YES_OPTION) {
-				surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
-			} else {
-				spawnNewEnemy();
-			}
+			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 		}
 		
 		if(surface.mousePressed && player.getStamina() > 0) {
