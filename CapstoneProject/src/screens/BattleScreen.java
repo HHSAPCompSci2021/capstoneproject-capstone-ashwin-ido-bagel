@@ -95,12 +95,15 @@ public class BattleScreen extends Screen {
 		
 		//System.out.println(backgroundLoc);
 		// NB image is wider than screen
-	    int x = (int)backgroundLoc % background.width;
-	    surface.copy(background, x, 0, background.width, background.height, 0, 0, background.width, background.height);
-	    int x2 = background.width - x;
-	    if (x2 < DRAWING_WIDTH) {
-	      surface.copy(background, 0, 0, background.width, background.height, x2, 0, background.width, background.height);
-	    }
+		if (backgroundLoc >= 0) {
+			int x = (int)backgroundLoc % background.width;
+		    surface.copy(background, x, 0, background.width, background.height, 0, 0, background.width, background.height);
+		    int x2 = background.width - x;
+		    if (x2 < DRAWING_WIDTH) {
+		      surface.copy(background, 0, 0, background.width, background.height, x2, 0, background.width, background.height);
+		    }
+		}
+	    
 	  
 		//surface.background(0,255,255);
 		for (Sprite s : obstacles) {
@@ -175,13 +178,13 @@ public class BattleScreen extends Screen {
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT)) {
 			if (player.x <= 50) {
-				backgroundLoc-=3;
+				backgroundLoc-=10;
 			}
 			player.walk(Player.Direction.Left, 10);
 		}
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			if (player.x >= DRAWING_WIDTH -50 - Player.BATTLEPLAYER_WIDTH) {
-				backgroundLoc+=3;
+				backgroundLoc+=10;
 			}
 			player.walk(Player.Direction.Right, 10);
 			
