@@ -103,7 +103,7 @@ public class SecondScreen extends Screen {
 			if (animationCounter <= 0) {
 				animationCounter = animationTime;
 				animationIndex = (animationIndex + 1) % 6;
-				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT)) {
+				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT) && !surface.isPressed(KeyEvent.VK_A) && !surface.isPressed(KeyEvent.VK_D)) {
 					going = false;
 					player.setImage(surface.loadImage("img/Character.png"));
 				}
