@@ -336,14 +336,14 @@ public class Player extends Sprite {
 		super.draw(g);
 		g.fill(255, 0, 0);
 		if(health > 0)
-			g.rect(10, 5, health, 10);
+			g.rect(10, 5, health * 2, 20);
 		else 
 			g.rect(10, 5, 0, 10);
 		g.fill(0, 255, 0);
 		if(stamina > 0)
-			g.rect(10, 20, stamina, 10);
+			g.rect(10, 25, stamina * 2, 20);
 		else {
-			g.rect(10, 20, 0, 10);
+			g.rect(10, 25, 0, 10);
 		}
 		if(attackTimer > 0)
 			attackTimer--;

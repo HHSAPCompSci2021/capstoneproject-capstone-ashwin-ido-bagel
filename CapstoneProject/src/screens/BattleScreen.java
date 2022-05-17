@@ -93,6 +93,10 @@ public class BattleScreen extends Screen {
 	
 	public void draw() {
 		
+		for (Sprite s : obstacles) {
+			s.draw(surface);
+		}
+		
 		//System.out.println(backgroundLoc);
 		// NB image is wider than screen
 		if (backgroundLoc >= 0) {
@@ -106,9 +110,7 @@ public class BattleScreen extends Screen {
 	    
 	  
 		//surface.background(0,255,255);
-		for (Sprite s : obstacles) {
-			s.draw(surface);
-		}
+		
 		//loadBackground();
 		
 		if(going1 && going2) {

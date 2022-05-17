@@ -100,6 +100,7 @@ public class Enemy extends Sprite{
 			isAnimating = true;
 			stamina -= staminaCost;
 			attacking = true;
+			//add a check here to make sure the player is within attacking distance, currently bugged
 			player.addHealth(-attackPower);
 			attackTimer = 60;
 		} else {
@@ -147,7 +148,7 @@ public class Enemy extends Sprite{
 		moveTowardsPlayer();
 		System.out.println(stamina);
 		if(stamina < 100 && staminaTimer <= 0) {
-			staminaTimer = 10; // change this to change stamina regen rate
+			staminaTimer = 5; // change this to change stamina regen rate
 			stamina++;
 		}
 //		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {
@@ -169,7 +170,7 @@ public class Enemy extends Sprite{
 		super.draw(g);
 		g.fill(255, 0, 0);
 		if(health > 0)
-			g.rect(g.width/2 + 225, 5, health, 10);
+			g.rect(g.width - health*2-5, 5, health * 2, 20);
 		else
 			g.rect(g.width/2 + 225, 5, 0, 10);
 		g.fill(0, 255, 0);
