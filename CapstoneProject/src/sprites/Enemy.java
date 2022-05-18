@@ -20,7 +20,10 @@ public class Enemy extends Sprite{
 	private int attackTimer, staminaTimer;
 	private boolean attacking, isAnimating;
 	private PImage[] animationsAttack;
+	private PImage[] animationsWalk;
 	private int staminaCost;
+	private int attackTimer2;
+	private boolean movingL, movingR;
 	
 	/**
 	 * Creates an Enemy object with a desired speed.
@@ -45,6 +48,7 @@ public class Enemy extends Sprite{
 		this.stamina = stamina;
 		attackTimer = 0;
 		staminaTimer = 0;
+		attackTimer2 = 0;
 	} 
 	
 	public void setCost() {
@@ -70,6 +74,19 @@ public class Enemy extends Sprite{
 		animationsAttack[1] = g.loadImage("img/EnemyAttack2.png");
 		animationsAttack[2] = g.loadImage("img/EnemyAttack3.png");
 		animationsAttack[3] = g.loadImage("img/EnemyAttack4.png");
+		animationsWalk = new PImage[12];
+		animationsWalk[0] = g.loadImage("img/EnemyWalk1.png");
+		animationsWalk[1] = g.loadImage("img/EnemyWalk2.png");
+		animationsWalk[2] = g.loadImage("img/EnemyWalk3.png");
+		animationsWalk[3] = g.loadImage("img/EnemyWalk4.png");
+		animationsWalk[4] = g.loadImage("img/EnemyWalk5.png");
+		animationsWalk[5] = g.loadImage("img/EnemyWalk6.png");
+		animationsWalk[6] = g.loadImage("img/EnemyWalk7.png");
+		animationsWalk[7] = g.loadImage("img/EnemyWalk8.png");
+		animationsWalk[8] = g.loadImage("img/EnemyWalk9.png");
+		animationsWalk[9] = g.loadImage("img/EnemyWalk10.png");
+		animationsWalk[10] = g.loadImage("img/EnemyWalk11.png");
+		animationsWalk[11] = g.loadImage("img/EnemyWalk12.png");
 	}
 	
 	/**
@@ -89,23 +106,29 @@ public class Enemy extends Sprite{
 	public void animateAttack(int index) {
 		if (isAnimating)
 			setImage(animationsAttack[index]);
+	}	
+	
+	public void animateWalkLeft(int index) {
+		if(!isAnimating)
+			setImage(animationsWalk[index]);
 	}
 	
+	public void animateWalkRight(int index) {
+		if(!isAnimating)
+			setImage(animationsWalk[index+6]);
+	}
 	
 	/**
 	 * Attacks the Player.
 	 */
 	public void attack() {
-		if(stamina > staminaCost) {
+			attackTimer2 = 120;
 			isAnimating = true;
 			stamina -= staminaCost;
 			attacking = true;
-			//add a check here to make sure the player is within attacking distance, currently bugged
-			player.addHealth(-attackPower);
-			attackTimer = 60;
-		} else {
-			isAnimating = false;
-		}
+			if(this.intersects(player)) {
+				player.addHealth(-attackPower/2);
+			}
 	}
 	
 	/**
@@ -133,36 +156,53 @@ public class Enemy extends Sprite{
 	public void moveTowardsPlayer() {
 		if (!(this.intersects(player))) {
 			if (player.x > this.x) {
+				movingL = false;
+				movingR = true;
 				this.moveByAmount(enemySpeed, 0);
 			} else {
+				movingR = false;
+				movingL = true;
 				this.moveByAmount(-enemySpeed, 0);
 			}
+		} else {
+			movingR = false;
+			movingL = false;
 		}
+	}
+	
+	public boolean isMovingRight() {
+		return movingR;
+	}
+	
+	public boolean isMovingLeft() {
+		return movingL;
 	}
 	
 	/**
 	 * Continuously moves towards the Player and attacks if close enough.
 	 *
 	 */
-	public void act() {
-		moveTowardsPlayer();
-		System.out.println(stamina);
+	public void act(PApplet g) {
+		if(!isAttacking())
+			moveTowardsPlayer();
 		if(stamina < 100 && staminaTimer <= 0) {
 			staminaTimer = 5; // change this to change stamina regen rate
 			stamina++;
 		}
-//		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {
-//			health -= player.getAttackPower();
-//			attackTimer = 60;
-//		}
-		if(distanceFromPlayer() <= (Player.BATTLEPLAYER_WIDTH) && attackTimer <= 0) {
+		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {
+			health -= player.getAttackPower();
+			attackTimer = 60;
+		}
+		if(distanceFromPlayer() <= 20 && attackTimer2 <= 0) {
 			attack();
-		} else if (distanceFromPlayer() > (Player.BATTLEPLAYER_WIDTH) && attackTimer <= 0) {
+		} else if(attackTimer2 <= 60 && isAnimating){
 			isAnimating = false;
-			setImage(animationsAttack[0]);
+			attacking = false;
+			setImage(g.loadImage("img/Enemy.png"));
 		}
 			
 		staminaTimer--;
+		attackTimer2--;
 	}
 	
 	@Override

@@ -33,7 +33,7 @@ public class BattleScreen extends Screen {
 	private int animationIndex;
 	private boolean going1, going2;
 	
-	private final int animationTime = 10;  // This represents 1/4 of a second with normal framerate
+	private final int animationTime = 15;  // This represents 1/6 of a second with normal framerate
 	private int animationCounter;
 	private int animationTimer;
 	
@@ -114,10 +114,11 @@ public class BattleScreen extends Screen {
 		//loadBackground();
 		
 		if(going1 && going2) {
+			if(animationIndex > 3)
+				animationIndex = 0;
 			player.animateAttack(animationIndex);
 			player.attack();
 			enemy.animateAttack(animationIndex);
-			enemy.attack();
 			animationCounter--;
 			if (animationCounter <= 0) {
 				animationCounter = animationTime;
@@ -131,6 +132,8 @@ public class BattleScreen extends Screen {
 				}
 				animationTimer--;
 		} else if(going1) {
+			if(animationIndex > 3)
+				animationIndex = 0;
 			player.animateAttack(animationIndex);
 			player.attack();
 			animationCounter--;
@@ -144,8 +147,9 @@ public class BattleScreen extends Screen {
 			}
 			animationTimer--;
 		} else if(going2) {
+			if(animationIndex > 3)
+				animationIndex = 0;
 			enemy.animateAttack(animationIndex);
-			//enemy.attack();
 			animationCounter--;
 			if (animationCounter <= 0) {
 				animationCounter = animationTime;
@@ -158,7 +162,22 @@ public class BattleScreen extends Screen {
 			animationTimer--;
 		}
 		
-		//get riud of option to return -> automatically return
+		if(enemy.isMovingRight() || enemy.isMovingLeft()) {
+			if(enemy.isMovingRight())
+				enemy.animateWalkRight(animationIndex);
+			if(enemy.isMovingLeft())
+				enemy.animateWalkLeft(animationIndex);
+			animationCounter--;
+			if (animationCounter <= 0) {
+				animationCounter = animationTime;
+				animationIndex = (animationIndex + 1) % 6;
+				if (!enemy.isMovingRight() && !enemy.isMovingLeft()) {
+					enemy.setImage(surface.loadImage("img/Enemy.png"));
+				}
+			}
+		}
+		
+		//get rid of option to return -> automatically return
 		if(player.getHealth() > 0)
 			player.battleDraw(surface);
 		else {
@@ -176,7 +195,8 @@ public class BattleScreen extends Screen {
 		
 		if(surface.mousePressed && player.getStamina() > 0) {
 			going1 = true;
-			animationTimer = 60;
+			if(animationTimer <= 0)
+				animationTimer = 60;
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT)) {
 			if (player.x <= 50) {
@@ -196,10 +216,11 @@ public class BattleScreen extends Screen {
 			
 		}
 		
-		enemy.act();
+		enemy.act(surface);
 		if(enemy.isAttacking()) {
 			going2 = true;
-			animationTimer = 60;
+			if(animationTimer <= 0)
+				animationTimer = 60;
 		}
 			
 		player.battleAct(obstacles);
