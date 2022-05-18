@@ -97,6 +97,11 @@ public class SecondScreen extends Screen {
 		npc.setText("Welcome to the game. Have fun in your journey!");
 		enemy.setText("Fight me!");
 	}
+	
+	public void setupMap() {
+		backgrounds.put(background, obstacles);
+		backgrounds.put(background, obstacles);
+	}
 
 	
 	// The statements in draw() are executed until the 
