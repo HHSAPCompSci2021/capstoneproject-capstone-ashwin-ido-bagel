@@ -36,9 +36,7 @@ public class Player extends Sprite {
 	private double yVel;
 	private boolean onSurface;
 	
-	private PImage[] animationsRight;
-	private PImage[] animationsLeft;
-	private PImage[] animationsAttack;
+	private PImage[] animationsRight, animationsLeft, animationsAttack, animationsForward, animationsBack;
 	private int attackPower, stamina, health;
 	private boolean attacking;
 	private int attackTimer;
@@ -78,25 +76,27 @@ public class Player extends Sprite {
 	 * @param g The PApplet used to draw the player.
 	 */
 	public void setUp(PApplet g) {
-		animationsRight = new PImage[6];
+		animationsRight = new PImage[3];
 		animationsRight[0] = g.loadImage("img/Walk1.png");
 		animationsRight[1] = g.loadImage("img/Walk2.png");
 		animationsRight[2] = g.loadImage("img/Walk3.png");
-		animationsRight[3] = g.loadImage("img/Walk4.png");
-		animationsRight[4] = g.loadImage("img/Walk5.png");
-		animationsRight[5] = g.loadImage("img/Walk6.png");
-		animationsLeft = new PImage[6];
+		animationsLeft = new PImage[3];
 		animationsLeft[0] = g.loadImage("img/WalkL1.png");
 		animationsLeft[1] = g.loadImage("img/WalkL2.png");
 		animationsLeft[2] = g.loadImage("img/WalkL3.png");
-		animationsLeft[3] = g.loadImage("img/WalkL4.png");
-		animationsLeft[4] = g.loadImage("img/WalkL5.png");
-		animationsLeft[5] = g.loadImage("img/WalkL6.png");
 		animationsAttack = new PImage[4];
 		animationsAttack[0] = g.loadImage("img/Attack1.png");
 		animationsAttack[1] = g.loadImage("img/Attack2.png");
 		animationsAttack[2] = g.loadImage("img/Attack3.png");
 		animationsAttack[3] = g.loadImage("img/Attack4.png");
+		animationsForward = new PImage[3];
+		animationsForward[0] = g.loadImage("img/WalkF1.png");
+		animationsForward[1] = g.loadImage("img/WalkF2.png");
+		animationsForward[2] = g.loadImage("img/WalkF3.png");
+		animationsBack = new PImage[3];
+		animationsBack[0] = g.loadImage("img/WalkB1.png");
+		animationsBack[1] = g.loadImage("img/WalkB2.png");
+		animationsBack[2] = g.loadImage("img/WalkB3.png");
 	}
 	
 	/**
@@ -116,6 +116,15 @@ public class Player extends Sprite {
 	public void animateWalkLeft(int index) {
 		setImage(animationsLeft[index]);
 	}
+	
+	public void animateWalkBack(int index) {
+		setImage(animationsBack[index]);
+	}
+	
+	public void animateWalkForward(int index) {
+		setImage(animationsForward[index]);
+	}
+	
 	
 	/**
 	 * A method that makes the Player attack during battle.

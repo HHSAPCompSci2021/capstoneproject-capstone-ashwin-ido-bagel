@@ -171,9 +171,6 @@ public class BattleScreen extends Screen {
 			if (animationCounter <= 0) {
 				animationCounter = animationTime;
 				animationIndex = (animationIndex + 1) % 6;
-				if (!enemy.isMovingRight() && !enemy.isMovingLeft()) {
-					enemy.setImage(surface.loadImage("img/Enemy.png"));
-				}
 			}
 		}
 		

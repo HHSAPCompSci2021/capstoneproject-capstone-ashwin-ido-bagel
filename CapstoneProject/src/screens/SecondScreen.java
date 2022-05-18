@@ -119,8 +119,9 @@ public class SecondScreen extends Screen {
 			animationCounter--;
 			if (animationCounter <= 0) {
 				animationCounter = animationTime;
-				animationIndex = (animationIndex + 1) % 6;
-				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT) && !surface.isPressed(KeyEvent.VK_A) && !surface.isPressed(KeyEvent.VK_D)) {
+				animationIndex = (animationIndex + 1) % 3;
+				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT) && !surface.isPressed(KeyEvent.VK_A) && !surface.isPressed(KeyEvent.VK_D)
+					&& !surface.isPressed(KeyEvent.VK_UP) && !surface.isPressed(KeyEvent.VK_DOWN) && !surface.isPressed(KeyEvent.VK_W) && !surface.isPressed(KeyEvent.VK_S)) {
 					going = false;
 					player.setImage(surface.loadImage("img/Character.png"));
 				}
@@ -157,11 +158,17 @@ public class SecondScreen extends Screen {
 			player.animateWalkRight(animationIndex);
 		}
 		else if (surface.isPressed(KeyEvent.VK_UP) || 
-				surface.isPressed(KeyEvent.VK_W))
+				surface.isPressed(KeyEvent.VK_W)) {
 			player.walk(Player.Direction.Up, 2);
+			going = true;
+			player.animateWalkForward(animationIndex);
+		}
 		else if (surface.isPressed(KeyEvent.VK_DOWN) || 
-				 surface.isPressed(KeyEvent.VK_S))
+				 surface.isPressed(KeyEvent.VK_S)) {
 			player.walk(Player.Direction.Down, 2);
+			going = true;
+			player.animateWalkBack(animationIndex);
+		}
 		
 
 		player.act(obstacles);

@@ -52,7 +52,7 @@ public class Sprite extends Rectangle2D.Double {
 	public void setImage(PImage img) {
 		image = img;
 	}
-	
+
 	/**
 	 * Moves the Sprite to a specified location on the PApplet. 
 	 * @param x The x-coordinate of the desired location to move to. 
