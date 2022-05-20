@@ -11,21 +11,21 @@ import sprites.Sprite;
 public class BackgroundLoader {
 	
 	List<Sprite> characters, obstacles;
-	ArrayList<PImage> backgrounds;
-	int screenNum;
+	PImage background;
+	//int screenNum;
 	
-	public BackgroundLoader(ArrayList<PImage> backgrounds, List<Sprite> characters, List<Sprite> obstacles, int screenNum) {
-		this.backgrounds = backgrounds;
+	public BackgroundLoader(PImage background, List<Sprite> characters, List<Sprite> obstacles) {
+		this.background = background;
 		this.characters = characters;
 		this.obstacles = obstacles;
-		this.screenNum = screenNum;
+		//this.screenNum = screenNum;
 	}
 	
 	public void draw(PApplet surface, Screen s) {
 		for (Sprite a : obstacles) {
 			a.draw(surface);
 		}
-		surface.image(backgrounds.get(screenNum), 0, 0, s.DRAWING_WIDTH,s.DRAWING_HEIGHT);
+		surface.image(background, 0, 0, s.DRAWING_WIDTH,s.DRAWING_HEIGHT);
 		for (Sprite b : characters) {
 			b.draw(surface);
 		}
