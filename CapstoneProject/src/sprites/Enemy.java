@@ -137,7 +137,7 @@ public class Enemy extends Sprite{
 	 * @return the attacking state of the enemy.
 	 */
 	public boolean isAttacking() {
-		return attacking && stamina > 0;
+		return attacking;
 	}
 	
 	/**

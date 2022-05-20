@@ -30,15 +30,15 @@ public class BattleScreen extends Screen {
 	private Enemy enemy;
 	private List<Sprite> obstacles;
 	
-	private int animationIndex, animationIndex3;
+	private int animationIndex, animationIndex2, animationIndex3, animationIndex4;
 	private boolean going1, going2, going3;
 	
-	private final int animationTime = 15;  // This represents 1/6 of a second with normal framerate
-	private int animationCounter;
-	private int animationTimer;
-	
+	private final int animationTime = 15;  // This represents 1/4 of a second with normal framerate
+	private final int animationTime2 = 15;  // This represents 1/4 of a second with normal framerate
 	private final int animationTime3 = 10;  // This represents 1/6 of a second with normal framerate
-	private int animationCounter3;
+	private final int animationTime4 = 10;  // This represents 1/6 of a second with normal framerate
+	private int animationCounter, animationCounter2, animationCounter3, animationCounter4;
+	private int animationTimer, animationTimer2;
 	
 	/**
 	 * Creates a the screen where the player fights enemies.
@@ -59,6 +59,7 @@ public class BattleScreen extends Screen {
 		going2 = false;
 		going3 = false;
 		animationTimer = 60;
+		animationTimer2 = 60;
 		backgroundLoc = 1000; // change spawn location
 	}
 	
@@ -117,25 +118,26 @@ public class BattleScreen extends Screen {
 		
 		//loadBackground();
 		
-		if(going1 && going2) {
-			if(animationIndex > 3)
-				animationIndex = 0;
-			player.animateAttack(animationIndex);
-			player.attack();
-			enemy.animateAttack(animationIndex);
-			animationCounter--;
-			if (animationCounter <= 0) {
-				animationCounter = animationTime;
-				animationIndex = (animationIndex + 1) % 4;
-				if (animationTimer < 0) {
-						going1 = false;
-						going2 = false;
-						player.setImage(surface.loadImage("img/Character.png"));
-						enemy.setImage(surface.loadImage("img/Enemy.png"));
-					}
-				}
-				animationTimer--;
-		} else if(going1) {
+//		if(going1 && going2) {
+//			if(animationIndex > 3)
+//				animationIndex = 0;
+//			player.animateAttack(animationIndex);
+//			player.attack();
+//			enemy.animateAttack(animationIndex);
+//			animationCounter--;
+//			if (animationCounter <= 0) {
+//				animationCounter = animationTime;
+//				animationIndex = (animationIndex + 1) % 4;
+//				if (animationTimer < 0) {
+//					going1 = false;
+//					going2 = false;
+//					player.setImage(surface.loadImage("img/Character.png"));
+//					enemy.setImage(surface.loadImage("img/Enemy.png"));
+//				}
+//			}
+//				animationTimer--;
+//		} 
+		if(going1) {
 			if(animationIndex > 3)
 				animationIndex = 0;
 			player.animateAttack(animationIndex);
@@ -150,20 +152,21 @@ public class BattleScreen extends Screen {
 				}
 			}
 			animationTimer--;
-		} else if(going2) {
-			if(animationIndex > 3)
-				animationIndex = 0;
-			enemy.animateAttack(animationIndex);
-			animationCounter--;
-			if (animationCounter <= 0) {
-				animationCounter = animationTime;
-				animationIndex = (animationIndex + 1) % 4;
-				if (animationTimer < 0) {
+		}
+		if(going2) {
+			if(animationIndex2 > 3)
+				animationIndex2 = 0;
+			enemy.animateAttack(animationIndex2);
+			animationCounter2--;
+			if (animationCounter2 <= 0) {
+				animationCounter2 = animationTime2;
+				animationIndex2 = (animationIndex2 + 1) % 4;
+				if (animationTimer2 < 0) {
 					going2 = false;
 					enemy.setImage(surface.loadImage("img/Enemy.png"));
 				}
 			}
-			animationTimer--;
+			animationTimer2--;
 		}
 		
 		if(going3) {
@@ -180,13 +183,13 @@ public class BattleScreen extends Screen {
 		
 		if(enemy.isMovingRight() || enemy.isMovingLeft()) {
 			if(enemy.isMovingRight())
-				enemy.animateWalkRight(animationIndex);
+				enemy.animateWalkRight(animationIndex4);
 			if(enemy.isMovingLeft())
-				enemy.animateWalkLeft(animationIndex);
-			animationCounter--;
-			if (animationCounter <= 0) {
-				animationCounter = animationTime;
-				animationIndex = (animationIndex + 1) % 6;
+				enemy.animateWalkLeft(animationIndex4);
+			animationCounter4--;
+			if (animationCounter4 <= 0) {
+				animationCounter4 = animationTime4;
+				animationIndex4 = (animationIndex4 + 1) % 6;
 			}
 		}
 		
@@ -235,8 +238,8 @@ public class BattleScreen extends Screen {
 		enemy.act(surface);
 		if(enemy.isAttacking()) {
 			going2 = true;
-			if(animationTimer <= 0)
-				animationTimer = 60;
+			if(animationTimer2 <= 0)
+				animationTimer2 = 60;
 		}
 			
 		player.battleAct(obstacles);
