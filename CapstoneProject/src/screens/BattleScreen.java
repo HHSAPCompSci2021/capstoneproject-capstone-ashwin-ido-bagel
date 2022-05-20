@@ -30,12 +30,15 @@ public class BattleScreen extends Screen {
 	private Enemy enemy;
 	private List<Sprite> obstacles;
 	
-	private int animationIndex;
-	private boolean going1, going2;
+	private int animationIndex, animationIndex3;
+	private boolean going1, going2, going3;
 	
 	private final int animationTime = 15;  // This represents 1/6 of a second with normal framerate
 	private int animationCounter;
 	private int animationTimer;
+	
+	private final int animationTime3 = 10;  // This represents 1/6 of a second with normal framerate
+	private int animationCounter3;
 	
 	/**
 	 * Creates a the screen where the player fights enemies.
@@ -54,6 +57,7 @@ public class BattleScreen extends Screen {
 		
 		going1 = false;
 		going2 = false;
+		going3 = false;
 		animationTimer = 60;
 		backgroundLoc = 1000; // change spawn location
 	}
@@ -162,6 +166,18 @@ public class BattleScreen extends Screen {
 			animationTimer--;
 		}
 		
+		if(going3) {
+			animationCounter3--;
+			if (animationCounter3 <= 0) {
+				animationCounter3 = animationTime3;
+				animationIndex3 = (animationIndex3 + 1) % 3;
+				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT) && !surface.isPressed(KeyEvent.VK_UP) && !surface.isPressed(KeyEvent.VK_DOWN)) {
+					going3 = false;
+					player.setImage(surface.loadImage("img/Character.png"));
+				}
+			}
+		}
+		
 		if(enemy.isMovingRight() || enemy.isMovingLeft()) {
 			if(enemy.isMovingRight())
 				enemy.animateWalkRight(animationIndex);
@@ -200,13 +216,16 @@ public class BattleScreen extends Screen {
 				backgroundLoc-=10;
 			}
 			player.walk(Player.Direction.Left, 10);
+			going3 = true;
+			player.animateWalkLeft(animationIndex3);
 		}
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			if (player.x >= DRAWING_WIDTH -50 - Player.BATTLEPLAYER_WIDTH) {
 				backgroundLoc+=10;
 			}
 			player.walk(Player.Direction.Right, 10);
-			
+			going3 = true;
+			player.animateWalkRight(animationIndex3);
 		}
 		if (surface.isPressed(KeyEvent.VK_SPACE)) {
 			player.jump();
