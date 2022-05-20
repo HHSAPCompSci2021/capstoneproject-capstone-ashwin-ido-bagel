@@ -38,7 +38,7 @@ public class SecondScreen extends Screen {
 	private Player player;
 	private List<Sprite> obstacles;
 	private NPC npc, enemy;
-	private Map<PImage, List<Sprite>> backgrounds = new HashMap<PImage, List<Sprite>>();
+	//private Map<PImage, List<Sprite>> backgrounds = new HashMap<PImage, List<Sprite>>();
 	// trying to make it so that when character walks through a 'door', a new background loads up
 	// with all obstacles in it and characters loaded up
 	// problem: need to separate obstacles that get drawn first and npcs, enemies that get drawn later
@@ -98,10 +98,10 @@ public class SecondScreen extends Screen {
 		enemy.setText("Fight me!");
 	}
 	
-	public void setupMap() {
-		backgrounds.put(background, obstacles);
-		backgrounds.put(background, obstacles);
-	}
+//	public void setupMap() {
+//		backgrounds.put(background, obstacles);
+//		backgrounds.put(background, obstacles);
+//	}
 
 	
 	// The statements in draw() are executed until the 
