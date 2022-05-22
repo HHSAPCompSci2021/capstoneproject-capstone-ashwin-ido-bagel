@@ -90,12 +90,10 @@ public class SecondScreen extends Screen {
 	public void setup() {
 		background = surface.loadImage("img/Tutorial.png");
 		spawnNewPlayer();
-		npc = new NPC(surface.loadImage("img/npc1.png"), 300, 290); //make sprite transparent
-		enemy = new NPC(surface.loadImage("img/Enemy.png"), 450, 290);
+		npc = new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!"); //make sprite transparent
+		enemy = new NPC(surface.loadImage("img/Enemy.png"), 450, 290, "Fight me!");
 		obstacles.add(new Sprite((int)npc.x+5, (int)npc.y+5, (int)npc.width-10, (int)npc.height-15));
 		obstacles.add(new Sprite((int)enemy.x+5, (int)enemy.y+5, (int)enemy.width-10, (int)enemy.height-15));
-		npc.setText("Welcome to the game. Have fun in your journey!");
-		enemy.setText("Fight me!");
 	}
 	
 //	public void setupMap() {
