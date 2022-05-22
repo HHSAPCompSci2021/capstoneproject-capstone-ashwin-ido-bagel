@@ -30,9 +30,9 @@ public class NPC extends Sprite {
 	 * @param x x-coordinate of the npc.
 	 * @param y y-coordinate of the npc.
 	 */
-	public NPC(PImage img, int x, int y) {
+	public NPC(PImage img, int x, int y, String text) {
 		super(img, x, y, NPC_WIDTH, NPC_HEIGHT);
-		text = "Hello";
+		this.text = text;
 	} 
 	
 	/**
