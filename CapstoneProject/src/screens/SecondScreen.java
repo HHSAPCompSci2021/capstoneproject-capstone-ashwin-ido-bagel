@@ -88,7 +88,7 @@ public class SecondScreen extends Screen {
 	// The statements in the setup() function 
 	// execute once when the program begins
 	public void setup() {
-		background = surface.loadImage("img/background.png");
+		background = surface.loadImage("img/Tutorial.png");
 		spawnNewPlayer();
 		npc = new NPC(surface.loadImage("img/npc1.png"), 300, 290); //make sprite transparent
 		enemy = new NPC(surface.loadImage("img/Enemy.png"), 450, 290);
