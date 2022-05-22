@@ -28,6 +28,7 @@ public class BattleScreen extends Screen {
 	private Rectangle screenRect;
 	private Player player;
 	private Enemy enemy;
+	private BackgroundLoader bl;
 	private List<Sprite> obstacles;
 	
 	private int animationIndex, animationIndex2, animationIndex3, animationIndex4;
@@ -91,6 +92,7 @@ public class BattleScreen extends Screen {
 	// execute once when the program begins
 	public void setup() {
 		background = surface.loadImage("img/battlearena.png"); //change to png used for background of battle screen
+		bl = new BackgroundLoader(0);
 		spawnNewPlayer();
 		spawnNewEnemy();
 	}
@@ -98,7 +100,7 @@ public class BattleScreen extends Screen {
 	
 	public void draw() {
 		
-		for (Sprite s : obstacles) {
+		for (Sprite s : bl.getObstacles().get(0)) {
 			s.draw(surface);
 		}
 		
@@ -242,7 +244,7 @@ public class BattleScreen extends Screen {
 				animationTimer2 = 60;
 		}
 			
-		player.battleAct(obstacles);
+		player.battleAct(bl.getObstacles().get(0));
 		
 		if (!screenRect.intersects(player))
 			spawnNewPlayer();

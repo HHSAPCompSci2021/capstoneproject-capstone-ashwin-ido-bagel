@@ -207,7 +207,7 @@ public class Player extends Sprite {
 	 * 
 	 * @param obstacles The obstacles the character interacts with.
 	 */
-	public void battleAct(List<Sprite> obstacles) {
+	public void battleAct(ArrayList<Sprite> obstacles) {
 		act(obstacles);
 		if(!attacking && stamina < 50) {
 		   stamina++;
@@ -250,7 +250,7 @@ public class Player extends Sprite {
 	 * 
 	 * @param obstacles Obstacles on the screen.
 	 */
-	public void checkCollisions(List<Sprite> obstacles) {
+	public void checkCollisions(ArrayList<Sprite> obstacles) {
 		for (Sprite s : obstacles) {
 			 if (super.intersects(s)) {
 				 boolean vertical = false, horizontal = false;
@@ -332,7 +332,7 @@ public class Player extends Sprite {
 	 * 
 	 * @param obstacles A List of all Sprites in the window. 
 	 */
-	public void act(List<Sprite> obstacles) { // update this so that uses rectangle intersection method to simplify
+	public void act(ArrayList<Sprite> obstacles) { // update this so that uses rectangle intersection method to simplify
 		checkCollisions(obstacles);
 	}
 	

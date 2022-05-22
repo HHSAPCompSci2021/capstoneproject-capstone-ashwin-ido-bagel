@@ -18,16 +18,20 @@ public class BackgroundLoader {
 	
 	public BackgroundLoader(int screenNum) {
 		this.screenNum = screenNum;
+		characters = new ArrayList<ArrayList<Sprite>>();
+		obstacles = new ArrayList<ArrayList<Sprite>>();
+		backgrounds = new ArrayList<PImage>();
 	}
 	
-	private void addCharacters(PApplet surface) {
+	public void addCharacters(PApplet surface) {
 		ArrayList<Sprite> c = new ArrayList<Sprite>();
 		//tutorial area
+		characters.add(c);
 		c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!"));
 		characters.add(c);
+		c.clear();
 		
 		//area 1
-		//c.add(new Enemy());
 		
 		//area 2
 		
@@ -43,23 +47,45 @@ public class BackgroundLoader {
 		
 	}
 	
-	private void addObstacles(PApplet surface) {
-		obstacles.add(null);
+	public void addObstacles(PApplet surface) {
+		ArrayList<Sprite> o = new ArrayList<Sprite>();
+		o.add(new Sprite(0, 0, 10, 10));
+		obstacles.add(o);
+		o.clear();
+		o.add(new Sprite(0,0,10,10));
+		obstacles.add(o);
+		o.clear();
+		
 	}
 	
-	private void addBackgrounds(PApplet surface) {
-		PImage background = surface.loadImage("Tutorial.png");
+	public void addBackgrounds(PApplet surface) {
+		PImage background = surface.loadImage("img/battlearena.png");
 		backgrounds.add(background);
-		background = surface.loadImage("background.png");
+		background = surface.loadImage("img/Tutorial.png");
 		backgrounds.add(background);
+		background = surface.loadImage("img/background.png");
+		backgrounds.add(background);
+	}
+	
+	public ArrayList<ArrayList<Sprite>> getObstacles() {
+		return obstacles;	
+	}
+	
+	public ArrayList<ArrayList<Sprite>> getCharacters() {
+		return characters;
 	}
 	
 	public void draw(PApplet surface, Screen s) {
+//		System.out.println(screenNum);
+		//System.out.println(screenNum);
+
 		for (Sprite a : obstacles.get(screenNum)) {
+			System.out.println("obstacles");
 			a.draw(surface);
 		}
 		surface.image(backgrounds.get(screenNum), 0, 0, s.DRAWING_WIDTH,s.DRAWING_HEIGHT);
 		for (Sprite b : characters.get(screenNum)) {
+			//System.out.println("characters");
 			b.draw(surface);
 		}
 		
