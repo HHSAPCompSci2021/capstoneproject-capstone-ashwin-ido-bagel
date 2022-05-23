@@ -21,6 +21,8 @@ import sprites.Sprite;
  */
 public class BattleScreen extends Screen {
 	
+	public static int enemyIndex = 0;
+	
 	private DrawingSurface surface;
 	private PImage background;
 	private int backgroundLoc;
@@ -83,8 +85,12 @@ public class BattleScreen extends Screen {
 	 * Creates the enemy to be drawn onto the screen.
 	 */
 	public void spawnNewEnemy() {
-		if(enemyIndex == 0)
-			enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100, enemyIndex);//spawn enemy here (once implementation is finished)
+		if(enemyIndex == 0) {
+			enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100, 0);//spawn enemy here (once implementation is finished)
+		}
+		else if (enemyIndex == 1) {
+			enemy = new Enemy(surface.loadImage("img/Ghost.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100, 1);//spawn enemy here (once implementation is finished)
+		}
 		enemy.setUp(surface);
 	}
 	
@@ -103,21 +109,12 @@ public class BattleScreen extends Screen {
 			s.draw(surface);
 		}
 		
-		//System.out.println(backgroundLoc);
-		// NB image is wider than screen
-		if (backgroundLoc >= 0) {
-			int x = (int)backgroundLoc % background.width;
-		    surface.copy(background, x, 0, background.width, background.height, 0, 0, background.width, background.height);
-		    int x2 = background.width - x;
-		    if (x2 < DRAWING_WIDTH) {
-		      surface.copy(background, 0, 0, background.width, background.height, x2, 0, background.width, background.height);
-		    }
-		}
-	    
-	  
-		//surface.background(0,255,255);
-		
-		//loadBackground();
+		int x = (int)backgroundLoc % background.width;
+	    surface.copy(background, x, 0, background.width, background.height, 0, 0, background.width, background.height);
+	    int x2 = background.width - x;
+	    if (x2 < DRAWING_WIDTH) {
+	      surface.copy(background, 0, 0, background.width, background.height, x2, 0, background.width, background.height);
+	    }
 		
 		if(going1) {
 			if(animationIndex > 3)
@@ -203,7 +200,7 @@ public class BattleScreen extends Screen {
 				animationTimer = 60;
 		}
 		if (surface.isPressed(KeyEvent.VK_LEFT)) {
-			if (player.x <= 50) {
+			if (player.x <= 50 && backgroundLoc > 0) {
 				backgroundLoc-=10;
 			}
 			if(!player.isAttacking()) {
@@ -213,7 +210,7 @@ public class BattleScreen extends Screen {
 			}
 		}
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
-			if (player.x >= DRAWING_WIDTH -50 - Player.BATTLEPLAYER_WIDTH) {
+			if (player.x >= DRAWING_WIDTH -50 - Player.BATTLEPLAYER_WIDTH && backgroundLoc < 1900) {
 				backgroundLoc+=10;
 			}
 			if(!player.isAttacking()) {

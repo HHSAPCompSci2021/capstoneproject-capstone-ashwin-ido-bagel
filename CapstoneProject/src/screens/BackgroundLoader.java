@@ -14,7 +14,7 @@ public class BackgroundLoader {
 	
 	ArrayList<ArrayList<Sprite>> characters, obstacles;
 	ArrayList<PImage> backgrounds;
-	int screenNum;
+	private int screenNum;
 	
 	public BackgroundLoader(int screenNum) {
 		this.screenNum = screenNum;
@@ -27,7 +27,8 @@ public class BackgroundLoader {
 		ArrayList<Sprite> c = new ArrayList<Sprite>();
 		//tutorial area
 		characters.add(c);
-		c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!"));
+		c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!", -1));
+		c.add(new NPC(surface.loadImage("img/Ghost.png"), 500, 290, "Fight me", 1));
 		characters.add(c);
 		
 		//area 1
@@ -57,10 +58,12 @@ public class BackgroundLoader {
 		o = new ArrayList<Sprite>();
 	}
 	
+	public int getScreenNum() {
+		return screenNum;
+	}
+	
 	public void addBackgrounds(PApplet surface) {
-		PImage background = surface.loadImage("img/battlearena.png");
-		backgrounds.add(background);
-		background = surface.loadImage("img/Tutorial.png");
+		PImage background = surface.loadImage("img/Tutorial.png");
 		backgrounds.add(background);
 		background = surface.loadImage("img/Area2.png");
 		backgrounds.add(background);

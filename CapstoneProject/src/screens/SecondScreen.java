@@ -8,6 +8,7 @@ import java.awt.event.*;
 import core.DrawingSurface;
 import sprites.NPC;
 import sprites.Player;
+import sprites.Sprite;
 
 /**
  * Represents the open world game screen where the user explores and can find npcs.
@@ -26,9 +27,9 @@ public class SecondScreen extends Screen {
 	private final int animationTime = 10;  // This represents 1/4 of a second with normal framerate
 	private int animationCounter;
 
-	private int currentArea;
+//	private int currentArea;
 	private Player player;
-	private NPC npc, enemy;
+//	private NPC npc, enemy;
 	private BackgroundLoader bl;
 	//private Map<PImage, List<Sprite>> backgrounds = new HashMap<PImage, List<Sprite>>();
 	// trying to make it so that when character walks through a 'door', a new background loads up
@@ -49,7 +50,7 @@ public class SecondScreen extends Screen {
 		
 		going = false;
 		bl = new BackgroundLoader(0);
-		currentArea = 1;
+		//currentArea = 1;
 	}
 
 	/**
@@ -67,8 +68,8 @@ public class SecondScreen extends Screen {
 		bl.addCharacters(surface);
 		bl.addObstacles(surface);
 		spawnNewPlayer();
-		npc = new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!"); //make sprite transparent
-		enemy = new NPC(surface.loadImage("img/Enemy.png"), 450, 290, "Fight me!");
+//		npc = new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!"); //make sprite transparent
+//		enemy = new NPC(surface.loadImage("img/Enemy.png"), 450, 290, "Fight me!");
 //		obstacles.add(new Sprite((int)npc.x+5, (int)npc.y+5, (int)npc.width-10, (int)npc.height-15));
 //		obstacles.add(new Sprite((int)enemy.x+5, (int)enemy.y+5, (int)enemy.width-10, (int)enemy.height-15));
 	}
@@ -139,7 +140,7 @@ public class SecondScreen extends Screen {
 		}
 		
 
-		player.act(bl.getObstacles().get(1));
+		player.act(bl.getObstacles().get(bl.getScreenNum()));
 
 		if (!screenRect.intersects(player))
 			spawnNewPlayer();
@@ -151,13 +152,18 @@ public class SecondScreen extends Screen {
 	 * 
 	 */
 	public void mousePressed() { 
-		if(npc.contains(surface.mouseX, surface.mouseY) && npc.intersects(player)) {
-			npc.displayText();
+		NPC currentnpc;
+		for (Sprite npc : bl.getCharacters().get(bl.getScreenNum())) {
+			if(npc instanceof NPC && npc.contains(surface.mouseX, surface.mouseY) && npc.intersects(player)) {
+				currentnpc = (NPC)npc;
+				currentnpc.displayText();
+				if (currentnpc.getEnemyInfo() > -1) {
+					BattleScreen.enemyIndex = currentnpc.getEnemyInfo();
+					surface.switchScreen(ScreenSwitcher.BATTLE_SCREEN);
+				}
+			}
 		}
-		if (enemy.contains(surface.mouseX, surface.mouseY) && enemy.intersects(player)) {
-			enemy.displayText();
-			surface.switchScreen(ScreenSwitcher.BATTLE_SCREEN);
-		}
+		
 	}
 	
 }

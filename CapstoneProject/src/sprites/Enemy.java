@@ -248,7 +248,7 @@ public class Enemy extends Sprite{
 		} else if(attackTimer2 <= 60 && isAnimating){
 			isAnimating = false;
 			attacking = false;
-			setImage(g.loadImage("img/Enemy.png"));
+			setImage(defaultImg);
 		}
 			
 		staminaTimer--;
