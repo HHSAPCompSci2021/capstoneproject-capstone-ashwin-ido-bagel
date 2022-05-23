@@ -26,7 +26,6 @@ public class BattleScreen extends Screen {
 	private DrawingSurface surface;
 	private PImage background;
 	private int backgroundLoc;
-	//private List<Sprite> obstacles; //maybe needed not sure
 	private Rectangle screenRect;
 	private Player player;
 	private Enemy enemy;

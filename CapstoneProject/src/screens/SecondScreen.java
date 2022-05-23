@@ -27,15 +27,8 @@ public class SecondScreen extends Screen {
 	private final int animationTime = 10;  // This represents 1/4 of a second with normal framerate
 	private int animationCounter;
 
-//	private int currentArea;
 	private Player player;
-//	private NPC npc, enemy;
 	private BackgroundLoader bl;
-	//private Map<PImage, List<Sprite>> backgrounds = new HashMap<PImage, List<Sprite>>();
-	// trying to make it so that when character walks through a 'door', a new background loads up
-	// with all obstacles in it and characters loaded up
-	// problem: need to separate obstacles that get drawn first and npcs, enemies that get drawn later
-	// possible solution: make two entries into map for each background-> kind of annoying and prone to manual errors
 	
 	/**
 	 * Creates a game screen that has a drawing surface, and can have obstacles and a player.
@@ -79,10 +72,6 @@ public class SecondScreen extends Screen {
 	public void setup() {
 		setupBackground();
 		spawnNewPlayer();
-//		npc = new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!"); //make sprite transparent
-//		enemy = new NPC(surface.loadImage("img/Enemy.png"), 450, 290, "Fight me!");
-//		obstacles.add(new Sprite((int)npc.x+5, (int)npc.y+5, (int)npc.width-10, (int)npc.height-15));
-//		obstacles.add(new Sprite((int)enemy.x+5, (int)enemy.y+5, (int)enemy.width-10, (int)enemy.height-15));
 	}
 	
 
@@ -92,7 +81,6 @@ public class SecondScreen extends Screen {
 	// sequence and after the last line is read, the first 
 	// line is executed again.
 	public void draw() {
-		// drawing stuff
 		surface.background(255,255,255);
 		bl.draw(surface, this);
 		if(going) {
@@ -109,13 +97,6 @@ public class SecondScreen extends Screen {
 		}
 
 		player.draw(surface);
-//		npc.draw(surface);
-//		enemy.draw(surface);
-//		surface.fill(0);
-//		surface.textSize(14);
-//		surface.text("Click on me!", (float)npc.x, (float)npc.y - 5);
-
-		// modifying stuff
 		
 		if (surface.isPressed(KeyEvent.VK_P)) {
 			surface.switchScreen(ScreenSwitcher.BATTLE_SCREEN);
