@@ -28,8 +28,7 @@ public class BattleScreen extends Screen {
 	private Rectangle screenRect;
 	private Player player;
 	private Enemy enemy;
-	private BackgroundLoader bl;
-	private List<Sprite> obstacles;
+	private ArrayList<Sprite> obstacles;
 	
 	private int animationIndex, animationIndex2, animationIndex3, animationIndex4;
 	private boolean going1, going2, going3;
@@ -62,8 +61,6 @@ public class BattleScreen extends Screen {
 		animationTimer = 60;
 		animationTimer2 = 60;
 		backgroundLoc = 1000; // change spawn location
-		
-		bl = new BackgroundLoader(0);
 	}
 	
 	
@@ -96,15 +93,12 @@ public class BattleScreen extends Screen {
 		background = surface.loadImage("img/battlearena.png"); //change to png used for background of battle screen
 		spawnNewPlayer();
 		spawnNewEnemy();
-		bl.addObstacles(surface);
-		bl.addCharacters(surface);
-		bl.addBackgrounds(surface);
 	}
 	
 	
 	public void draw() {
 		
-		for (Sprite s : bl.getObstacles().get(0)) {
+		for (Sprite s : obstacles) {
 			s.draw(surface);
 		}
 		
@@ -124,6 +118,25 @@ public class BattleScreen extends Screen {
 		
 		//loadBackground();
 		
+//		if(going1 && going2) {
+//			if(animationIndex > 3)
+//				animationIndex = 0;
+//			player.animateAttack(animationIndex);
+//			player.attack();
+//			enemy.animateAttack(animationIndex);
+//			animationCounter--;
+//			if (animationCounter <= 0) {
+//				animationCounter = animationTime;
+//				animationIndex = (animationIndex + 1) % 4;
+//				if (animationTimer < 0) {
+//					going1 = false;
+//					going2 = false;
+//					player.setImage(surface.loadImage("img/Character.png"));
+//					enemy.setImage(surface.loadImage("img/Enemy.png"));
+//				}
+//			}
+//				animationTimer--;
+//		} 
 		if(going1) {
 			if(animationIndex > 3)
 				animationIndex = 0;
@@ -156,12 +169,12 @@ public class BattleScreen extends Screen {
 			animationTimer2--;
 		}
 		
-		if(going3) {
+		if(going3 && !player.isAttacking()) {
 			animationCounter3--;
 			if (animationCounter3 <= 0) {
 				animationCounter3 = animationTime3;
 				animationIndex3 = (animationIndex3 + 1) % 3;
-				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT) && !surface.isPressed(KeyEvent.VK_UP) && !surface.isPressed(KeyEvent.VK_DOWN)) {
+				if (!surface.isPressed(KeyEvent.VK_RIGHT) && !surface.isPressed(KeyEvent.VK_LEFT)) {
 					going3 = false;
 					player.setImage(surface.loadImage("img/Character.png"));
 				}
@@ -205,17 +218,21 @@ public class BattleScreen extends Screen {
 			if (player.x <= 50) {
 				backgroundLoc-=10;
 			}
-			player.walk(Player.Direction.Left, 10);
-			going3 = true;
-			player.animateWalkLeft(animationIndex3);
+			if(!player.isAttacking()) {
+				player.walk(Player.Direction.Left, 10);
+				going3 = true;
+				player.animateWalkLeft(animationIndex3);
+			}
 		}
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			if (player.x >= DRAWING_WIDTH -50 - Player.BATTLEPLAYER_WIDTH) {
 				backgroundLoc+=10;
 			}
-			player.walk(Player.Direction.Right, 10);
-			going3 = true;
-			player.animateWalkRight(animationIndex3);
+			if(!player.isAttacking()) {
+				player.walk(Player.Direction.Right, 10);
+				going3 = true;
+				player.animateWalkRight(animationIndex3);
+			}
 		}
 		if (surface.isPressed(KeyEvent.VK_SPACE)) {
 			player.jump();
@@ -229,7 +246,7 @@ public class BattleScreen extends Screen {
 				animationTimer2 = 60;
 		}
 			
-		player.battleAct(bl.getObstacles().get(0));
+		player.battleAct(obstacles);
 		
 		if (!screenRect.intersects(player))
 			spawnNewPlayer();
