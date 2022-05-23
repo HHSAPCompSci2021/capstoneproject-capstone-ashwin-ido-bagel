@@ -62,6 +62,8 @@ public class BattleScreen extends Screen {
 		animationTimer = 60;
 		animationTimer2 = 60;
 		backgroundLoc = 1000; // change spawn location
+		
+		bl = new BackgroundLoader(0);
 	}
 	
 	
@@ -92,9 +94,11 @@ public class BattleScreen extends Screen {
 	// execute once when the program begins
 	public void setup() {
 		background = surface.loadImage("img/battlearena.png"); //change to png used for background of battle screen
-		bl = new BackgroundLoader(0);
 		spawnNewPlayer();
 		spawnNewEnemy();
+		bl.addObstacles(surface);
+		bl.addCharacters(surface);
+		bl.addBackgrounds(surface);
 	}
 	
 	
@@ -120,25 +124,6 @@ public class BattleScreen extends Screen {
 		
 		//loadBackground();
 		
-//		if(going1 && going2) {
-//			if(animationIndex > 3)
-//				animationIndex = 0;
-//			player.animateAttack(animationIndex);
-//			player.attack();
-//			enemy.animateAttack(animationIndex);
-//			animationCounter--;
-//			if (animationCounter <= 0) {
-//				animationCounter = animationTime;
-//				animationIndex = (animationIndex + 1) % 4;
-//				if (animationTimer < 0) {
-//					going1 = false;
-//					going2 = false;
-//					player.setImage(surface.loadImage("img/Character.png"));
-//					enemy.setImage(surface.loadImage("img/Enemy.png"));
-//				}
-//			}
-//				animationTimer--;
-//		} 
 		if(going1) {
 			if(animationIndex > 3)
 				animationIndex = 0;
