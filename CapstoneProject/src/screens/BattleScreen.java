@@ -83,7 +83,7 @@ public class BattleScreen extends Screen {
 	 * Creates the enemy to be drawn onto the screen.
 	 */
 	public void spawnNewEnemy() {
-		enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100);//spawn enemy here (once implementation is finished)
+		enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100, 0);//spawn enemy here (once implementation is finished)
 		enemy.setUp(surface);
 	}
 	
@@ -118,25 +118,6 @@ public class BattleScreen extends Screen {
 		
 		//loadBackground();
 		
-//		if(going1 && going2) {
-//			if(animationIndex > 3)
-//				animationIndex = 0;
-//			player.animateAttack(animationIndex);
-//			player.attack();
-//			enemy.animateAttack(animationIndex);
-//			animationCounter--;
-//			if (animationCounter <= 0) {
-//				animationCounter = animationTime;
-//				animationIndex = (animationIndex + 1) % 4;
-//				if (animationTimer < 0) {
-//					going1 = false;
-//					going2 = false;
-//					player.setImage(surface.loadImage("img/Character.png"));
-//					enemy.setImage(surface.loadImage("img/Enemy.png"));
-//				}
-//			}
-//				animationTimer--;
-//		} 
 		if(going1) {
 			if(animationIndex > 3)
 				animationIndex = 0;
@@ -166,10 +147,10 @@ public class BattleScreen extends Screen {
 			animationCounter2--;
 			if (animationCounter2 <= 0) {
 				animationCounter2 = animationTime2;
-				animationIndex2 = (animationIndex2 + 1) % 4;
+				animationIndex2 = (animationIndex2 + 1) % enemy.getAttackAnimationSize();
 				if (animationTimer2 < 0) {
 					going2 = false;
-					enemy.setImage(surface.loadImage("img/Enemy.png"));
+					enemy.setImage(enemy.getDefaultImage());
 				}
 			}
 			animationTimer2--;
@@ -195,7 +176,7 @@ public class BattleScreen extends Screen {
 			animationCounter4--;
 			if (animationCounter4 <= 0) {
 				animationCounter4 = animationTime4;
-				animationIndex4 = (animationIndex4 + 1) % 6;
+				animationIndex4 = (animationIndex4 + 1) % enemy.getWalkAnimationSize();
 			}
 		}
 		

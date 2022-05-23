@@ -24,6 +24,8 @@ public class Enemy extends Sprite{
 	private int staminaCost;
 	private int attackTimer2;
 	private boolean movingL, movingR;
+	private int enemyIndex;
+	private PImage defaultImg;
 	
 	/**
 	 * Creates an Enemy object with a desired speed.
@@ -39,9 +41,11 @@ public class Enemy extends Sprite{
 	 * @param health Health of the enemy.
 	 * @param stamina Stamina of the enemy.
 	 */
-	public Enemy(PImage img, int x, int y, int w, int h, int speed, int attackPower, Player player, int health, int stamina) {
+	public Enemy(PImage img, int x, int y, int w, int h, int speed, int attackPower, Player player, int health, int stamina, int enemyIndex) {
 		super(img, x, y, w, h);
+		defaultImg = img;
 		enemySpeed = speed;
+		this.enemyIndex = enemyIndex;
 		this.attackPower = attackPower;
 		this.player = player;
 		this.health = health;
@@ -69,29 +73,38 @@ public class Enemy extends Sprite{
 	 */
 	public void setUp(PApplet g) {
 		setCost();
-		animationsAttackR = new PImage[4];
-		animationsAttackR[0] = g.loadImage("img/EnemyAttackR1.png");
-		animationsAttackR[1] = g.loadImage("img/EnemyAttackR2.png");
-		animationsAttackR[2] = g.loadImage("img/EnemyAttackR3.png");
-		animationsAttackR[3] = g.loadImage("img/EnemyAttackR4.png");
-		animationsAttackL = new PImage[4];
-		animationsAttackL[0] = g.loadImage("img/EnemyAttack1.png");
-		animationsAttackL[1] = g.loadImage("img/EnemyAttack2.png");
-		animationsAttackL[2] = g.loadImage("img/EnemyAttack3.png");
-		animationsAttackL[3] = g.loadImage("img/EnemyAttack4.png");
-		animationsWalk = new PImage[12];
-		animationsWalk[0] = g.loadImage("img/EnemyWalk1.png");
-		animationsWalk[1] = g.loadImage("img/EnemyWalk2.png");
-		animationsWalk[2] = g.loadImage("img/EnemyWalk3.png");
-		animationsWalk[3] = g.loadImage("img/EnemyWalk4.png");
-		animationsWalk[4] = g.loadImage("img/EnemyWalk5.png");
-		animationsWalk[5] = g.loadImage("img/EnemyWalk6.png");
-		animationsWalk[6] = g.loadImage("img/EnemyWalk7.png");
-		animationsWalk[7] = g.loadImage("img/EnemyWalk8.png");
-		animationsWalk[8] = g.loadImage("img/EnemyWalk9.png");
-		animationsWalk[9] = g.loadImage("img/EnemyWalk10.png");
-		animationsWalk[10] = g.loadImage("img/EnemyWalk11.png");
-		animationsWalk[11] = g.loadImage("img/EnemyWalk12.png");
+		if(enemyIndex == 0) {
+			animationsAttackR = new PImage[4];
+			animationsAttackR[0] = g.loadImage("img/EnemyAttackR1.png");
+			animationsAttackR[1] = g.loadImage("img/EnemyAttackR2.png");
+			animationsAttackR[2] = g.loadImage("img/EnemyAttackR3.png");
+			animationsAttackR[3] = g.loadImage("img/EnemyAttackR4.png");
+			animationsAttackL = new PImage[4];
+			animationsAttackL[0] = g.loadImage("img/EnemyAttack1.png");
+			animationsAttackL[1] = g.loadImage("img/EnemyAttack2.png");
+			animationsAttackL[2] = g.loadImage("img/EnemyAttack3.png");
+			animationsAttackL[3] = g.loadImage("img/EnemyAttack4.png");
+			animationsWalk = new PImage[12];
+			animationsWalk[0] = g.loadImage("img/EnemyWalk1.png");
+			animationsWalk[1] = g.loadImage("img/EnemyWalk2.png");
+			animationsWalk[2] = g.loadImage("img/EnemyWalk3.png");
+			animationsWalk[3] = g.loadImage("img/EnemyWalk4.png");
+			animationsWalk[4] = g.loadImage("img/EnemyWalk5.png");
+			animationsWalk[5] = g.loadImage("img/EnemyWalk6.png");
+			animationsWalk[6] = g.loadImage("img/EnemyWalk7.png");
+			animationsWalk[7] = g.loadImage("img/EnemyWalk8.png");
+			animationsWalk[8] = g.loadImage("img/EnemyWalk9.png");
+			animationsWalk[9] = g.loadImage("img/EnemyWalk10.png");
+			animationsWalk[10] = g.loadImage("img/EnemyWalk11.png");
+			animationsWalk[11] = g.loadImage("img/EnemyWalk12.png");
+		}
+		else if(enemyIndex == 1) {
+			
+		}
+	}
+	
+	public PImage getDefaultImage() {
+		return defaultImg;
 	}
 	
 	/**
@@ -102,6 +115,13 @@ public class Enemy extends Sprite{
 	public double distanceFromPlayer() {
 		double result = Math.abs(player.x - this.x);
 		return result;
+	}
+	
+	public int getAttackAnimationSize() {
+		return animationsAttackR.length;
+	}
+	public int getWalkAnimationSize() {
+		return animationsWalk.length/2;
 	}
 	
 	/**
@@ -125,7 +145,7 @@ public class Enemy extends Sprite{
 	
 	public void animateWalkRight(int index) {
 		if(!isAnimating)
-			setImage(animationsWalk[index+6]);
+			setImage(animationsWalk[index+animationsWalk.length/2]);
 	}
 	
 	/**
