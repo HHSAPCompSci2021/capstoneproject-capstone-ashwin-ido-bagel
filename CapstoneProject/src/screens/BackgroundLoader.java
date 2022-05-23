@@ -38,6 +38,7 @@ public class BackgroundLoader {
 		c = new ArrayList<Sprite>();
 		//c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!", -1));
 		characters.add(c);
+		
 		//area 2
 		
 		
@@ -88,6 +89,12 @@ public class BackgroundLoader {
 		PImage background = surface.loadImage("img/Tutorial.png");
 		backgrounds.add(background);
 		background = surface.loadImage("img/Area2.png");
+		backgrounds.add(background);
+		background = surface.loadImage("img/Area3.png");
+		backgrounds.add(background);
+		background = surface.loadImage("img/Area4.png");
+		backgrounds.add(background);
+		background = surface.loadImage("img/Area5.png");
 		backgrounds.add(background);
 	}
 	

@@ -121,6 +121,9 @@ public class Enemy extends Sprite{
 			animationsWalk[6] = g.loadImage("img/ghostWalk7.png");
 			animationsWalk[7] = g.loadImage("img/ghostWalk8.png");
 		}
+		else if (enemyIndex == 2) {
+			//
+		}
 	}
 	
 	public PImage getDefaultImage() {
