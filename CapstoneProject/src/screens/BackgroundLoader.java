@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +13,18 @@ import sprites.Sprite;
 
 public class BackgroundLoader {
 	
-	ArrayList<ArrayList<Sprite>> characters, obstacles;
+	ArrayList<ArrayList<Sprite>> characters, obstacles, doors;
 	ArrayList<PImage> backgrounds;
+	ArrayList<Point2D> spawnPoints;
 	private int screenNum;
 	
 	public BackgroundLoader(int screenNum) {
 		this.screenNum = screenNum;
 		characters = new ArrayList<ArrayList<Sprite>>();
 		obstacles = new ArrayList<ArrayList<Sprite>>();
+		doors = new ArrayList<ArrayList<Sprite>>();
 		backgrounds = new ArrayList<PImage>();
+		spawnPoints = new ArrayList<Point2D>();
 	}
 	
 	public void addCharacters(PApplet surface) {
@@ -48,6 +52,20 @@ public class BackgroundLoader {
 		
 	}
 	
+	public void addDoors(PApplet surface) {
+		ArrayList<Sprite> d = new ArrayList<Sprite>();
+		d.add(new Sprite(250, 500, 100, 10));
+		doors.add(d);
+		d = new ArrayList<Sprite>();
+		d.add(new Sprite(250, 500, 100, 10));
+		doors.add(d);
+	}
+	
+	public void addSpawnPoints(PApplet surface) {
+		spawnPoints.add(new Point2D.Double(300, 200));
+		spawnPoints.add(new Point2D.Double(300, 20));
+	}
+	
 	public void addObstacles(PApplet surface) {
 		ArrayList<Sprite> o = new ArrayList<Sprite>();
 		o.add(new Sprite(0, 0, 10, 10));
@@ -60,6 +78,10 @@ public class BackgroundLoader {
 	
 	public int getScreenNum() {
 		return screenNum;
+	}
+	
+	public void setScreenNum(int num) {
+		screenNum = num;
 	}
 	
 	public void addBackgrounds(PApplet surface) {
@@ -77,14 +99,28 @@ public class BackgroundLoader {
 		return characters;
 	}
 	
+	public ArrayList<ArrayList<Sprite>> getDoors() {
+		return doors;
+	}
+	
+	public ArrayList<Point2D> getSpawnPoints() {
+		return spawnPoints;
+	}
+	
 	public void draw(PApplet surface, Screen s) {
 		
 		for (Sprite a : obstacles.get(screenNum)) {
 			a.draw(surface);
 		}
+//		for (Sprite d : doors.get(screenNum)) {
+//			d.draw(surface);
+//		}
 		surface.image(backgrounds.get(screenNum), 0, 0, s.DRAWING_WIDTH,s.DRAWING_HEIGHT);
 		for (Sprite b : characters.get(screenNum)) {
 			b.draw(surface);
+		}
+		for (Sprite d : doors.get(screenNum)) {
+			d.draw(surface);
 		}
 		
 	}

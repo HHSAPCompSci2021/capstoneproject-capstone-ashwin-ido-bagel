@@ -59,14 +59,26 @@ public class SecondScreen extends Screen {
 	public void spawnNewPlayer() {
 		player = new Player(surface.loadImage("img/Character.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2,50, 20, 100, 50, Player.PLAYER_HEIGHT, Player.PLAYER_WIDTH);
 		player.setUp(surface);
+		movePlayerToSpawn();
+	}
+	
+	private void movePlayerToSpawn() {	
+		player.moveToLocation(bl.getSpawnPoints().get(bl.getScreenNum()).getX(), bl.getSpawnPoints().get(bl.getScreenNum()).getY());
+	}
+	
+	
+	private void setupBackground() {
+		bl.addBackgrounds(surface);
+		bl.addCharacters(surface);
+		bl.addObstacles(surface);
+		bl.addDoors(surface);
+		bl.addSpawnPoints(surface);
 	}
 
 	// The statements in the setup() function 
 	// execute once when the program begins
 	public void setup() {
-		bl.addBackgrounds(surface);
-		bl.addCharacters(surface);
-		bl.addObstacles(surface);
+		setupBackground();
 		spawnNewPlayer();
 //		npc = new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!"); //make sprite transparent
 //		enemy = new NPC(surface.loadImage("img/Enemy.png"), 450, 290, "Fight me!");
@@ -137,6 +149,14 @@ public class SecondScreen extends Screen {
 			player.walk(Player.Direction.Down, 2);
 			going = true;
 			player.animateWalkBack(animationIndex);
+		}
+		
+		for (Sprite d : bl.getDoors().get(bl.getScreenNum())) {
+			if (player.intersects(d)) {
+				bl.setScreenNum(bl.getScreenNum()+1);
+				setupBackground();
+				movePlayerToSpawn();
+			}
 		}
 		
 
