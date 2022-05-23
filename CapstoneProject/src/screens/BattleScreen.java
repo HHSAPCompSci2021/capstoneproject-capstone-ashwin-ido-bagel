@@ -202,6 +202,7 @@ public class BattleScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_LEFT)) {
 			if (player.x <= 50 && backgroundLoc > 0) {
 				backgroundLoc-=10;
+				enemy.moveByAmount(10, 0);
 			}
 			if(!player.isAttacking()) {
 				player.walk(Player.Direction.Left, 10);
@@ -212,6 +213,7 @@ public class BattleScreen extends Screen {
 		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 			if (player.x >= DRAWING_WIDTH -50 - Player.BATTLEPLAYER_WIDTH && backgroundLoc < 1900) {
 				backgroundLoc+=10;
+				enemy.moveByAmount(-10, 0);
 			}
 			if(!player.isAttacking()) {
 				player.walk(Player.Direction.Right, 10);

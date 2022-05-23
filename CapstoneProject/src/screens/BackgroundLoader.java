@@ -30,14 +30,14 @@ public class BackgroundLoader {
 	public void addCharacters(PApplet surface) {
 		ArrayList<Sprite> c = new ArrayList<Sprite>();
 		//tutorial area
-		characters.add(c);
 		c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!", -1));
 		c.add(new NPC(surface.loadImage("img/Ghost.png"), 500, 290, "Fight me", 1));
 		characters.add(c);
 		
 		//area 1
 		c = new ArrayList<Sprite>();
-		
+		//c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!", -1));
+		characters.add(c);
 		//area 2
 		
 		
@@ -61,7 +61,7 @@ public class BackgroundLoader {
 		doors.add(d);
 	}
 	
-	public void addSpawnPoints(PApplet surface) {
+	public void addSpawnPoints(PApplet surface) { //make these arraylists of arraylists if want more spawn points
 		spawnPoints.add(new Point2D.Double(300, 200));
 		spawnPoints.add(new Point2D.Double(300, 20));
 	}
@@ -116,6 +116,7 @@ public class BackgroundLoader {
 //			d.draw(surface);
 //		}
 		surface.image(backgrounds.get(screenNum), 0, 0, s.DRAWING_WIDTH,s.DRAWING_HEIGHT);
+		//System.out.println(screenNum);
 		for (Sprite b : characters.get(screenNum)) {
 			b.draw(surface);
 		}
