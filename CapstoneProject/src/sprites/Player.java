@@ -84,11 +84,16 @@ public class Player extends Sprite {
 		animationsLeft[0] = g.loadImage("img/WalkL1.png");
 		animationsLeft[1] = g.loadImage("img/WalkL2.png");
 		animationsLeft[2] = g.loadImage("img/WalkL3.png");
+		animationsAttackR= new PImage[4];
+		animationsAttackR[0] = g.loadImage("img/Attack1.png");
+		animationsAttackR[1] = g.loadImage("img/Attack2.png");
+		animationsAttackR[2] = g.loadImage("img/Attack3.png");
+		animationsAttackR[3] = g.loadImage("img/Attack4.png");
 		animationsAttackL = new PImage[4];
-		animationsAttackL[0] = g.loadImage("img/Attack1.png");
-		animationsAttackL[1] = g.loadImage("img/Attack2.png");
-		animationsAttackL[2] = g.loadImage("img/Attack3.png");
-		animationsAttackL[3] = g.loadImage("img/Attack4.png");
+		animationsAttackL[0] = g.loadImage("img/AttackL1.png");
+		animationsAttackL[1] = g.loadImage("img/AttackL2.png");
+		animationsAttackL[2] = g.loadImage("img/AttackL3.png");
+		animationsAttackL[3] = g.loadImage("img/AttackL4.png");
 		animationsForward = new PImage[3];
 		animationsForward[0] = g.loadImage("img/WalkF1.png");
 		animationsForward[1] = g.loadImage("img/WalkF2.png");
@@ -131,13 +136,19 @@ public class Player extends Sprite {
 	 * 
 	 * @param index Index of animation image
 	 */
-	public void animateAttack(int index) {
+	public void animateAttackR(int index) {
 		if(attackTimer <= 0) {
 			attacking = true;
-			setImage(animationsAttack[index]);
+			setImage(animationsAttackR[index]);
 		}
 	}
 	
+	public void animateAttackL(int index) {
+		if(attackTimer <= 0) {
+			attacking = true;
+			setImage(animationsAttackL[index]);
+		}
+	}
 	
 	/**
 	 * Adds health to the player

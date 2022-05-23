@@ -62,7 +62,7 @@ public class BackgroundLoader {
 		backgrounds.add(background);
 		background = surface.loadImage("img/Tutorial.png");
 		backgrounds.add(background);
-		background = surface.loadImage("img/background.png");
+		background = surface.loadImage("img/Area2.png");
 		backgrounds.add(background);
 	}
 	

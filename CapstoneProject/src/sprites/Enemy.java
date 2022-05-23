@@ -75,10 +75,10 @@ public class Enemy extends Sprite{
 		animationsAttackR[2] = g.loadImage("img/EnemyAttackR3.png");
 		animationsAttackR[3] = g.loadImage("img/EnemyAttackR4.png");
 		animationsAttackL = new PImage[4];
-		animationsAttackR[0] = g.loadImage("img/EnemyAttack1.png");
-		animationsAttackR[1] = g.loadImage("img/EnemyAttack2.png");
-		animationsAttackR[2] = g.loadImage("img/EnemyAttack3.png");
-		animationsAttackR[3] = g.loadImage("img/EnemyAttack4.png");
+		animationsAttackL[0] = g.loadImage("img/EnemyAttack1.png");
+		animationsAttackL[1] = g.loadImage("img/EnemyAttack2.png");
+		animationsAttackL[2] = g.loadImage("img/EnemyAttack3.png");
+		animationsAttackL[3] = g.loadImage("img/EnemyAttack4.png");
 		animationsWalk = new PImage[12];
 		animationsWalk[0] = g.loadImage("img/EnemyWalk1.png");
 		animationsWalk[1] = g.loadImage("img/EnemyWalk2.png");
