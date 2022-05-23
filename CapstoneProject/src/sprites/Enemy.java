@@ -99,7 +99,27 @@ public class Enemy extends Sprite{
 			animationsWalk[11] = g.loadImage("img/EnemyWalk12.png");
 		}
 		else if(enemyIndex == 1) {
-			
+			animationsAttackR = new PImage[5];
+			animationsAttackR[0] = g.loadImage("img/ghostAttackR1.png");
+			animationsAttackR[1] = g.loadImage("img/ghostAttackR2.png");
+			animationsAttackR[2] = g.loadImage("img/ghostAttackR3.png");
+			animationsAttackR[3] = g.loadImage("img/ghostAttackR4.png");
+			animationsAttackR[4] = g.loadImage("img/ghostAttackR5.png");
+			animationsAttackL = new PImage[5];
+			animationsAttackL[0] = g.loadImage("img/ghostAttack1.png");
+			animationsAttackL[1] = g.loadImage("img/ghostAttack2.png");
+			animationsAttackL[2] = g.loadImage("img/ghostAttack3.png");
+			animationsAttackL[3] = g.loadImage("img/ghostAttack4.png");
+			animationsAttackL[4] = g.loadImage("img/ghostAttack5.png");
+			animationsWalk = new PImage[8];
+			animationsWalk[0] = g.loadImage("img/ghostWalk1.png");
+			animationsWalk[1] = g.loadImage("img/ghostWalk2.png");
+			animationsWalk[2] = g.loadImage("img/ghostWalk3.png");
+			animationsWalk[3] = g.loadImage("img/ghostWalk4.png");
+			animationsWalk[4] = g.loadImage("img/ghostWalk5.png");
+			animationsWalk[5] = g.loadImage("img/ghostWalk6.png");
+			animationsWalk[6] = g.loadImage("img/ghostWalk7.png");
+			animationsWalk[7] = g.loadImage("img/ghostWalk8.png");
 		}
 	}
 	
