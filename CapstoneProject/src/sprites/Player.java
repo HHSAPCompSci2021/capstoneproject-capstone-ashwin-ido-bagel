@@ -36,7 +36,7 @@ public class Player extends Sprite {
 	private double yVel;
 	private boolean onSurface;
 	
-	private PImage[] animationsRight, animationsLeft, animationsAttack, animationsForward, animationsBack;
+	private PImage[] animationsRight, animationsLeft, animationsAttackR, animationsAttackL, animationsForward, animationsBack;
 	private int attackPower, stamina, health;
 	private boolean attacking;
 	private int attackTimer;
@@ -84,11 +84,11 @@ public class Player extends Sprite {
 		animationsLeft[0] = g.loadImage("img/WalkL1.png");
 		animationsLeft[1] = g.loadImage("img/WalkL2.png");
 		animationsLeft[2] = g.loadImage("img/WalkL3.png");
-		animationsAttack = new PImage[4];
-		animationsAttack[0] = g.loadImage("img/Attack1.png");
-		animationsAttack[1] = g.loadImage("img/Attack2.png");
-		animationsAttack[2] = g.loadImage("img/Attack3.png");
-		animationsAttack[3] = g.loadImage("img/Attack4.png");
+		animationsAttackL = new PImage[4];
+		animationsAttackL[0] = g.loadImage("img/Attack1.png");
+		animationsAttackL[1] = g.loadImage("img/Attack2.png");
+		animationsAttackL[2] = g.loadImage("img/Attack3.png");
+		animationsAttackL[3] = g.loadImage("img/Attack4.png");
 		animationsForward = new PImage[3];
 		animationsForward[0] = g.loadImage("img/WalkF1.png");
 		animationsForward[1] = g.loadImage("img/WalkF2.png");

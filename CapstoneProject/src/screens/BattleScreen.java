@@ -156,7 +156,10 @@ public class BattleScreen extends Screen {
 		if(going2) {
 			if(animationIndex2 > 3)
 				animationIndex2 = 0;
-			enemy.animateAttack(animationIndex2);
+			if(enemy.x < player.x)
+				enemy.animateAttackR(animationIndex2);
+			if(enemy.x > player.x)
+				enemy.animateAttackL(animationIndex2);
 			animationCounter2--;
 			if (animationCounter2 <= 0) {
 				animationCounter2 = animationTime2;

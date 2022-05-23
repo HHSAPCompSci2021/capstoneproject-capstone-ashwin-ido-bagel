@@ -19,7 +19,7 @@ public class Enemy extends Sprite{
 	private int health, stamina;
 	private int attackTimer, staminaTimer;
 	private boolean attacking, isAnimating;
-	private PImage[] animationsAttack;
+	private PImage[] animationsAttackR, animationsAttackL;
 	private PImage[] animationsWalk;
 	private int staminaCost;
 	private int attackTimer2;
@@ -69,11 +69,16 @@ public class Enemy extends Sprite{
 	 */
 	public void setUp(PApplet g) {
 		setCost();
-		animationsAttack = new PImage[4];
-		animationsAttack[0] = g.loadImage("img/EnemyAttack1.png");
-		animationsAttack[1] = g.loadImage("img/EnemyAttack2.png");
-		animationsAttack[2] = g.loadImage("img/EnemyAttack3.png");
-		animationsAttack[3] = g.loadImage("img/EnemyAttack4.png");
+		animationsAttackR = new PImage[4];
+		animationsAttackR[0] = g.loadImage("img/EnemyAttackR1.png");
+		animationsAttackR[1] = g.loadImage("img/EnemyAttackR2.png");
+		animationsAttackR[2] = g.loadImage("img/EnemyAttackR3.png");
+		animationsAttackR[3] = g.loadImage("img/EnemyAttackR4.png");
+		animationsAttackL = new PImage[4];
+		animationsAttackR[0] = g.loadImage("img/EnemyAttack1.png");
+		animationsAttackR[1] = g.loadImage("img/EnemyAttack2.png");
+		animationsAttackR[2] = g.loadImage("img/EnemyAttack3.png");
+		animationsAttackR[3] = g.loadImage("img/EnemyAttack4.png");
 		animationsWalk = new PImage[12];
 		animationsWalk[0] = g.loadImage("img/EnemyWalk1.png");
 		animationsWalk[1] = g.loadImage("img/EnemyWalk2.png");
@@ -94,7 +99,7 @@ public class Enemy extends Sprite{
 	 * @param player The Player that the method calculates the distance from.
 	 * @return The distance from this Enemy to the Player.
 	 */
-	private double distanceFromPlayer() {
+	public double distanceFromPlayer() {
 		double result = Math.abs(player.x - this.x);
 		return result;
 	}
@@ -103,10 +108,15 @@ public class Enemy extends Sprite{
 	 * A method that makes the Player attack during battle.
 	 * 
 	 */
-	public void animateAttack(int index) {
+	public void animateAttackR(int index) {
 		if (isAnimating)
-			setImage(animationsAttack[index]);
-	}	
+			setImage(animationsAttackR[index]);
+	}
+	
+	public void animateAttackL(int index) {
+		if (isAnimating)
+			setImage(animationsAttackL[index]);
+	}
 	
 	public void animateWalkLeft(int index) {
 		if(!isAnimating)
