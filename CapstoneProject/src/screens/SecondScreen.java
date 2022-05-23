@@ -26,6 +26,7 @@ public class SecondScreen extends Screen {
 	private final int animationTime = 10;  // This represents 1/4 of a second with normal framerate
 	private int animationCounter;
 
+	private int currentArea;
 	private Player player;
 	private NPC npc, enemy;
 	private BackgroundLoader bl;
@@ -47,6 +48,8 @@ public class SecondScreen extends Screen {
 		
 		
 		going = false;
+		bl = new BackgroundLoader(1);
+		currentArea = 1;
 	}
 
 	/**
@@ -60,7 +63,6 @@ public class SecondScreen extends Screen {
 	// The statements in the setup() function 
 	// execute once when the program begins
 	public void setup() {
-		bl = new BackgroundLoader(1);
 		bl.addBackgrounds(surface);
 		bl.addCharacters(surface);
 		bl.addObstacles(surface);
@@ -71,10 +73,6 @@ public class SecondScreen extends Screen {
 //		obstacles.add(new Sprite((int)enemy.x+5, (int)enemy.y+5, (int)enemy.width-10, (int)enemy.height-15));
 	}
 	
-//	public void setupMap() {
-//		backgrounds.put(background, obstacles);
-//		backgrounds.put(background, obstacles);
-//	}
 
 	
 	// The statements in draw() are executed until the 
@@ -98,7 +96,7 @@ public class SecondScreen extends Screen {
 			}
 		}
 
-//		player.draw(surface);
+		player.draw(surface);
 //		npc.draw(surface);
 //		enemy.draw(surface);
 //		surface.fill(0);

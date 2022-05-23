@@ -29,9 +29,9 @@ public class BackgroundLoader {
 		characters.add(c);
 		c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!"));
 		characters.add(c);
-		c.clear();
 		
 		//area 1
+		c = new ArrayList<Sprite>();
 		
 		//area 2
 		
@@ -51,11 +51,10 @@ public class BackgroundLoader {
 		ArrayList<Sprite> o = new ArrayList<Sprite>();
 		o.add(new Sprite(0, 0, 10, 10));
 		obstacles.add(o);
-		o.clear();
+		o = new ArrayList<Sprite>();
 		o.add(new Sprite(0,0,10,10));
 		obstacles.add(o);
-		o.clear();
-		
+		o = new ArrayList<Sprite>();
 	}
 	
 	public void addBackgrounds(PApplet surface) {
@@ -76,16 +75,12 @@ public class BackgroundLoader {
 	}
 	
 	public void draw(PApplet surface, Screen s) {
-//		System.out.println(screenNum);
-		//System.out.println(screenNum);
-
+		
 		for (Sprite a : obstacles.get(screenNum)) {
-			System.out.println("obstacles");
 			a.draw(surface);
 		}
 		surface.image(backgrounds.get(screenNum), 0, 0, s.DRAWING_WIDTH,s.DRAWING_HEIGHT);
 		for (Sprite b : characters.get(screenNum)) {
-			//System.out.println("characters");
 			b.draw(surface);
 		}
 		
