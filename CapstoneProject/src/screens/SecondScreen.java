@@ -71,7 +71,6 @@ public class SecondScreen extends Screen {
 		bl.addBackgrounds(surface);
 		bl.addCharacters(surface);
 		bl.addObstacles(surface);
-		bl.addDoors(surface);
 		bl.addSpawnPoints(surface);
 	}
 
@@ -151,12 +150,10 @@ public class SecondScreen extends Screen {
 			player.animateWalkBack(animationIndex);
 		}
 		
-		for (Sprite d : bl.getDoors().get(bl.getScreenNum())) {
-			if (player.intersects(d)) {
+		if (!player.intersects(screenRect)) {
 				bl.setScreenNum(bl.getScreenNum()+1);
 				setupBackground();
 				movePlayerToSpawn();
-			}
 		}
 		
 

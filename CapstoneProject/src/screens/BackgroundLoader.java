@@ -13,7 +13,7 @@ import sprites.Sprite;
 
 public class BackgroundLoader {
 	
-	ArrayList<ArrayList<Sprite>> characters, obstacles, doors;
+	ArrayList<ArrayList<Sprite>> characters, obstacles;
 	ArrayList<PImage> backgrounds;
 	ArrayList<Point2D> spawnPoints;
 	private int screenNum;
@@ -22,7 +22,6 @@ public class BackgroundLoader {
 		this.screenNum = screenNum;
 		characters = new ArrayList<ArrayList<Sprite>>();
 		obstacles = new ArrayList<ArrayList<Sprite>>();
-		doors = new ArrayList<ArrayList<Sprite>>();
 		backgrounds = new ArrayList<PImage>();
 		spawnPoints = new ArrayList<Point2D>();
 	}
@@ -51,15 +50,6 @@ public class BackgroundLoader {
 		//area 5
 		
 		
-	}
-	
-	public void addDoors(PApplet surface) {
-		ArrayList<Sprite> d = new ArrayList<Sprite>();
-		d.add(new Sprite(250, 500, 100, 10));
-		doors.add(d);
-		d = new ArrayList<Sprite>();
-		d.add(new Sprite(250, 500, 100, 10));
-		doors.add(d);
 	}
 	
 	public void addSpawnPoints(PApplet surface) { //make these arraylists of arraylists if want more spawn points
@@ -106,10 +96,6 @@ public class BackgroundLoader {
 		return characters;
 	}
 	
-	public ArrayList<ArrayList<Sprite>> getDoors() {
-		return doors;
-	}
-	
 	public ArrayList<Point2D> getSpawnPoints() {
 		return spawnPoints;
 	}
@@ -119,16 +105,10 @@ public class BackgroundLoader {
 		for (Sprite a : obstacles.get(screenNum)) {
 			a.draw(surface);
 		}
-//		for (Sprite d : doors.get(screenNum)) {
-//			d.draw(surface);
-//		}
 		surface.image(backgrounds.get(screenNum), 0, 0, s.DRAWING_WIDTH,s.DRAWING_HEIGHT);
 		//System.out.println(screenNum);
 		for (Sprite b : characters.get(screenNum)) {
 			b.draw(surface);
-		}
-		for (Sprite d : doors.get(screenNum)) {
-			d.draw(surface);
 		}
 		
 	}
