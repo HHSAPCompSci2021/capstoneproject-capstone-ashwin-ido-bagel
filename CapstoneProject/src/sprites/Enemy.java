@@ -203,7 +203,7 @@ public class Enemy extends Sprite{
 			health -= player.getAttackPower();
 			attackTimer = 60;
 		}
-		if(distanceFromPlayer() <= 20 && attackTimer2 <= 0) {
+		if(distanceFromPlayer() <= 80 && attackTimer2 <= 0) {
 			attack();
 		} else if(attackTimer2 <= 60 && isAnimating){
 			isAnimating = false;
