@@ -30,7 +30,7 @@ public class BackgroundLoader {
 		ArrayList<Sprite> c = new ArrayList<Sprite>();
 		//tutorial area
 		c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!", -1));
-		c.add(new NPC(surface.loadImage("img/Ghost.png"), 500, 290, "Fight me", 1));
+		c.add(new NPC(surface.loadImage("img/Ghost.png"), 500, 290, "Fight me!", 3));
 		characters.add(c);
 		
 		//area 1

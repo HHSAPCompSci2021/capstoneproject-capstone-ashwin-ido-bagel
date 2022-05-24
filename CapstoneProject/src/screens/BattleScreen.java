@@ -85,19 +85,25 @@ public class BattleScreen extends Screen {
 	 */
 	public void spawnNewEnemy() {
 		if(enemyIndex == 0) {
-			enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100, 0);//spawn enemy here (once implementation is finished)
+			enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,
+					2, 20, player, 150, 100, 0);
 		}
 		else if (enemyIndex == 1) {
-			enemy = new Enemy(surface.loadImage("img/Ghost.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100, 1);//spawn enemy here (once implementation is finished)
+			enemy = new Enemy(surface.loadImage("img/Ghost.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 
+					2, 20, player, 150, 100, 1);
 		}
 		else if (enemyIndex == 2) {
 			//skeleton enemy
 		}
 		else if (enemyIndex == 3) {
-			//set up knight 1st phase
+			//knight phase 1
+//			enemy = new Enemy(surface.loadImage("img/Enemy.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,
+//					2, 20, player, 150, 100, 0);
 		}
 		else if (enemyIndex == 4) {
-			//set up knight 2nd phase
+			//knight phase 2
+//			enemy = new Enemy(surface.loadImage("img/Ghost.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 
+//					2, 20, player, 150, 100, 1);
 		}
 		enemy.setUp(surface);
 	}
@@ -195,6 +201,7 @@ public class BattleScreen extends Screen {
 		}
 		if (enemy.getHealth() <= 0 && enemyIndex == 3) {
 			enemyIndex++;
+			JOptionPane.showMessageDialog(null, "The Corrupted Knight becomes enraged!");
 			spawnNewEnemy();
 		}
 		else if(enemy.getHealth() > 0)
