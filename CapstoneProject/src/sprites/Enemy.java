@@ -123,7 +123,85 @@ public class Enemy extends Sprite{
 			animationsWalk[7] = g.loadImage("img/ghostWalk8.png");
 		}
 		else if (enemyIndex == 2) {
-			//
+			animationsAttackR = new PImage[5];
+			animationsAttackR[0] = g.loadImage("img/skAttackR1.png");
+			animationsAttackR[1] = g.loadImage("img/skAttackR2.png");
+			animationsAttackR[2] = g.loadImage("img/skAttackR3.png");
+			animationsAttackR[3] = g.loadImage("img/skAttackR4.png");
+			animationsAttackR[4] = g.loadImage("img/skAttackR5.png");
+			animationsAttackL = new PImage[5];
+			animationsAttackL[0] = g.loadImage("img/skAttack1.png");
+			animationsAttackL[1] = g.loadImage("img/skAttack2.png");
+			animationsAttackL[2] = g.loadImage("img/skAttack3.png");
+			animationsAttackL[3] = g.loadImage("img/skAttack4.png");
+			animationsAttackL[4] = g.loadImage("img/skAttack5.png");
+			animationsWalk = new PImage[16];
+			animationsWalk[0] = g.loadImage("img/skWalk1.png");
+			animationsWalk[1] = g.loadImage("img/skWalk2.png");
+			animationsWalk[2] = g.loadImage("img/skWalk3.png");
+			animationsWalk[3] = g.loadImage("img/skWalk4.png");
+			animationsWalk[4] = g.loadImage("img/skWalk5.png");
+			animationsWalk[5] = g.loadImage("img/skWalk6.png");
+			animationsWalk[6] = g.loadImage("img/skWalk7.png");
+			animationsWalk[7] = g.loadImage("img/skWalk8.png");
+			animationsWalk[8] = g.loadImage("img/skWalkR1.png");
+			animationsWalk[9] = g.loadImage("img/skWalkR2.png");
+			animationsWalk[10] = g.loadImage("img/skWalkR3.png");
+			animationsWalk[11] = g.loadImage("img/skWalkR4.png");
+			animationsWalk[12] = g.loadImage("img/skWalkR5.png");
+			animationsWalk[13] = g.loadImage("img/skWalkR6.png");
+			animationsWalk[14] = g.loadImage("img/skWalkR7.png");
+			animationsWalk[15] = g.loadImage("img/skWalkR8.png");
+		} else if (enemyIndex == 3) {
+			animationsAttackR = new PImage[5];
+			animationsAttackR[0] = g.loadImage("img/jab1.png");
+			animationsAttackR[1] = g.loadImage("img/jab2.png");
+			animationsAttackR[2] = g.loadImage("img/jab3.png");
+			animationsAttackR[3] = g.loadImage("img/jab4.png");
+			animationsAttackR[4] = g.loadImage("img/jab5.png");
+			animationsAttackL = new PImage[5];
+			animationsAttackL[0] = g.loadImage("img/jabL1.png");
+			animationsAttackL[1] = g.loadImage("img/jabL2.png");
+			animationsAttackL[2] = g.loadImage("img/jabL3.png");
+			animationsAttackL[3] = g.loadImage("img/jabL4.png");
+			animationsAttackL[4] = g.loadImage("img/jabL5.png");
+			animationsWalk = new PImage[10];
+			animationsWalk[0] = g.loadImage("img/shieldWalkL1.png");
+			animationsWalk[1] = g.loadImage("img/shieldWalkL2.png");
+			animationsWalk[2] = g.loadImage("img/shieldWalkL3.png");
+			animationsWalk[3] = g.loadImage("img/shieldWalkL4.png");
+			animationsWalk[4] = g.loadImage("img/shieldWalkL5.png");
+			animationsWalk[5] = g.loadImage("img/shieldWalk1.png");
+			animationsWalk[6] = g.loadImage("img/shieldWalk2.png");
+			animationsWalk[7] = g.loadImage("img/shieldWalk3.png");
+			animationsWalk[8] = g.loadImage("img/shieldWalk4.png");
+			animationsWalk[9] = g.loadImage("img/shieldWalk5.png");
+		} else if (enemyIndex == 4) {
+			animationsAttackR = new PImage[6];
+			animationsAttackR[0] = g.loadImage("img/knightSword1.png");
+			animationsAttackR[1] = g.loadImage("img/knightSword2.png");
+			animationsAttackR[2] = g.loadImage("img/knightSword3.png");
+			animationsAttackR[3] = g.loadImage("img/knightSword4.png");
+			animationsAttackR[4] = g.loadImage("img/knightSword5.png");
+			animationsAttackR[5] = g.loadImage("img/knightSword6.png");
+			animationsAttackL = new PImage[6];
+			animationsAttackL[0] = g.loadImage("img/knightSwordL1.png");
+			animationsAttackL[1] = g.loadImage("img/knightSwordL2.png");
+			animationsAttackL[2] = g.loadImage("img/knightSwordL3.png");
+			animationsAttackL[3] = g.loadImage("img/knightSwordL4.png");
+			animationsAttackL[4] = g.loadImage("img/knightSwordL5.png");
+			animationsAttackL[5] = g.loadImage("img/knightSwordL6.png");
+			animationsWalk = new PImage[10];
+			animationsWalk[0] = g.loadImage("img/runL1.png");
+			animationsWalk[1] = g.loadImage("img/runL2.png");
+			animationsWalk[2] = g.loadImage("img/runL3.png");
+			animationsWalk[3] = g.loadImage("img/runL4.png");
+			animationsWalk[4] = g.loadImage("img/runL5.png");
+			animationsWalk[5] = g.loadImage("img/run1.png");
+			animationsWalk[6] = g.loadImage("img/run2.png");
+			animationsWalk[7] = g.loadImage("img/run3.png");
+			animationsWalk[8] = g.loadImage("img/run4.png");
+			animationsWalk[9] = g.loadImage("img/run5.png");
 		}
 	}
 	
