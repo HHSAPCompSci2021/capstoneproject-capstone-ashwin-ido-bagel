@@ -354,7 +354,11 @@ public class Enemy extends Sprite{
 			stamina++;
 		}
 		if (this.intersects(player) && attackTimer == 0 && health > 0 && player.isAttacking()) {
-			health -= player.getAttackPower();
+			if (enemyIndex == 2) {
+				health -= player.getAttackPower() * 1.5;
+			} else {
+				health -= player.getAttackPower();
+			}
 			attackTimer = 60;
 		}
 		if(distanceFromPlayer() <= 80 && attackTimer2 <= 0) {
