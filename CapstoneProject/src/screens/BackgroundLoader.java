@@ -52,16 +52,20 @@ public class BackgroundLoader {
 		characters.add(c);
 		
 		//area 2
-		
+		c = new ArrayList<Sprite>();
+		characters.add(c);
 		
 		//area 3
-		
+		c = new ArrayList<Sprite>();
+		characters.add(c);
 		
 		//area 4
-		
+		c = new ArrayList<Sprite>();
+		characters.add(c);
 		
 		//area 5
-		
+		c = new ArrayList<Sprite>();
+		characters.add(c);
 		
 	}
 	
@@ -72,6 +76,7 @@ public class BackgroundLoader {
 	public void addSpawnPoints(PApplet surface) {
 		spawnPoints.add(new Point2D.Double(150, 150));
 		spawnPoints.add(new Point2D.Double(320, 20));
+		spawnPoints.add(new Point2D.Double(10, 260));
 	}
 	
 	/**
@@ -89,13 +94,28 @@ public class BackgroundLoader {
 		o.add(new Sprite(745, 113, 50, 140));
 		o.add(new Sprite(560, 265, 220, 280));
 		o.add(new Sprite(400, 330, 170, 250));
-
+		obstacles.add(o);
+		
+		o = new ArrayList<Sprite>();
+		o.add(new Sprite(0,0,780, 15));
+		o.add(new Sprite(0,0,180, 560));
+		o.add(new Sprite(170,545,610, 50));
+		o.add(new Sprite(615,0,180, 200));
+		o.add(new Sprite(615,365,180, 200));
+		obstacles.add(o);
+		
+		o = new ArrayList<Sprite>();
+		o.add(new Sprite(0,0,750, 25));
+		o.add(new Sprite(0,0,100, 200));
+		o.add(new Sprite(95,0,85, 110));
+		o.add(new Sprite(615,0,180, 200));
+		o.add(new Sprite(615,360,180, 220));
+		o.add(new Sprite(0,360,100, 220));
+		o.add(new Sprite(95,455,90, 130));
+		o.add(new Sprite(180,540,440, 50));
 
 		obstacles.add(o);
-		o = new ArrayList<Sprite>();
-		o.add(new Sprite(0,0,10,10));
-		obstacles.add(o);
-		o = new ArrayList<Sprite>();
+		
 	}
 	/**
 	 * Returns the screen number.
