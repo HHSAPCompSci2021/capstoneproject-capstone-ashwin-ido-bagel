@@ -18,9 +18,9 @@ import sprites.Sprite;
  */
 public class BackgroundLoader {
 	
-	ArrayList<ArrayList<Sprite>> characters, obstacles;
-	ArrayList<PImage> backgrounds;
-	ArrayList<Point2D> spawnPoints;
+	private ArrayList<ArrayList<Sprite>> characters, obstacles;
+	private ArrayList<PImage> backgrounds;
+	private ArrayList<Point2D> spawnPoints;
 	private int screenNum;
 	
 	/**
