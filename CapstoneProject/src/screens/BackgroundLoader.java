@@ -60,7 +60,7 @@ public class BackgroundLoader {
 		
 		//area 3
 		c = new ArrayList<Sprite>();
-		c.add(new NPC(surface.loadImage("img/npc5.png"), 80, 263, "Isn't that one of the Corrupted Knight's warriors... Run!", -1));
+		c.add(new NPC(surface.loadImage("img/npc5.png"), 80, 263, "I heard the Corrupted Knight's warriors are weak to brute force... wait isn't that one?!", -1));
 		c.add(new NPC(surface.loadImage("img/skeleton_idle.png"), 341, 276, "Clack-Clack-Clack", 2));
 		characters.add(c);
 		

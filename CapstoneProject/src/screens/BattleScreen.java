@@ -97,7 +97,7 @@ public class BattleScreen extends Screen {
 		}
 		else if (enemyIndex == 2) {
 			enemy = new Enemy(surface.loadImage("img/skeleton_idle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 
-					2, 30, player, 200, 300, 2);
+					2, 35, player, 100, 150, 2);
 		}
 		else if (enemyIndex == 3) {
 			enemy = new Enemy(surface.loadImage("img/idleKnight.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,
@@ -105,7 +105,7 @@ public class BattleScreen extends Screen {
 		}
 		else if (enemyIndex == 4) {
 			enemy = new Enemy(surface.loadImage("img/idleKnight.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,
-					3, 40, player, 100, 50, 4);
+					4, 40, player, 150, 50, 4);
 		}
 		enemy.setUp(surface);
 	}
