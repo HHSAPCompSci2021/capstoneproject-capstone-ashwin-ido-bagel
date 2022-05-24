@@ -78,6 +78,7 @@ public class BackgroundLoader {
 		spawnPoints.add(new Point2D.Double(320, 20));
 		spawnPoints.add(new Point2D.Double(10, 260));
 		spawnPoints.add(new Point2D.Double(10, 260));
+		spawnPoints.add(new Point2D.Double(335, 15));
 	}
 	
 	/**
@@ -125,6 +126,13 @@ public class BackgroundLoader {
 		o.add(new Sprite(95,450,85, 100));
 		o.add(new Sprite(0, 540, 290, 50));
 		o.add(new Sprite(395, 540, 390, 30));
+		obstacles.add(o);
+		
+		o = new ArrayList<Sprite>();
+		o.add(new Sprite(0,0,750, 25));
+		o.add(new Sprite(200,0,60, 450));
+		o.add(new Sprite(0,450,780, 160));
+		o.add(new Sprite(460,0,110, 450));
 		obstacles.add(o);
 	}
 	/**
@@ -186,16 +194,13 @@ public class BackgroundLoader {
 	
 	public void draw(PApplet surface, Screen s) {
 		
-//		for (Sprite a : obstacles.get(screenNum)) {
-//			a.draw(surface);
-//		}
+		for (Sprite a : obstacles.get(screenNum)) {
+			a.draw(surface);
+		}
 		surface.image(backgrounds.get(screenNum), 0, 0, s.DRAWING_WIDTH,s.DRAWING_HEIGHT);
 		//System.out.println(screenNum);
 		for (Sprite b : characters.get(screenNum)) {
 			b.draw(surface);
-		}
-		for (Sprite a : obstacles.get(screenNum)) {
-			a.draw(surface);
 		}
 		
 	}
