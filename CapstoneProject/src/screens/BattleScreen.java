@@ -90,6 +90,15 @@ public class BattleScreen extends Screen {
 		else if (enemyIndex == 1) {
 			enemy = new Enemy(surface.loadImage("img/Ghost.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 2, 20, player, 150, 100, 1);//spawn enemy here (once implementation is finished)
 		}
+		else if (enemyIndex == 2) {
+			//skeleton enemy
+		}
+		else if (enemyIndex == 3) {
+			//set up knight 1st phase
+		}
+		else if (enemyIndex == 4) {
+			//set up knight 2nd phase
+		}
 		enemy.setUp(surface);
 	}
 	
@@ -184,7 +193,11 @@ public class BattleScreen extends Screen {
 			JOptionPane.showMessageDialog(null, "You were defeated!");
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 		}
-		if(enemy.getHealth() > 0)
+		if (enemy.getHealth() <= 0 && enemyIndex == 3) {
+			enemyIndex++;
+			spawnNewEnemy();
+		}
+		else if(enemy.getHealth() > 0)
 			enemy.draw(surface);
 		else {
 			JOptionPane.showMessageDialog(null, "Enemy defeated!");
