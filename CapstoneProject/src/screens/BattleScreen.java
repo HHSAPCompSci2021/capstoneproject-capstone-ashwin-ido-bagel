@@ -201,6 +201,12 @@ public class BattleScreen extends Screen {
 			JOptionPane.showMessageDialog(null, "You were defeated!");
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 		}
+		if(enemy.getHealth() <= 0 && enemyIndex == 4) {
+			int option = JOptionPane.showConfirmDialog(null, "Congratulations! You have beaten the game");
+			if(option == JOptionPane.NO_OPTION || option == JOptionPane.YES_OPTION || option == JOptionPane.CANCEL_OPTION) {
+				surface.exit();
+			}
+		}
 		if (enemy.getHealth() <= 0 && enemyIndex == 3) {
 			enemyIndex++;
 			JOptionPane.showMessageDialog(null, "The Corrupted Knight becomes enraged!");
@@ -260,6 +266,7 @@ public class BattleScreen extends Screen {
 		
 		if (!screenRect.intersects(player))
 			spawnNewPlayer();
+		
 	}
 	
 
