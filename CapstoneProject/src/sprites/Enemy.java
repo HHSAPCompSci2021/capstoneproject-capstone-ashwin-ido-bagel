@@ -38,6 +38,7 @@ public class Enemy extends Sprite{
 	 * @param player Player the enemy is fighting.
 	 * @param health Health of the enemy.
 	 * @param stamina Stamina of the enemy.
+	 * @param enemyIndex Index of the enemy.
 	 */
 	public Enemy(PImage img, int x, int y, int w, int h, int speed, int attackPower, Player player, int health, int stamina, int enemyIndex) {
 		super(img, x, y, w, h);
@@ -215,7 +216,6 @@ public class Enemy extends Sprite{
 	
 	/**
 	 * Calculates the distance from this Enemy to the Player.
-	 * @param player The Player that the method calculates the distance from.
 	 * @return The distance from this Enemy to the Player.
 	 */
 	public double distanceFromPlayer() {

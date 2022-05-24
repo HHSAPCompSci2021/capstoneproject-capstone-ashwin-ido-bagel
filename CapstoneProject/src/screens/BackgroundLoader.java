@@ -193,6 +193,15 @@ public class BackgroundLoader {
 		return spawnPoints;
 	}
 	
+	/**
+	 * Draws the features of the area onto the screen. Executed until the 
+	 * program is stopped. Each statement is executed in 
+	 * sequence and after the last line is read, the first 
+	 * line is executed again.
+	 * 
+	 * @param surface The PApplet the area is draw with.
+	 * @param s The screen the area is drawn on to.
+	 */
 	public void draw(PApplet surface, Screen s) {
 		
 		for (Sprite a : obstacles.get(screenNum)) {
