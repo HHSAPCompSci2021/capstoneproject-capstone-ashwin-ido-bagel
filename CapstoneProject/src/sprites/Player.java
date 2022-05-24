@@ -13,7 +13,7 @@ import processing.core.PImage;
  * This class represents a Player that the user can control.
  * 
  * @author Ashwin S. , Ido Haiby
- * @version 5/13/22
+ * @version 5/23/22
  */
 public class Player extends Sprite {
 	
@@ -27,8 +27,14 @@ public class Player extends Sprite {
 	 */
 	public static final int PLAYER_HEIGHT = (int)(90 * 737d/892) - 5;
 	
+	/**
+	 * The height of the Player in the BattleScreen.
+	 */
 	public static final int BATTLEPLAYER_HEIGHT = (int)(200) - 5;
 	
+	/**
+	 * The width of the Player in the BattleScreen.
+	 */
 	public static final int BATTLEPLAYER_WIDTH = (int)(80) - 5;
 	
 	
@@ -122,17 +128,27 @@ public class Player extends Sprite {
 		setImage(animationsLeft[index]);
 	}
 	
+	/**
+	 * Animates walking backwards.
+	 * 
+	 * @param index Index of animation image
+	 */
 	public void animateWalkBack(int index) {
 		setImage(animationsBack[index]);
 	}
 	
+	/**
+	 * Animates walking forward.
+	 * 
+	 * @param index Index of animation image
+	 */
 	public void animateWalkForward(int index) {
 		setImage(animationsForward[index]);
 	}
 	
 	
 	/**
-	 * A method that makes the Player attack during battle.
+	 * Animates the attack of the Player to the right.
 	 * 
 	 * @param index Index of animation image
 	 */
@@ -143,6 +159,10 @@ public class Player extends Sprite {
 		}
 	}
 	
+	/**
+	 * Animates the attack of the Player to the left.
+	 * @param index Index of animation image
+	 */
 	public void animateAttackL(int index) {
 		if(attackTimer <= 0) {
 			attacking = true;

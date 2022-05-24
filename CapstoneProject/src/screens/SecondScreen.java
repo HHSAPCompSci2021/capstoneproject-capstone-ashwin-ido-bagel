@@ -14,7 +14,7 @@ import sprites.Sprite;
  * Represents the open world game screen where the user explores and can find npcs.
  * 
  * @author Ido Haiby
- * @version 5/132022 
+ * @version 5/23/2022 
  */
 public class SecondScreen extends Screen {
 	
@@ -150,6 +150,7 @@ public class SecondScreen extends Screen {
 	 * 
 	 */
 	public void mousePressed() { 
+		System.out.println("(" + surface.mouseX + ", " + surface.mouseY + ")");
 		NPC currentnpc;
 		for (Sprite npc : bl.getCharacters().get(bl.getScreenNum())) {
 			if(npc instanceof NPC && npc.contains(surface.mouseX, surface.mouseY) && npc.intersects(player)) {

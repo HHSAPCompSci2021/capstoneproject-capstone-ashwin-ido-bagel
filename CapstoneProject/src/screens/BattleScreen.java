@@ -17,10 +17,13 @@ import sprites.Sprite;
  * Represents the screen where the player fights enemies and players.
  * 
  * @author Ido Haiby, Ashwin S.
- * @version 5/13/22
+ * @version 5/23/22
  */
 public class BattleScreen extends Screen {
 	
+	/**
+	 * Stores an int representing the Enemy to spawn.
+	 */
 	public static int enemyIndex = 0;
 	
 	private DrawingSurface surface;

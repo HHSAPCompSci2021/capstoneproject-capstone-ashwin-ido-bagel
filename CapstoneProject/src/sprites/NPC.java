@@ -8,7 +8,7 @@ import processing.core.PImage;
  * Represents an npc that can be interacted with by the Player.
  * 
  * @author Ido Haiby
- * @version 5/13/22
+ * @version 5/23/22
  */
 public class NPC extends Sprite {
 	
@@ -37,6 +37,10 @@ public class NPC extends Sprite {
 		this.enemyInfo = enemyInfo;
 	}
 	
+	/**
+	 * Gets the enemy info.
+	 * @return The int representing the enemy info.
+	 */
 	public int getEnemyInfo() {
 		return enemyInfo;
 	}

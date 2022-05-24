@@ -8,11 +8,9 @@ import processing.core.PImage;
  * Represents an Enemy that is fought by the Player.
  * 
  * @author Ashwin S., Ido Haiby
- * @version 5/13/22
+ * @version 5/23/22
  */
 public class Enemy extends Sprite{
-	
-	//Weapon weapon;
 	
 	private int enemySpeed, attackPower;
 	private Player player;
@@ -55,6 +53,9 @@ public class Enemy extends Sprite{
 		attackTimer2 = 0;
 	} 
 	
+	/**
+	 * Sets the stamina cost of some attacks depending on their attack power.
+	 */
 	public void setCost() {
 		if (attackPower >= 20) {
 			staminaCost = 40;
@@ -126,6 +127,10 @@ public class Enemy extends Sprite{
 		}
 	}
 	
+	/**
+	 * Gets the default image of a Sprite.
+	 * @return The PImage representing the default image of a Sprite.
+	 */
 	public PImage getDefaultImage() {
 		return defaultImg;
 	}
@@ -140,32 +145,53 @@ public class Enemy extends Sprite{
 		return result;
 	}
 	
+	/**
+	 * Gets the animation size of a particular attack animation.
+	 * @return The int representing the attack animation size.
+	 */
 	public int getAttackAnimationSize() {
 		return animationsAttackR.length;
 	}
+	
+	/**
+	 * Gets the animation size of a particular walking animation.
+	 * @return The int representing the walking animation size.
+	 */
 	public int getWalkAnimationSize() {
 		return animationsWalk.length/2;
 	}
 	
 	/**
-	 * A method that makes the Player attack during battle.
-	 * 
+	 * Animates the attack to the right.
+	 * @param index The index of the next image to switch to.
 	 */
 	public void animateAttackR(int index) {
 		if (isAnimating)
 			setImage(animationsAttackR[index]);
 	}
 	
+	/**
+	 * Animates the attack to the left.
+	 * @param index The index of the next image to switch to.
+	 */
 	public void animateAttackL(int index) {
 		if (isAnimating)
 			setImage(animationsAttackL[index]);
 	}
 	
+	/**
+	 * Animates the walk to the left.
+	 * @param index The index of the next image to switch to.
+	 */
 	public void animateWalkLeft(int index) {
 		if(!isAnimating)
 			setImage(animationsWalk[index]);
 	}
 	
+	/**
+	 * Animates the walk to the right.
+	 * @param index The index of the next image to switch to.
+	 */
 	public void animateWalkRight(int index) {
 		if(!isAnimating)
 			setImage(animationsWalk[index+animationsWalk.length/2]);
@@ -204,7 +230,6 @@ public class Enemy extends Sprite{
 	
 	/**
 	 * Moves this Enemy towards the Player.
-	 * 
 	 */
 	public void moveTowardsPlayer() {
 		if (!(this.intersects(player))) {
@@ -223,10 +248,18 @@ public class Enemy extends Sprite{
 		}
 	}
 	
+	/**
+	 * Gets the whether or not the Enemy is moving right or not.
+	 * @return The boolean representing whether or not the Enemy is moving right or not.
+	 */
 	public boolean isMovingRight() {
 		return movingR;
 	}
 	
+	/**
+	 * Gets the whether or not the Enemy is moving left or not.
+	 * @return The boolean representing whether or not the Enemy is moving left or not.
+	 */
 	public boolean isMovingLeft() {
 		return movingL;
 	}
