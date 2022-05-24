@@ -109,6 +109,7 @@ public class BackgroundLoader {
 		
 		o = new ArrayList<Sprite>();
 		o.add(new Sprite(0,0,750, 25));
+		o.add(new Sprite(0,0,20, 500));
 		o.add(new Sprite(0,0,100, 200));
 		o.add(new Sprite(95,0,85, 110));
 		o.add(new Sprite(615,0,180, 200));
@@ -120,6 +121,7 @@ public class BackgroundLoader {
 		
 		o = new ArrayList<Sprite>();
 		o.add(new Sprite(0,0,750, 25));
+		o.add(new Sprite(0,0,20, 500));
 		o.add(new Sprite(0,0,180, 115));
 		o.add(new Sprite(0,0,100, 200));
 		o.add(new Sprite(620,0,180, 550));
