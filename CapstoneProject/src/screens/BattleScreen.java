@@ -93,19 +93,17 @@ public class BattleScreen extends Screen {
 		}
 		else if (enemyIndex == 1) {
 			enemy = new Enemy(surface.loadImage("img/Ghost.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 
-					2, 20, player, 150, 100, 1);
+					7, 20, player, 150, 10000, 1);
 		}
 		else if (enemyIndex == 2) {
 			enemy = new Enemy(surface.loadImage("img/skeleton_idle.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT, 
-					2, 20, player, 150, 100, 2);
+					2, 30, player, 200, 300, 2);
 		}
 		else if (enemyIndex == 3) {
-			//knight phase 1
 			enemy = new Enemy(surface.loadImage("img/idleKnight.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,
 					1, 20, player, 300, 200, 3);
 		}
 		else if (enemyIndex == 4) {
-			//knight phase 2
 			enemy = new Enemy(surface.loadImage("img/idleKnight.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,
 					3, 40, player, 100, 50, 4);
 		}
@@ -222,10 +220,11 @@ public class BattleScreen extends Screen {
 			if(animationTimer <= 0)
 				animationTimer = 60;
 		}
-		if (surface.isPressed(KeyEvent.VK_LEFT)) {
+		if (surface.isPressed(KeyEvent.VK_LEFT) ||
+				surface.isPressed(KeyEvent.VK_A)) {
 			if (player.x <= 50 && backgroundLoc > 0) {
 				backgroundLoc-=10;
-				enemy.moveByAmount(10, 0);
+				enemy.moveByAmount(10,0);
 			}
 			if(!player.isAttacking()) {
 				player.walk(Player.Direction.Left, 10);
@@ -233,7 +232,8 @@ public class BattleScreen extends Screen {
 				player.animateWalkLeft(animationIndex3);
 			}
 		}
-		if (surface.isPressed(KeyEvent.VK_RIGHT)) {
+		if (surface.isPressed(KeyEvent.VK_RIGHT) ||
+				surface.isPressed(KeyEvent.VK_D)) {
 			if (player.x >= DRAWING_WIDTH -50 - Player.BATTLEPLAYER_WIDTH && backgroundLoc < 1900) {
 				backgroundLoc+=10;
 				enemy.moveByAmount(-10, 0);
