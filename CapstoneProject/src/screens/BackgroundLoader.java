@@ -77,6 +77,7 @@ public class BackgroundLoader {
 		spawnPoints.add(new Point2D.Double(150, 150));
 		spawnPoints.add(new Point2D.Double(320, 20));
 		spawnPoints.add(new Point2D.Double(10, 260));
+		spawnPoints.add(new Point2D.Double(10, 260));
 	}
 	
 	/**
@@ -113,9 +114,18 @@ public class BackgroundLoader {
 		o.add(new Sprite(0,360,100, 220));
 		o.add(new Sprite(95,455,90, 130));
 		o.add(new Sprite(180,540,440, 50));
-
 		obstacles.add(o);
 		
+		o = new ArrayList<Sprite>();
+		o.add(new Sprite(0,0,750, 25));
+		o.add(new Sprite(0,0,180, 115));
+		o.add(new Sprite(0,0,100, 200));
+		o.add(new Sprite(620,0,180, 550));
+		o.add(new Sprite(0,355,101, 200));
+		o.add(new Sprite(95,450,85, 100));
+		o.add(new Sprite(0, 540, 290, 50));
+		o.add(new Sprite(395, 540, 390, 30));
+		obstacles.add(o);
 	}
 	/**
 	 * Returns the screen number.
