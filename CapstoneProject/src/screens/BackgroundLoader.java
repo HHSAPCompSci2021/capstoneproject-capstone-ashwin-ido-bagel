@@ -43,30 +43,31 @@ public class BackgroundLoader {
 		ArrayList<Sprite> c = new ArrayList<Sprite>();
 		//tutorial area
 		c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!", -1));
-		//c.add(new NPC(surface.loadImage("img/Ghost.png"), 500, 290, "Fight me!", 3));
+		c.add(new NPC(surface.loadImage("img/npc2.png"), 505, 245, "Click on an enemy or NPC to interact with it or fight it. Use the WASD controls to move around.", -1));
 		characters.add(c);
 		
 		//area 1
 		c = new ArrayList<Sprite>();
-		//c.add(new NPC(surface.loadImage("img/npc1.png"), 300, 290, "Welcome to the game. Have fun in your journey!", -1));
+		c.add(new NPC(surface.loadImage("img/npc3.png"), 329, 246, "I think... I just saw that mushroom... move? Remember that while in battle, use left click to shoot.", -1));
+		c.add(new NPC(surface.loadImage("img/Enemy.png"), 550, 439, "Shroooooooom!", 0));
 		characters.add(c);
 		
 		//area 2
 		c = new ArrayList<Sprite>();
+		c.add(new NPC(surface.loadImage("img/npc4.png"), 475, 214, "Ugh... Why is it so cold all of a sudden?", -1));
+		c.add(new NPC(surface.loadImage("img/Ghost.png"), 540, 214, "Boo!", 1));
 		characters.add(c);
 		
 		//area 3
 		c = new ArrayList<Sprite>();
+		c.add(new NPC(surface.loadImage("img/npc5.png"), 80, 263, "Isn't that one of the Corrupted Knight's warriors... Run!", -1));
+		c.add(new NPC(surface.loadImage("img/skeleton_idle.png"), 341, 276, "Clack-Clack-Clack", 2));
 		characters.add(c);
 		
 		//area 4
 		c = new ArrayList<Sprite>();
+		c.add(new NPC(surface.loadImage("img/idleKnight.png"), 341, 276, "Player... please... bring... me... peace...", 3));
 		characters.add(c);
-		
-		//area 5
-		c = new ArrayList<Sprite>();
-		characters.add(c);
-		
 	}
 	
 	/**

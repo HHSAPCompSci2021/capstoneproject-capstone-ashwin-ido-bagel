@@ -42,7 +42,7 @@ public class SecondScreen extends Screen {
 		
 		
 		going = false;
-		bl = new BackgroundLoader(0);
+		bl = new BackgroundLoader(4);
 		//currentArea = 1;
 	}
 
@@ -150,8 +150,6 @@ public class SecondScreen extends Screen {
 	 * 
 	 */
 	public void mousePressed() { 
-		System.out.println("(" + surface.mouseX + ", " + surface.mouseY + ")");
-		player.moveToLocation(surface.mouseX, surface.mouseY);
 		NPC currentnpc;
 		for (Sprite npc : bl.getCharacters().get(bl.getScreenNum())) {
 			if(npc instanceof NPC && npc.contains(surface.mouseX, surface.mouseY) && npc.intersects(player)) {
