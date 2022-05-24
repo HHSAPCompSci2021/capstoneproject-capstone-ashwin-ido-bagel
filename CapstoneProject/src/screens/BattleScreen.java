@@ -101,7 +101,7 @@ public class BattleScreen extends Screen {
 		}
 		else if (enemyIndex == 3) {
 			enemy = new Enemy(surface.loadImage("img/idleKnight.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,
-					1, 20, player, 300, 200, 3);
+					1, 15, player, 300, 200, 3);
 		}
 		else if (enemyIndex == 4) {
 			enemy = new Enemy(surface.loadImage("img/idleKnight.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,

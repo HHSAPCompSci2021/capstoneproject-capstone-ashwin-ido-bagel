@@ -98,10 +98,6 @@ public class SecondScreen extends Screen {
 
 		player.draw(surface);
 		
-		if (surface.isPressed(KeyEvent.VK_P)) {
-			surface.switchScreen(ScreenSwitcher.BATTLE_SCREEN);
-			return;
-		}
 		if (surface.isPressed(KeyEvent.VK_ESCAPE)) {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			return;
