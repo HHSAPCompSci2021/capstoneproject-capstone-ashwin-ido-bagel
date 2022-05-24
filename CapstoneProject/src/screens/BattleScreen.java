@@ -105,7 +105,7 @@ public class BattleScreen extends Screen {
 		}
 		else if (enemyIndex == 4) {
 			enemy = new Enemy(surface.loadImage("img/idleKnight.png"), DRAWING_WIDTH/2-Player.PLAYER_WIDTH/2+200,DRAWING_HEIGHT - Player.BATTLEPLAYER_HEIGHT -30,Player.BATTLEPLAYER_WIDTH, Player.BATTLEPLAYER_HEIGHT,
-					4, 40, player, 150, 50, 4);
+					4, 40, player, 100, 50, 4);
 		}
 		enemy.setUp(surface);
 	}
@@ -202,10 +202,8 @@ public class BattleScreen extends Screen {
 			surface.switchScreen(ScreenSwitcher.GAME_SCREEN);
 		}
 		if(enemy.getHealth() <= 0 && enemyIndex == 4) {
-			int option = JOptionPane.showConfirmDialog(null, "Congratulations! You have beaten the game");
-			if(option == JOptionPane.NO_OPTION || option == JOptionPane.YES_OPTION || option == JOptionPane.CANCEL_OPTION) {
-				surface.exit();
-			}
+			JOptionPane.showMessageDialog(null, "Congratulations! You have beaten the game");
+			surface.exit();
 		}
 		if (enemy.getHealth() <= 0 && enemyIndex == 3) {
 			enemyIndex++;
