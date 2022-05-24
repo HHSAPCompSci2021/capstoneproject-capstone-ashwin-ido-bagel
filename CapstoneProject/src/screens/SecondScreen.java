@@ -42,7 +42,7 @@ public class SecondScreen extends Screen {
 		
 		
 		going = false;
-		bl = new BackgroundLoader(4);
+		bl = new BackgroundLoader(0);
 		//currentArea = 1;
 	}
 

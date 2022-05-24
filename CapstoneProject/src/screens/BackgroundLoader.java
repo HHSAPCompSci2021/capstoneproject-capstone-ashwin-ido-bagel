@@ -66,7 +66,7 @@ public class BackgroundLoader {
 		
 		//area 4
 		c = new ArrayList<Sprite>();
-		c.add(new NPC(surface.loadImage("img/idleKnight.png"), 341, 276, "Player... please... bring... me... peace...", 3));
+		c.add(new NPC(surface.loadImage("img/idleKnight.png"), 360, 320, "Player... please... bring... me... peace...", 3));
 		characters.add(c);
 	}
 	
